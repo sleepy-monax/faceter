@@ -6,25 +6,20 @@
     <meta name="viewport" content="width=720, initial-scale=1.0">
     <title>Faceter.</title>
 
-    <script src="/lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>
-    <link rel="stylesheet" href="/lib/bootstrap-4.4.1/css/bootstrap.min.css">
-    <script src="/lib/bootstrap-4.4.1/js/bootstrap.min.js"></script>
+    <script src="/lib/jquery.js"></script>
+    <link rel="stylesheet" href="/lib/bootstrap.css">
+    <script src="/lib/bootstrap.js"></script>
 </head>
 
-
-<body>
-
-</body>
+<body></body>
 
 <script type="module">
-    import { h, Component, render } from '/lib/preact-10.3.4/preact.module.js';
-    import htm from '/lib/htm-3.0.3/htm.module.js';
+    import { h, Component, render } from '/lib/preact.js';
+    import htm from '/lib/htm.js';
+    window.html = htm.bind(h);
 
-    // Initialize htm with Preact
-    const html = htm.bind(h);
-
-    const app = html`<h1>Hello World!</h1>`;
-    render(app, document.body);
+    import App from '/app/App.js'
+    render(html`<${App}/>`, document.body);
 </script>
 
 </html>
