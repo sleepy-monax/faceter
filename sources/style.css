@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+.dark-theme{
+    --theme-accent: #06f;
+    --theme-background: #222;
+    --theme-background-alt: #333;
+    --theme-foreground: #fff;
+}
+
+.light-theme{
+    --theme-accent: #06f;
+    --theme-background: #eee;
+    --theme-background-alt: #fff;
+    --theme-foreground: #000;
+}
+
+body {
+    font-family: Roboto, sans-serif !important;
+
+    background-color: var(--theme-background) !important;
+    color: var(--theme-foreground) !important;
+}
