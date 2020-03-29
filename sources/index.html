@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=720, initial-scale=1.0">
+    <title>Faceter.</title>
+
+    <script src="/lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="/lib/bootstrap-4.4.1/css/bootstrap.min.css">
+    <script src="/lib/bootstrap-4.4.1/js/bootstrap.min.js"></script>
+</head>
+
+
+<body>
+
+</body>
+
+<script type="module">
+    import { h, Component, render } from '/lib/preact-10.3.4/preact.module.js';
+    import htm from '/lib/htm-3.0.3/htm.module.js';
+
+    // Initialize htm with Preact
+    const html = htm.bind(h);
+
+    const app = html`<h1>Hello World!</h1>`;
+    render(app, document.body);
+</script>
+
+</html>
