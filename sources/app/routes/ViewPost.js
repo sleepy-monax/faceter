@@ -1,6 +1,8 @@
 import { Component } from '/lib/preact.js';
 
-class Home extends Component {
+import Post from '/app/components/Post.js';
+
+class ViewPost extends Component {
 
     constructor() {
         super();
@@ -10,10 +12,9 @@ class Home extends Component {
     render() {
         return html`
         <div>
-            <h1>Home</h1>
+            <${Post} postid="${this.props.postid}"/>
         </div>`;
     }
 }
 
-export { Home as default };
-    
+export { ViewPost as default };

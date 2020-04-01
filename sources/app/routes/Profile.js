@@ -1,6 +1,6 @@
 import { Component } from '/lib/preact.js';
 
-class Home extends Component {
+class Profile extends Component {
 
     constructor() {
         super();
@@ -10,10 +10,10 @@ class Home extends Component {
     render() {
         return html`
         <div>
-            <h1>Home</h1>
+            <h1>Profile</h1>
+            <h2>${this.props.profileid}</h2>
         </div>`;
     }
 }
 
-export { Home as default };
-    
+export { Profile as default };

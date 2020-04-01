@@ -13,8 +13,7 @@ class Navigation extends Component {
     <a class="navigation-brand" href="/">
         Faceter.
     </a>
-</div>
-        `;
+</div>`;
     }
 }
 
