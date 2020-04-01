@@ -19,15 +19,16 @@ class App extends Component {
         <div>
             <${Navigation}/>
 
-            <${Router}>
-            <${Home} path="/" />
-            <${Login} path="/login" />
-            <${Profile} path="/profile/:profileid" />
-            <${ViewPost} path="/post/:postid" />
-            <${Error} default />
-            <//>
-        </div>
-            `;
+            <div class="container">
+                <${Router}>
+                    <${Home} path="/" />
+                    <${Login} path="/login" />
+                    <${Profile} path="/profile/:profileid" />
+                    <${ViewPost} path="/post/:postid" />
+                    <${Error} default />
+                <//>
+            </div>
+        </div>`;
     }
 }
 
