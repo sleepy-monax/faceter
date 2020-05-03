@@ -25,12 +25,12 @@ class Login extends Component {
     }
 
     onUsernameInput = e => {
-        const { username } = e.target;
+        let username = e.target.value;
         this.setState({ username })
     }
 
     onPasswordInput = e => {
-        const { password } = e.target;
+        let password = e.target.value;
         this.setState({ password })
     }
 

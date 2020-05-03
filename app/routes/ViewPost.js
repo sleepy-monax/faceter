@@ -12,7 +12,7 @@ class ViewPost extends Component {
     render() {
         return html`
         <div>
-            <${Post} postid="${this.props.postid}"/>
+            <${Post} postid="${this.props.postId}"/>
         </div>`;
     }
 }

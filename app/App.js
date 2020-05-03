@@ -15,7 +15,7 @@ class App extends Component {
     }
 
     render() {
-        return html`
+        return html` 
         <div>
             <${Navigation}/>
 
@@ -24,7 +24,7 @@ class App extends Component {
                     <${Home} path="/" />
                     <${Login} path="/login" />
                     <${Profile} path="/profile/:profileid" />
-                    <${ViewPost} path="/post/:postid" />
+                    <${ViewPost} path="/post/:postId" />
                     <${Error} default />
                 <//>
             </div>
