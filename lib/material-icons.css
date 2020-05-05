@@ -20,4 +20,7 @@
   direction: ltr;
   -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
+
+  text-align:center;
+  vertical-align:middle;
 }
