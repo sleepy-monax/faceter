@@ -1,7 +1,7 @@
 <?php
 $connection = include 'connection.php';
 
-$sql = 'select * from User';
+$sql = 'select userId from User';
 $result = mysqli_query($connection, $sql);
 
 $rows = array();
