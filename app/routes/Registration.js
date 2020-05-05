@@ -1,23 +1,24 @@
 import { Component } from '/lib/preact.js';
 import { route } from '/lib/preact-router.js';
 
-class Login extends Component {
+class Registration extends Component {
     state = {
-        username: 'pomme',
-        password: 'poire',
+        username: 'User',
+        password: 'mathieu123',
+        email: 'faceter@faceter.com',
     }
 
     constructor() {
         super();
     }
 
-    doLogin = e => {
-        alert("TODO: login " + this.state.username + " " + this.state.password);
-        route("/");
+    doBack = e => {
+        route("/login");
     }
 
     doRegistration = e => {
-        route("/registration");
+        alert("Félicitations, vous êtes maintenant inscrit");
+        alert(this.state.username + " " + this.state.password + " " + this.state.email);
     }
 
     onSubmit = e => {
@@ -34,13 +35,18 @@ class Login extends Component {
         this.setState({ password })
     }
 
+    onEmailInput = e => {
+        let email = e.target.value;
+        this.setState({ email })
+    }
+
     render() {
         return html`
         <div>
             <form onSubmit=${this.onSubmit}>
-                <h1>Connection</h1>
+                <h1>Inscription</h1>
                 <div>
-                    E-mail ou pseudo :
+                    Pseudo :
                     <input type="text" value=${this.state.username} onInput=${this.onUsernameInput} />
                 </div>
                 <div>
@@ -48,12 +54,16 @@ class Login extends Component {
                     <input type="text" value=${this.state.password} onInput=${this.onPasswordInput} />
                 </div>
                 <div>
+                    Adresse mail :
+                    <input type="text" value=${this.state.email} onInput=${this.onEmailInput} />
+                </div>
+                <div>
                     <button onClick=${this.doRegistration}>S’inscrire</button>
-                    <button onClick=${this.doLogin}>Se connecter</button>
+                    <button onClick=${this.doBack}>Retour</button>
                 </div>
             </form>
         </div>`;
     }
 }
 
-export { Login as default };
+export { Registration as default };
