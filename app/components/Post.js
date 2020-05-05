@@ -1,6 +1,8 @@
 import { Component } from '/lib/preact.js';
 
 import User from '/app/components/User.js';
+import Emotes from '/app/components/Emotes.js';
+import Icon from '/app/components/Icon.js';
 
 class Post extends Component {
     state = {post : null};
@@ -13,7 +15,7 @@ class Post extends Component {
     }
 
     componentDidMount() {
-        fetch("http://localhost:8000/api/query-post.php?postId=" + this.props.postId)
+        fetch("/api/query-post.php?postId=" + this.props.postId)
         .then(function (response) { return response.json()})
         .then(post => this.setState({ post }));
     }
@@ -43,6 +45,10 @@ class Post extends Component {
                 </div>
                 <div class="post-body">
                     ${this.state.post.postContent}
+                </div>
+                <div class="post-emotes">
+                    <${Emotes} postId=${this.props.postId}/>
+                    <${Icon} icon="add"/>
                 </div>
             </div>`;
         }

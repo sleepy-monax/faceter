@@ -4,7 +4,6 @@ class Icon extends Component {
 
     constructor() {
         super();
-        this.state = {};
     }
 
     render() {
