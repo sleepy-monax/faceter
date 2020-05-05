@@ -1,7 +1,7 @@
 <?php
 $connection = include 'connection.php';
 
-$sql = 'select * from Post';
+$sql = 'select postId from Post';
 $result = mysqli_query($connection, $sql);
 
 $rows = array();

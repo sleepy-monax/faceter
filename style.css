@@ -33,3 +33,10 @@ body {
     font-size: 32px;
     font-weight: 900;
 }
+
+.post-container{
+    background-color: var(--theme-background-alt);
+    color: var(--theme-foreground);
+    padding: 8px 16px;
+    margin-bottom: 16px;
+}
