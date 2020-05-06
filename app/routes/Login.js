@@ -18,7 +18,7 @@ class Login extends Component {
             .then(function (response) { return response.json()})
             .then(login => {
                 if (login != false)
-                    route("/")
+                    route("/profile/" + login)
                 else
                     alert("ERROR")
 

@@ -16,7 +16,7 @@ class Navigation extends Component {
     <a class="navigation-item" href="/">
         Accueil
     </a>
-    <a class="navigation-item" href="/">
+    <a class="navigation-item" href="/profile/2">
         Profile
     </a>
 </div>`;

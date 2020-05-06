@@ -1,0 +1,45 @@
+.center {
+    text-align: center;
+}
+.container-profile {
+    position: relative;
+}
+
+.cover-image{
+    max-width: 90%;
+    max-height: 500px;
+    position: absolute;
+    margin: 10px;
+}
+
+.profile-image {
+    -webkit-border-radius:50px;
+    -moz-border-radius:50px;
+    border-radius:100px;
+    width:200px;
+    height:200px;
+}
+
+.ahead {
+    position: relative;
+    z-index: 1;
+    margin: 30px;
+}
+
+.test {
+    margin-top: 300px;
+}
+
+.new-post {
+    background-color: whitesmoke;
+    border-radius: 10px;
+    max-width: 300px;
+    max-height: 50px;
+    padding: 5px;
+    margin-bottom: 20px;
+}
+
+.button {
+    font-family: "Material Icons";
+    font-size: 25px;
+}
