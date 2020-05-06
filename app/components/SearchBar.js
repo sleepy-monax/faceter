@@ -7,6 +7,37 @@ class SearchBar extends Component {
         content: '',
     }
 
+    styleSearch = {
+        display: "flex",
+        backgroundColor: "var(--theme-middleground)",
+        height: "32px",
+        marginBottom: "8px",
+        marginTop: "8px",
+        borderRadius: "8px",
+        paddingLeft: "8px",
+        overflow: "hidden"
+    }
+
+    styleField = {
+        backgroundColor: "transparent",
+        color: "var(--theme-foreground)",
+        flexGrow: "1",
+        width: "100%",
+        outline: "none",
+        border: "none"
+    }
+
+    styleButton = {
+        width: "64px",
+        textAlign: "center",
+        verticalAlign: "middle",
+        lineHeight: "32px",
+        userSelect: "none",
+        ':hover': {
+            backgroundColor: 'rgba(255, 255, 255, 0.1)'
+        }
+    }
+
     constructor() {
         super();
     }
@@ -23,18 +54,18 @@ class SearchBar extends Component {
 
     render() {
         return html`
-<div class="search-bar">
+<span style=${this.styleSearch}>
     <input
         type="text"
-        class="search-field"
+        style=${this.styleField}
         placeholder="Search..."
         value=${this.state.content}
         onInput=${this.onTextInput}
     />
-    <div class="search-icon">
+    <span style=${this.styleButton} class='overable'>
         <${Icon} icon="search"/>
-    </div>
-</div>`;
+    </span>
+</span>`;
     }
 }
 
