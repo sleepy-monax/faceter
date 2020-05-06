@@ -37,6 +37,42 @@ body {
 .post-container{
     background-color: var(--theme-background-alt);
     color: var(--theme-foreground);
-    padding: 8px 16px;
+    padding: 16px 16px;
     margin-bottom: 16px;
+    border-radius: 8px;
+}
+
+.post-title{
+    margin-bottom: 4px;
+}
+
+.post-emotes{
+    text-align: right;
+}
+
+.emote {
+    padding: 6px;
+    position: relative;
+
+}
+
+.emote-image {
+    height: 18px;
+    border-radius: 9px;
+    margin-right: 2px;
+}
+
+.emote-badge {
+    position: absolute;
+    background: var(--theme-accent);
+    top:1rem;
+    left:1rem;
+    height:0.75rem;
+    width:0.75rem;
+    text-align: center;
+    line-height: 0.75rem;;
+    font-size: 0.5rem;
+    border-radius: 50%;
+    color:white;
+    border:1px solid var(--theme-accent);
 }

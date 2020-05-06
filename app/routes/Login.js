@@ -3,8 +3,8 @@ import { route } from '/lib/preact-router.js';
 
 class Login extends Component {
     state = {
-        username: 'pomme',
-        password: 'poire',
+        username: '',
+        password: '',
     }
 
     constructor() {
@@ -12,8 +12,17 @@ class Login extends Component {
     }
 
     doLogin = e => {
-        alert("TODO: login " + this.state.username + " " + this.state.password);
-        route("/");
+        console.log("TODO: login " + this.state.username + " " + this.state.password);
+        fetch("http://localhost:8000/api/query-login.php?userName=" + this.state.username
+            + "&password=" + this.state.password)
+            .then(function (response) { return response.json()})
+            .then(login => {
+                if (login != false)
+                    route("/")
+                else
+                    alert("ERROR")
+
+            });
     }
 
     doRegistration = e => {
