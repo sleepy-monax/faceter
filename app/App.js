@@ -15,20 +15,20 @@ class App extends Component {
     }
 
     render() {
-        return html` 
-        <div>
-            <${Navigation}/>
+        return html`
+<div>
+    <${Navigation}/>
 
-            <div class="container">
-                <${Router}>
-                    <${Home} path="/" />
-                    <${Login} path="/login" />
-                    <${Profile} path="/profile/:profileid" />
-                    <${ViewPost} path="/post/:postId" />
-                    <${Error} default />
-                <//>
-            </div>
-        </div>`;
+    <div class="container">
+        <${Router}>
+            <${Home} path="/" />
+            <${Login} path="/login" />
+            <${Profile} path="/profile/:profileid" />
+            <${ViewPost} path="/post/:postId" />
+            <${Error} default />
+        <//>
+    </div>
+</div>`;
     }
 }
 

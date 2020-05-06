@@ -1,5 +1,6 @@
 import { Component } from '/lib/preact.js';
 import Emote from '/app/components/Emote.js';
+import Icon from '/app/components/Icon.js';
 
 class Emotes extends Component {
     state = {
@@ -20,6 +21,7 @@ class Emotes extends Component {
         return html`
 <span class="emotes">
     ${this.state.emotes.map(emote => html`<${Emote} name="${emote.reactionType}" count="${emote.reactionCount}"/>`)}
+    <${Icon} icon="add"/>
 </span>`;
     }
 }

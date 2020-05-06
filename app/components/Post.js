@@ -2,7 +2,6 @@ import { Component } from '/lib/preact.js';
 
 import User from '/app/components/User.js';
 import Emotes from '/app/components/Emotes.js';
-import Icon from '/app/components/Icon.js';
 
 class Post extends Component {
     state = {post : null};
@@ -48,7 +47,6 @@ class Post extends Component {
                 </div>
                 <div class="post-emotes">
                     <${Emotes} postId=${this.props.postId}/>
-                    <${Icon} icon="add"/>
                 </div>
             </div>`;
         }

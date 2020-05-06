@@ -1,6 +1,6 @@
 <?php
 
-$connection = mysqli_connect('localhost:3306', 'root', '', 'faceter');
+$connection = mysqli_connect('localhost:3306', 'root', 'toor', 'faceter');
 if (!$connection) {
     die('Could not connect : ' . mysqli_error($connection));
 }
