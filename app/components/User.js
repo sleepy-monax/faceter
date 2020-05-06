@@ -1,4 +1,5 @@
 import { Component } from '/lib/preact.js';
+import { getUser } from '/app/model/Users.js';
 
 class User extends Component {
     state = {user : null};
@@ -11,9 +12,7 @@ class User extends Component {
     }
 
     componentDidMount() {
-        fetch("/api/query-user.php?userId=" + this.props.userId)
-        .then(function (response) { return response.json()})
-        .then(user => this.setState({ user }));
+        getUser(this.props.userId, user => this.setState({ user }));
     }
 
     render() {
