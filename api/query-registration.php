@@ -17,7 +17,7 @@ $result = mysqli_query($connection, $sql);\
 print_r($_POST);
 print $sql;
 
-$rows = array();
+/*$rows = array();
 while($r = mysqli_fetch_assoc($result)) {
     $rows[] = $r;
 }
@@ -27,5 +27,16 @@ if ($rows = mysqli_fetch_assoc($result)) {
 }
 else {
     print json_encode(false);
-}
+}*/
+
+$verifPseudo  = 'SELECT COUNT(*) AS nbr FROM User WHERE userName = \'' . $username . '\'';
+    $res  = mysqli_query($connection, $verifPseudo);
+    $alors  = mysqli_fetch_assoc($res);
+         
+  // BOUCLE POUR INFORMER L'UTLISATEUR
+    if(isset($username)){
+      if(!($alors['nbr'] == 0)){
+        echo "Ce pseudo est déjà utilisé !";
+      }
+    }
 ?>

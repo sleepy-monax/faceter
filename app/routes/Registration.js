@@ -19,14 +19,14 @@ class Registration extends Component {
     doRegistration = e => {
         fetch("/api/query-registration.php?username=" + this.state.username + "&password=" + this.state.password + "&email=" + this.state.email)
         .then(function (response) { return response.json()})
-        .then(registration => {
-            if (login != false) {
+        /*.then(registration => {
+            if (registration != false) {
                 alert("Félicitations, vous êtes maintenant inscrit");
-                route("/");
+                route("/login");
             }
             else
                 alert("Identifiant ou adresse mail déja utilisés")
-        })
+        })*/
     }
 
     onSubmit = e => {
