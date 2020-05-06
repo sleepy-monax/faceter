@@ -17,8 +17,12 @@ class Registration extends Component {
     }
 
     doRegistration = e => {
-        alert("Félicitations, vous êtes maintenant inscrit");
-        alert(this.state.username + " " + this.state.password + " " + this.state.email);
+        fetch("/api/query-registration.php?username=" + this.state.username + "&password=" + this.state.password + "&email=" + this.state.email)
+        .then(function (response) { return response.json()})
+        .then(registration => {
+            alert("Félicitations, vous êtes maintenant inscrit");
+            route("/");
+        })
     }
 
     onSubmit = e => {
@@ -47,15 +51,15 @@ class Registration extends Component {
                 <h1>Inscription</h1>
                 <div>
                     Pseudo :
-                    <input type="text" value=${this.state.username} onInput=${this.onUsernameInput} />
+                    <input type="text" id="username" name="username" value=${this.state.username} onInput=${this.onUsernameInput} />
                 </div>
                 <div>
                     Mot de passe :
-                    <input type="text" value=${this.state.password} onInput=${this.onPasswordInput} />
+                    <input type="text" id="password" name="password" value=${this.state.password} onInput=${this.onPasswordInput} />
                 </div>
                 <div>
                     Adresse mail :
-                    <input type="text" value=${this.state.email} onInput=${this.onEmailInput} />
+                    <input type="text" id="email" name="email" value=${this.state.email} onInput=${this.onEmailInput} />
                 </div>
                 <div>
                     <button onClick=${this.doRegistration}>S’inscrire</button>
