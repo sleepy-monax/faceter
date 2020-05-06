@@ -61,8 +61,8 @@ class EmoteDialog extends Component {
             if (levenshteinDistance(emote.name, this.state.filter) <= emote.name.length)
             {
                 return html`
-                <div>
-                    <img class="emote-image" src="/res/emotes/${emote.filename}"/>
+                <div class="emote-item">
+                    <img class="emote-image-big" src="/res/emotes/${emote.filename}"/>
                     <span class="emote-name">${emote.name}</span>
                 </div>`
             }

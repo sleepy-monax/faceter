@@ -79,7 +79,7 @@ body {
 }
 
 .emote {
-    padding: 6px;
+    padding: 2px;
     position: relative;
 }
 
@@ -90,6 +90,12 @@ body {
     margin-right: 2px;
 }
 
+.emote-image-big {
+    height: 24px;
+    width: 24px;
+    border-radius: 4px;
+}
+
 .emote-name {
     padding-left: 8px;
 }
@@ -97,8 +103,8 @@ body {
 .emote-badge {
     position: absolute;
     background: var(--theme-accent);
-    top:1rem;
-    left:1rem;
+    bottom: 0px;
+    right:  0px;
     height:0.75rem;
     width:0.75rem;
     text-align: center;
@@ -108,6 +114,8 @@ body {
     color:white;
     border:1px solid var(--theme-accent);
 }
+
+
 
 .emote-dialog{
     position: absolute;
@@ -122,6 +130,12 @@ body {
 .emote-dialog-content {
     width: 300px;
     height: 250px;
+}
+
+
+.emote-item {
+    padding-bottom: 4px;
+    cursor: pointer;
 }
 
 .emote-title{
@@ -139,7 +153,6 @@ body {
     border-radius: 8px;
     padding-left: 8px;
     overflow: hidden;
-
 }
 
 .search-field {
