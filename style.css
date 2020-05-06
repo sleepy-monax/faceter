@@ -5,6 +5,8 @@
     --theme-background: #222;
     --theme-background-alt: #333;
     --theme-foreground: #fff;
+    --theme-middleground: rgba(255, 255, 255, 0.1);
+    --theme-middleground-over: rgba(255, 255, 255, 0.5);
 }
 
 .light-theme{
@@ -12,6 +14,8 @@
     --theme-background: #eee;
     --theme-background-alt: #fff;
     --theme-foreground: #000;
+    --theme-middleground: rgba(0, 0, 0, 0.1);
+    --theme-middleground-over: rgba(0, 0, 0, 0.5);
 }
 
 ::-webkit-scrollbar {
@@ -24,12 +28,12 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--theme-middleground);
     border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.5);
+    background: var(--theme-middleground-over);
 }
 
 .scroll {
@@ -74,9 +78,12 @@ body {
     text-align: right;
 }
 
+.anchor {
+    position: absolute;
+}
+
 .emote {
-    padding: 6px;
-    position: relative;
+    padding: 2px;
 }
 
 .emote-image {
@@ -86,6 +93,12 @@ body {
     margin-right: 2px;
 }
 
+.emote-image-big {
+    height: 24px;
+    width: 24px;
+    border-radius: 4px;
+}
+
 .emote-name {
     padding-left: 8px;
 }
@@ -93,8 +106,8 @@ body {
 .emote-badge {
     position: absolute;
     background: var(--theme-accent);
-    top:1rem;
-    left:1rem;
+    bottom: 0px;
+    right:  0px;
     height:0.75rem;
     width:0.75rem;
     text-align: center;
@@ -105,8 +118,12 @@ body {
     border:1px solid var(--theme-accent);
 }
 
+
 .emote-dialog{
     position: absolute;
+    right: 0px;
+    top: 0px;
+    text-align: left;
 
     background-color: var(--theme-background-alt);
     border-radius: 8px;
@@ -120,6 +137,11 @@ body {
     height: 250px;
 }
 
+.emote-item {
+    padding-bottom: 4px;
+    cursor: pointer;
+}
+
 .emote-title{
     font-weight: bold;
     font-size: larger;
@@ -127,7 +149,7 @@ body {
 
 .search-bar{
     display: flex;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--theme-middleground);
     width: 100%;
     height:32px;
     margin-bottom: 8px;
@@ -135,7 +157,6 @@ body {
     border-radius: 8px;
     padding-left: 8px;
     overflow: hidden;
-
 }
 
 .search-field {
