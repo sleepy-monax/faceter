@@ -5,6 +5,8 @@
     --theme-background: #222;
     --theme-background-alt: #333;
     --theme-foreground: #fff;
+    --theme-middleground: rgba(255, 255, 255, 0.1);
+    --theme-middleground-over: rgba(255, 255, 255, 0.5);
 }
 
 .light-theme{
@@ -12,6 +14,8 @@
     --theme-background: #eee;
     --theme-background-alt: #fff;
     --theme-foreground: #000;
+    --theme-middleground: rgba(0, 0, 0, 0.1);
+    --theme-middleground-over: rgba(0, 0, 0, 0.5);
 }
 
 ::-webkit-scrollbar {
@@ -24,12 +28,12 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--theme-middleground);
     border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.5);
+    background: var(--theme-middleground-over);
 }
 
 .scroll {
@@ -45,18 +49,6 @@ body {
     color: var(--theme-foreground) !important;
 }
 
-.navigation{
-    width: 100%;
-    padding: 8px 16px;
-
-    background-color: var(--theme-background-alt);
-    color: var(--theme-foreground);
-}
-
-.navigation-brand{
-    font-size: 32px;
-    font-weight: 900;
-}
 
 .post-container{
     background-color: var(--theme-background-alt);
@@ -74,39 +66,25 @@ body {
     text-align: right;
 }
 
-.emote {
-    padding: 6px;
+.anchor {
     position: relative;
 }
 
-.emote-image {
-    height: 18px;
-    width: 18px;
-    border-radius: 9px;
-    margin-right: 2px;
+.emote-image-big {
+    height: 24px;
+    width: 24px;
+    border-radius: 4px;
 }
 
 .emote-name {
     padding-left: 8px;
 }
 
-.emote-badge {
-    position: absolute;
-    background: var(--theme-accent);
-    top:1rem;
-    left:1rem;
-    height:0.75rem;
-    width:0.75rem;
-    text-align: center;
-    line-height: 0.75rem;;
-    font-size: 0.5rem;
-    border-radius: 50%;
-    color:white;
-    border:1px solid var(--theme-accent);
-}
-
 .emote-dialog{
     position: absolute;
+    right: 0px;
+    top: 0px;
+    text-align: left;
 
     background-color: var(--theme-background-alt);
     border-radius: 8px;
@@ -120,50 +98,17 @@ body {
     height: 250px;
 }
 
+.emote-item {
+    padding-bottom: 4px;
+    cursor: pointer;
+}
+
 .emote-title{
     font-weight: bold;
     font-size: larger;
 }
 
-.search-bar{
-    display: flex;
-    background-color: rgba(255, 255, 255, 0.1);
-    width: 100%;
-    height:32px;
-    margin-bottom: 8px;
-    margin-top: 8px;
-    border-radius: 8px;
-    padding-left: 8px;
-    overflow: hidden;
 
-}
-
-.search-field {
-    flex-grow: 1;
-    width: 100%;
-    outline: none;
-    background-color: transparent;
-    border: none;
-    user-select: none;
-}
-
-.search-field {
-    color: var(--theme-foreground);
-    flex-grow: 1;
-    width: 100%;
-    outline: none;
-    border: none;
-}
-
-.search-icon{
-    width: 64px;
-    text-align: center;
-    vertical-align: middle;
-    line-height: 32px;
-    user-select: none;
-}
-
-
-.search-icon:active{
+.overable:active{
     background-color: rgba(255, 255, 255, 0.1);
 }
