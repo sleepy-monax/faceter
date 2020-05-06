@@ -1,22 +1,6 @@
 import { Component } from '/lib/preact.js';
+import emotes from '/app/model/Emotes.js';
 
-let emotes = {
-    "ahegao": "ahegao.png",
-    "awesome": "awesome.png",
-    "dab": "dab.gif",
-    "dank": "dank-engine.png",
-    "emotes": "emotes.json",
-    "guillaume": "guillaume.png",
-    "honkler": "honkler.png",
-    "jerry": "jerry.png",
-    "like": "like.png",
-    "mathieu": "mathieu.jpg",
-    "nicolas": "nicolas.png",
-    "rain": "rain.gif",
-    "rainbow-blob": "rainbow-blob.gif",
-    "thonk": "thonk.jpg",
-    "wow": "wow.png"
-}
 
 class Emote extends Component {
     constructor() {
