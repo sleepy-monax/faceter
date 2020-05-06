@@ -3,9 +3,9 @@
 $connection = include 'connection.php';
 
 $login = mysqli_real_escape_string($connection,strval($_GET["userName"]));
-$field = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'userMail': 'userName';
-
 $password = mysqli_real_escape_string($connection,strval($_GET["password"]));
+
+$field = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'userMail': 'userName';
 
 $requestLogin = 'select * from User where '. $field.'= \''. $login . '\' and userPassword= \''
     . $password .'\'';

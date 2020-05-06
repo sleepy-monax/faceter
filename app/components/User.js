@@ -2,7 +2,24 @@ import { Component } from '/lib/preact.js';
 import { getUser } from '/app/model/Users.js';
 
 class User extends Component {
-    state = {user : null};
+    state = {
+        user : null
+    };
+
+    styleUser = {
+        display: 'flex'
+    }
+
+    styleName = {
+
+    }
+
+    styleImage = {
+        width: '24px',
+        height: '24px',
+        marginRight: '8px',
+        borderRadius: '32px',
+    }
 
     constructor(id) {
         super();
@@ -19,7 +36,7 @@ class User extends Component {
         if (this.state.user === undefined)
         {
             return html`
-            <div class="user-container">
+            <div style=${this.styleUser}>
                 <div class="user-name">
                     Loading...
                 </div>
@@ -28,7 +45,10 @@ class User extends Component {
         else
         {
             return html`
-            <div class="user-container">
+            <div style=${this.styleUser}>
+                <div>
+                    <img  style=${this.styleImage} src="${this.state.user.profilePic}"/>
+                </div>
                 <div class="user-name">
                     ${this.state.user.userName}
                 </div>

@@ -3,8 +3,38 @@ import { Component } from '/lib/preact.js';
 import User from '/app/components/User.js';
 import Emotes from '/app/components/Emotes.js';
 
+import { getUser } from '/app/model/Users.js';
+import { toHumanTime } from '/app/model/Time.js';
+
 class Post extends Component {
-    state = {post : null};
+    state = {
+        post : undefined,
+    };
+
+    stylePost = {
+        backgroundColor: 'var(--theme-background-alt)',
+        color: 'var(--theme-foreground)',
+        padding: '16px 16px',
+        marginBottom: '16px',
+        borderRadius: '8px',
+    }
+
+    styleHeader = {
+        display: 'flex'
+    }
+
+    styleDate = {
+        color: 'var(--theme-middleground-over)',
+        fontSize: "0.75rem",
+    }
+
+    styleBody = {
+        padding: '8px 0px',
+    }
+
+    styleFooter = {
+        textAlign: 'right',
+    }
 
     constructor(id) {
         super();
@@ -23,10 +53,7 @@ class Post extends Component {
         if (this.state.post === undefined)
         {
             return html`
-            <div class="post-container">
-                <div class="post-title">
-                    ${this.props.postId}
-                </div>
+            <div style=${this.stylePost}>
                 <div class="post-body">
                     Loading...
                 </div>
@@ -35,17 +62,17 @@ class Post extends Component {
         else
         {
             return html`
-            <div class="post-container">
-                <div class="post-title">
+            <div style=${this.stylePost}>
+                <div style=${this.styleHeader}>
                     <${User} userId="${this.state.post.postAuthor}"/>
+                    <div style=${this.styleDate}>
+                        ${toHumanTime(this.state.post.postDate)}
+                    </div>
                 </div>
-                <div class="post-date">
-                    ${this.state.post.postDate}
-                </div>
-                <div class="post-body">
+                <div style=${this.styleBody}>
                     ${this.state.post.postContent}
                 </div>
-                <div class="post-emotes">
+                <div style=${this.styleFooter}>
                     <${Emotes} postId=${this.props.postId}/>
                 </div>
             </div>`;

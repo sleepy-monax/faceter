@@ -2,12 +2,13 @@ let users = {}
 let pendingUsers = {}
 
 function getUser(id, onSuccess, onError) {
-    if (users[id] !== undefined)
+    if (users[id])
     {
         onSuccess(users[id])
+        return;
     }
 
-    if (pendingUsers[id] === undefined)
+    if (!pendingUsers[id])
     {
         pendingUsers[id] = [];
     }

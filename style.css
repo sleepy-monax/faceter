@@ -48,8 +48,12 @@ body {
     position: relative;
 }
 
+.overable:hover{
+    background-color: var(--theme-middleground);
+}
+
 .overable:active{
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--theme-middleground-over);
 }
 
 .scroll {
@@ -57,21 +61,3 @@ body {
     overflow: scroll;
     overflow-x: hidden;
 }
-
-.post-container{
-    background-color: var(--theme-background-alt);
-    color: var(--theme-foreground);
-    padding: 16px 16px;
-    margin-bottom: 16px;
-    border-radius: 8px;
-}
-
-.post-title{
-    margin-bottom: 4px;
-}
-
-.post-emotes{
-    text-align: right;
-}
-
-
