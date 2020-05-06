@@ -13,7 +13,7 @@ class Login extends Component {
 
     doLogin = e => {
         console.log("TODO: login " + this.state.username + " " + this.state.password);
-        fetch("http://localhost:8000/api/query-login.php?userName=" + this.state.username
+        fetch("/api/query-login.php?userName=" + this.state.username
             + "&password=" + this.state.password)
             .then(function (response) { return response.json()})
             .then(login => {

@@ -11,19 +11,19 @@ class Profile extends Component {
     }
 
     componentDidMount() {
-        fetch("http://localhost:8000/api/query-posts-user.php?postAuthor=" + this.props.profileId)
+        fetch("/api/query-posts-user.php?postAuthor=" + this.props.profileId)
             .then(function (response) { return response.json()})
             .then(posts => {
                 this.setState({ posts });
             });
 
-        fetch("http://localhost:8000/api/image-profile.php?profileId=" + this.props.profileId)
+        fetch("/api/image-profile.php?profileId=" + this.props.profileId)
             .then(function (response) { return response.json()})
             .then(imageProfile => {
                 this.setState({ imageProfile });
             })
 
-        fetch("http://localhost:8000/api/image-cover.php?profileId=" + this.props.profileId)
+        fetch("/api/image-cover.php?profileId=" + this.props.profileId)
             .then(function (response) { return response.json()})
             .then(imageCover => {
                 this.setState({ imageCover });
