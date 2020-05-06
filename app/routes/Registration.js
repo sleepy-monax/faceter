@@ -20,8 +20,12 @@ class Registration extends Component {
         fetch("/api/query-registration.php?username=" + this.state.username + "&password=" + this.state.password + "&email=" + this.state.email)
         .then(function (response) { return response.json()})
         .then(registration => {
-            alert("Félicitations, vous êtes maintenant inscrit");
-            route("/");
+            if (login != false) {
+                alert("Félicitations, vous êtes maintenant inscrit");
+                route("/");
+            }
+            else
+                alert("Identifiant ou adresse mail déja utilisés")
         })
     }
 
