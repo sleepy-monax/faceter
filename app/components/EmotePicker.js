@@ -1,25 +1,26 @@
 import { Component } from '/lib/preact.js';
 import emotes from '/app/model/Emotes.js';
 import SearchBar from '/app/components/SearchBar.js';
+import Icon from '/app/components/Icon.js'
 
 function levenshteinDistance (a, b) {
-    if(a.length == 0) return b.length; 
-    if(b.length == 0) return a.length; 
-  
+    if(a.length == 0) return b.length;
+    if(b.length == 0) return a.length;
+
     var matrix = [];
-  
+
     // increment along the first column of each row
     var i;
     for(i = 0; i <= b.length; i++){
       matrix[i] = [i];
     }
-  
+
     // increment each column in the first row
     var j;
     for(j = 0; j <= a.length; j++){
       matrix[0][j] = j;
     }
-  
+
     // Fill in the rest of the matrix
     for(i = 1; i <= b.length; i++){
       for(j = 1; j <= a.length; j++){
@@ -36,7 +37,7 @@ function levenshteinDistance (a, b) {
     return matrix[b.length][a.length];
   }
 
-class EmoteDialog extends Component {
+class EmotePicker extends Component {
     state = {
         filter: ''
     }
@@ -54,7 +55,7 @@ class EmoteDialog extends Component {
         .entries(emotes)
         .map(([name, filename]) => ({name,  filename}))
         .sort((a, b) => {
-            return levenshteinDistance(a.name.substring(0, this.state.filter.length), this.state.filter) - 
+            return levenshteinDistance(a.name.substring(0, this.state.filter.length), this.state.filter) -
                    levenshteinDistance(b.name.substring(0, this.state.filter.length), this.state.filter);
         })
         .map(emote => {
@@ -71,18 +72,24 @@ class EmoteDialog extends Component {
 
     render() {
         return html`
-        <div class="emote-dialog">
-            <div class="emote-title">
-                Emotes
-            </div>
-            <${SearchBar} onInput=${this.search}/>
-            <div class="scroll">
-                <div class="emote-dialog-content">
-                    ${this.sortedList()}
+        <span class="anchor">
+            <div class="emote-dialog">
+                <div class="emote-title">
+                    Emotes
                 </div>
-            </div>
-        </div>`;
+                <div class="emote-close" style="position: relative;">
+                    <${Icon} icon="close"/>
+                </div>
+
+                <${SearchBar} onInput=${this.search}/>
+                <div class="scroll">
+                    <div class="emote-dialog-content">
+                        ${this.sortedList()}
+                    </div>
+                </div>
+            </dialog>
+        </span>`;
     }
 }
 
-export { EmoteDialog as default };
+export { EmotePicker as default };

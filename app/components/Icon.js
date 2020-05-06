@@ -7,7 +7,7 @@ class Icon extends Component {
     }
 
     render() {
-        return html`<span class="material-icons">${this.props.icon}</span>`;
+        return html`<span onClick=${this.props.onClick} class="material-icons">${this.props.icon}</span>`;
     }
 }
 

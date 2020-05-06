@@ -78,9 +78,12 @@ body {
     text-align: right;
 }
 
+.anchor {
+    position: absolute;
+}
+
 .emote {
     padding: 2px;
-    position: relative;
 }
 
 .emote-image {
@@ -116,9 +119,11 @@ body {
 }
 
 
-
 .emote-dialog{
     position: absolute;
+    right: 0px;
+    top: 0px;
+    text-align: left;
 
     background-color: var(--theme-background-alt);
     border-radius: 8px;
@@ -131,7 +136,6 @@ body {
     width: 300px;
     height: 250px;
 }
-
 
 .emote-item {
     padding-bottom: 4px;

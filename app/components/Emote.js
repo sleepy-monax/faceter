@@ -2,10 +2,12 @@ import { Component } from '/lib/preact.js';
 import emotes from '/app/model/Emotes.js';
 
 
+
 class Emote extends Component {
+    
+    
     constructor() {
         super();
-        this.state = {};
     }
 
     render() {
