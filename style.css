@@ -5,6 +5,8 @@
     --theme-background: #222;
     --theme-background-alt: #333;
     --theme-foreground: #fff;
+    --theme-middleground: rgba(255, 255, 255, 0.1);
+    --theme-middleground-over: rgba(255, 255, 255, 0.5);
 }
 
 .light-theme{
@@ -12,6 +14,8 @@
     --theme-background: #eee;
     --theme-background-alt: #fff;
     --theme-foreground: #000;
+    --theme-middleground: rgba(0, 0, 0, 0.1);
+    --theme-middleground-over: rgba(0, 0, 0, 0.5);
 }
 
 ::-webkit-scrollbar {
@@ -24,12 +28,12 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--theme-middleground);
     border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.5);
+    background: var(--theme-middleground-over);
 }
 
 .scroll {
@@ -127,7 +131,7 @@ body {
 
 .search-bar{
     display: flex;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--theme-middleground);
     width: 100%;
     height:32px;
     margin-bottom: 8px;
