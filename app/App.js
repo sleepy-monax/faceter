@@ -25,7 +25,7 @@ class App extends Component {
                     <${Home} path="/" />
                     <${Login} path="/login" />
                     <${Registration} path="/registration" />
-                    <${Profile} path="/profile/:profileid" />
+                    <${Profile} path="/profile/:profileId" />
                     <${ViewPost} path="/post/:postId" />
                     <${Error} default />
                 <//>
