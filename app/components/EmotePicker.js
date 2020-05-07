@@ -106,7 +106,7 @@ class EmotePicker extends Component {
             if (levenshteinDistance(emote.name, this.state.filter) <= emote.name.length)
             {
                 return html`
-                <div style=${this.styleItem}>
+                <div style=${this.styleItem} onClick=${() => this.props.onEmoteSelected(emote.name)}>
                     <img style=${this.styleImage} src="/res/emotes/${emote.filename}"/>
                     <span class="emote-name">${emote.name}</span>
                 </div>`
@@ -122,7 +122,7 @@ class EmotePicker extends Component {
                     <div style=${this.styleTitle}>
                         Emotes
                     </div>
-                    <div style=${this.styleClose}>
+                    <div style=${this.styleClose} onClick=${() => this.props.onClose()}>
                         <${Icon} icon="close"/>
                     </div>
                 </div>

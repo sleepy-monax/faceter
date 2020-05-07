@@ -28,7 +28,7 @@ class Emotes extends Component {
 <span class="emotes">
     ${this.state.emotes.map(emote => html`<${Emote} name="${emote.reactionType}" count="${emote.reactionCount}"/>`)}
     <${Icon} onClick=${this.showPicker} icon="add"/>
-    ${this.state.picker ? html`<${EmotePicker}/>` : undefined}
+    ${this.state.picker ? html`<${EmotePicker} onClose=${() => this.setState({ picker: false })}/>` : undefined}
 </span>`;
     }
 }
