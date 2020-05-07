@@ -44,6 +44,12 @@ body {
     color: var(--theme-foreground) !important;
 }
 
+.container {
+    width: 100%;
+    max-width: 560px;
+    margin: 0 auto;
+}
+
 .anchor {
     position: relative;
 }

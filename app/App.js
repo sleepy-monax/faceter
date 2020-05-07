@@ -16,7 +16,7 @@ class App extends Component {
     }
 
     render() {
-        return html` 
+        return html`
         <div>
             <${Navigation}/>
 

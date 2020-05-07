@@ -9,6 +9,11 @@ class Emotes extends Component {
         emotes: []
     }
 
+    style = {
+        display: 'flex',
+        justifyContent: 'flex-end'
+    }
+
     constructor() {
         super();
     }
@@ -25,7 +30,7 @@ class Emotes extends Component {
 
     render() {
         return html`
-<span class="emotes">
+<span style=${this.style}>
     ${this.state.emotes.map(emote => html`<${Emote} name="${emote.reactionType}" count="${emote.reactionCount}"/>`)}
     <${Icon} onClick=${this.showPicker} icon="add"/>
     ${this.state.picker ? html`<${EmotePicker} onClose=${() => this.setState({ picker: false })}/>` : undefined}

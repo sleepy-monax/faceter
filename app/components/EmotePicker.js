@@ -74,6 +74,7 @@ class EmotePicker extends Component {
     }
 
     styleItem = {
+        display: 'flex',
         marginBottom: "4px",
         cursor: "pointer"
     }
