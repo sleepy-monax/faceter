@@ -6,6 +6,17 @@ $username = mysqli_real_escape_string($connection,strval($_GET["username"]));
 $password = mysqli_real_escape_string($connection,strval($_GET["password"]));
 $email = mysqli_real_escape_string($connection,strval($_GET["email"]));
 
+$verifPseudo  = 'SELECT COUNT(*) AS nbr FROM User WHERE userName = \'' . $username . '\'';
+    $res  = mysqli_query($connection, $verifPseudo);
+    $alors  = mysqli_fetch_assoc($res);
+         
+// BOUCLE POUR INFORMER L'UTLISATEUR
+  if(isset($username)){
+    if(!($alors['nbr'] == 0)){
+      echo "Ce pseudo est déjà utilisé !";
+    }
+  }
+
 $sql = 'insert into User (userName, userPassword, userMail) 
     select \'' . $username . '\' , \'' . $password . '\' , \'' . $email . '\' from dual
 where not exists (SELECT * FROM User
@@ -29,14 +40,5 @@ else {
     print json_encode(false);
 }*/
 
-$verifPseudo  = 'SELECT COUNT(*) AS nbr FROM User WHERE userName = \'' . $username . '\'';
-    $res  = mysqli_query($connection, $verifPseudo);
-    $alors  = mysqli_fetch_assoc($res);
-         
-  // BOUCLE POUR INFORMER L'UTLISATEUR
-    if(isset($username)){
-      if(!($alors['nbr'] == 0)){
-        echo "Ce pseudo est déjà utilisé !";
-      }
-    }
+
 ?>
