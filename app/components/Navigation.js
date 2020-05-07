@@ -1,6 +1,9 @@
 import { Component } from '/lib/preact.js';
 
+import { toggleTheme, getTheme } from '/app/model/Theme.js'
+
 import SearchBar from '/app/components/SearchBar.js';
+import Icon from '/app/components/Icon.js';
 
 class Navigation extends Component {
     styleNavigation = {
@@ -55,6 +58,17 @@ class Navigation extends Component {
                 </a>
                 <a style=${this.styleItem} href="/profile/2">
                     Profile
+                </a>
+
+                <a onclick="${() => {
+                    toggleTheme();
+                    this.forceUpdate();
+                }}">
+                ${
+                    getTheme() == 'dark-theme'
+                        ? html`<${Icon} icon="brightness_7"/>`
+                        : html`<${Icon} icon="brightness_3"/>`
+                }
                 </a>
             </div>
         </div>`;

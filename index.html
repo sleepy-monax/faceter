@@ -15,9 +15,13 @@
     <link rel="stylesheet" href="/profile.css">
 </head>
 
-<body class="light-theme"></body>
+<body></body>
 
 <script type="module">
+    import { initializeTheme } from '/app/model/Theme.js'
+
+    initializeTheme();
+
     import { h, Component, render } from '/lib/preact.js';
     import htm from '/lib/htm.js';
     window.html = htm.bind(h);
