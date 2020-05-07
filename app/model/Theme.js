@@ -48,6 +48,9 @@ function setTheme(theme) {
         Cookies.set('user-theme', theme);
         currentTheme = theme;
         document.body.classList.add(currentTheme);
+
+        var metaThemeColor = document.querySelector("meta[name=theme-color]");
+        metaThemeColor.setAttribute("content", getComputedStyle(document.body).getPropertyValue('--theme-background'));
     }
 }
 

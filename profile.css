@@ -42,3 +42,16 @@
     font-family: "Material Icons";
     font-size: 25px;
 }
+
+
+@media screen and (max-width: 560px) {
+    .only-desktop {
+        display: none !important;
+    }
+}
+
+@media screen and (min-width: 560px) {
+    .only-mobile {
+        display: none !important;
+    }
+}

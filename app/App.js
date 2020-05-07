@@ -3,7 +3,7 @@ import { Router } from '/lib/preact-router.js'
 
 import Navigation from '/app/components/Navigation.js'
 
-import Home from '/app/routes/Home.js'
+import Feed from '/app/routes/Feed.js'
 import Login from '/app/routes/Login.js'
 import Registration from '/app/routes/Registration.js'
 import Profile from '/app/routes/Profile.js'
@@ -21,7 +21,7 @@ class App extends Component {
             <${Navigation}/>
 
             <${Router}>
-                <${Home} path="/" />
+                <${Feed} path="/feed" />
                 <${Login} path="/login" />
                 <${Registration} path="/registration" />
                 <${Profile} path="/profile/:profileId" />
