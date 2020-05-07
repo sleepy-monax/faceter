@@ -59,7 +59,7 @@ class Registration extends Component {
                 </div>
                 <div>
                     Mot de passe :
-                    <input type="text" id="password" name="password" value=${this.state.password} onInput=${this.onPasswordInput} />
+                    <input type="password" id="password" name="password" value=${this.state.password} onInput=${this.onPasswordInput} />
                 </div>
                 <div>
                     Adresse mail :

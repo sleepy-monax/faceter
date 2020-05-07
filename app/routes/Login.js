@@ -54,7 +54,7 @@ class Login extends Component {
                 </div>
                 <div>
                     Mot de passe :
-                    <input type="text" value=${this.state.password} onInput=${this.onPasswordInput} />
+                    <input type="password" value=${this.state.password} onInput=${this.onPasswordInput} />
                 </div>
                 <div>
                     <button onClick=${this.doRegistration}>S’inscrire</button>
