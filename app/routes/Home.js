@@ -20,7 +20,7 @@ class Home extends Component {
 
     render() {
         return html`
-        <div>
+        <div class='container'>
             <h1>Home</h1>
             ${this.state.posts.map(post => html`<${Post} postId="${post.postId}"/>`)}
         </div>`;

@@ -29,7 +29,7 @@ class Profile extends Component {
             <img class="cover-image" src="${this.state.user ? this.state.user.coverPic : '/res/covers/default.jpg'}" />
             <img class="profile-image ahead" src="${this.state.user ? this.state.user.profilePic : '/res/users/default.jpg'}"/>
         </div>
-        <div class="test">
+        <div class="container">
             <div class="new-post">
                 <input type="text" placeholder="Quoi de neuf ? " class="bg-transparent border-0"/>
                 <input type="button" class="bg-transparent border-0 button" value="send"/>

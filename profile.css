@@ -6,28 +6,27 @@
 }
 
 .cover-image{
-    max-width: 90%;
-    max-height: 500px;
-    position: absolute;
-    margin: 10px;
+    height: 320px;
+    width: 100%;
+    object-fit: cover;
 }
 
 .profile-image {
-    -webkit-border-radius:50px;
-    -moz-border-radius:50px;
-    border-radius:100px;
-    width:200px;
-    height:200px;
-}
+    position: absolute;
+    border-radius:192px;
+    width:192px;
+    height:192px;
 
-.ahead {
-    position: relative;
-    z-index: 1;
-    margin: 30px;
-}
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    left: 0;
+    right: 0;
+    top:0;
+    bottom: 0;
 
-.test {
-    margin-top: 300px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
 .new-post {
