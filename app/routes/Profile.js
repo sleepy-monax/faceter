@@ -63,7 +63,7 @@ class Profile extends Component {
             <img style=${this.coverImage} src="${this.state.user ? this.state.user.coverPic : '/res/covers/default.jpg'}" />
             <img style=${this.profileImage} src="${this.state.user ? this.state.user.profilePic : '/res/users/default.jpg'}"/>
         </div>
-        <div style=${this.newPost} class="container">
+        <div class="container">
             <${CreatePost}/>
             ${this.state.posts.map(post => html`<${Post} postId="${post.postId}"/>`)}
         </div>`;

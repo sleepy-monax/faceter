@@ -9,12 +9,10 @@ class CreatePost extends Component {
 
     styleCreatePost = {
         display: "flex",
-        backgroundColor: "var(--theme-middleground)",
-        height: "32px",
-        marginBottom: "8px",
-        marginTop: "8px",
+        backgroundColor: "var(--theme-frontground)",
         borderRadius: "8px",
-        paddingLeft: "8px",
+        padding: "16px",
+        marginBottom: "16px",
         overflow: "hidden"
     }
 

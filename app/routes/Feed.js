@@ -1,6 +1,8 @@
 import { Component } from '/lib/preact.js';
 
 import Post from '/app/components/Post.js';
+import CreatePost from '/app/components/CreatePost.js';
+
 
 
 class Feed extends Component {
@@ -21,6 +23,7 @@ class Feed extends Component {
     render() {
         return html`
         <div class='container'>
+            <${CreatePost}/>
             ${this.state.posts.map(post => html`<${Post} postId="${post.postId}"/>`)}
         </div>`;
     }
