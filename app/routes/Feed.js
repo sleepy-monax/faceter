@@ -3,7 +3,7 @@ import { Component } from '/lib/preact.js';
 import Post from '/app/components/Post.js';
 
 
-class Home extends Component {
+class Feed extends Component {
     state = {
         posts: []
     }
@@ -21,10 +21,9 @@ class Home extends Component {
     render() {
         return html`
         <div class='container'>
-            <h1>Home</h1>
             ${this.state.posts.map(post => html`<${Post} postId="${post.postId}"/>`)}
         </div>`;
     }
 }
 
-export { Home as default };
+export { Feed as default };
