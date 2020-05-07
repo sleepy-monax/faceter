@@ -47,7 +47,7 @@ class EmotePicker extends Component {
         right: "0px",
         top: "0px",
         textAlign: "left",
-        backgroundColor: "var(--theme-background-alt)",
+        backgroundColor: 'var(--theme-frontground)',
         borderRadius: "8px",
         boxShadow: "0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)",
         padding: "16px",

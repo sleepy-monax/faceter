@@ -5,17 +5,19 @@
     --theme-background: #222;
     --theme-background-alt: #333;
     --theme-foreground: #fff;
-    --theme-middleground: rgba(255, 255, 255, 0.1);
-    --theme-middleground-over: rgba(255, 255, 255, 0.5);
+    --theme-middleground: rgba(0, 0, 0, 0.3);
+    --theme-middleground-over: rgba(0, 0, 0, 0.5);
+    --theme-frontground: #404040;
 }
 
 .light-theme{
     --theme-accent: #06f;
     --theme-background: #eee;
     --theme-background-alt: #fff;
-    --theme-foreground: #000;
+    --theme-foreground: #222;
     --theme-middleground: rgba(0, 0, 0, 0.1);
     --theme-middleground-over: rgba(0, 0, 0, 0.5);
+    --theme-frontground: #fff;
 }
 
 ::-webkit-scrollbar {
