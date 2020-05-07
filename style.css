@@ -36,11 +36,6 @@
     background: var(--theme-middleground-over);
 }
 
-.scroll {
-    height: 100%;
-    overflow: scroll;
-    overflow-x: hidden;
-}
 
 body {
     font-family: Roboto, sans-serif !important;
@@ -49,66 +44,20 @@ body {
     color: var(--theme-foreground) !important;
 }
 
-
-.post-container{
-    background-color: var(--theme-background-alt);
-    color: var(--theme-foreground);
-    padding: 16px 16px;
-    margin-bottom: 16px;
-    border-radius: 8px;
-}
-
-.post-title{
-    margin-bottom: 4px;
-}
-
-.post-emotes{
-    text-align: right;
-}
-
 .anchor {
     position: relative;
 }
 
-.emote-image-big {
-    height: 24px;
-    width: 24px;
-    border-radius: 4px;
+.overable:hover{
+    background-color: var(--theme-middleground);
 }
-
-.emote-name {
-    padding-left: 8px;
-}
-
-.emote-dialog{
-    position: absolute;
-    right: 0px;
-    top: 0px;
-    text-align: left;
-
-    background-color: var(--theme-background-alt);
-    border-radius: 8px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-
-    padding: 16px;
-}
-
-.emote-dialog-content {
-    width: 300px;
-    height: 250px;
-}
-
-.emote-item {
-    padding-bottom: 4px;
-    cursor: pointer;
-}
-
-.emote-title{
-    font-weight: bold;
-    font-size: larger;
-}
-
 
 .overable:active{
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--theme-middleground-over);
+}
+
+.scroll {
+    height: 100%;
+    overflow: scroll;
+    overflow-x: hidden;
 }

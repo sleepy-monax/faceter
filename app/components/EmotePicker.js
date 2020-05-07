@@ -42,6 +42,50 @@ class EmotePicker extends Component {
         filter: ''
     }
 
+    stylePicker = {
+        position: "absolute",
+        right: "0px",
+        top: "0px",
+        textAlign: "left",
+        backgroundColor: "var(--theme-background-alt)",
+        borderRadius: "8px",
+        boxShadow: "0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)",
+        padding: "16px",
+        zIndex: "999",
+    }
+
+    styleHeader = {
+        display : 'flex'
+    }
+
+    styleTitle = {
+        flexGrow: 1,
+        fontWeight: "bold",
+        fontSize: "larger"
+    }
+
+    styleClose = {
+
+    }
+
+    styleList = {
+        width: "300px",
+        height: "250px"
+    }
+
+    styleItem = {
+        marginBottom: "4px",
+        cursor: "pointer"
+    }
+
+    styleImage = {
+        height: '24px',
+        width: '24px',
+        borderRadius: '4px',
+        marginRight: '8px'
+    }
+
+
     constructor() {
         super();
     }
@@ -62,8 +106,8 @@ class EmotePicker extends Component {
             if (levenshteinDistance(emote.name, this.state.filter) <= emote.name.length)
             {
                 return html`
-                <div class="emote-item">
-                    <img class="emote-image-big" src="/res/emotes/${emote.filename}"/>
+                <div style=${this.styleItem}>
+                    <img style=${this.styleImage} src="/res/emotes/${emote.filename}"/>
                     <span class="emote-name">${emote.name}</span>
                 </div>`
             }
@@ -73,17 +117,19 @@ class EmotePicker extends Component {
     render() {
         return html`
         <span class="anchor">
-            <div class="emote-dialog">
-                <div class="emote-title">
-                    Emotes
-                </div>
-                <div class="emote-close" style="position: relative;">
-                    <${Icon} icon="close"/>
+            <div style=${this.stylePicker}>
+                <div style=${this.styleHeader}>
+                    <div style=${this.styleTitle}>
+                        Emotes
+                    </div>
+                    <div style=${this.styleClose}>
+                        <${Icon} icon="close"/>
+                    </div>
                 </div>
 
                 <${SearchBar} onInput=${this.search}/>
                 <div class="scroll">
-                    <div class="emote-dialog-content">
+                    <div style=${this.styleList}>
                         ${this.sortedList()}
                     </div>
                 </div>
