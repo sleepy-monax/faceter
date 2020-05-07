@@ -70,3 +70,16 @@ body {
     overflow: scroll;
     overflow-x: hidden;
 }
+
+
+@media screen and (max-width: 560px) {
+    .only-desktop {
+        display: none !important;
+    }
+}
+
+@media screen and (min-width: 560px) {
+    .only-mobile {
+        display: none !important;
+    }
+}
