@@ -1,0 +1,24 @@
+{
+    "name": "Faceter.",
+    "short_name": "Faceter.",
+    "icons": [{
+      "src": "/res/icons/icon@128px.png",
+        "sizes": "128x128",
+        "type": "image/png",
+        "purpose": "maskable"
+      }, {
+        "src": "/res/icons/icon@256px.png",
+        "sizes": "256x256",
+        "type": "image/png",
+        "purpose": "maskable"
+      }, {
+        "src": "/res/icons/icon@512px.png",
+        "sizes": "512x512",
+        "type": "image/png",
+        "purpose": "maskable"
+      }],
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#0066ff"
+  }
