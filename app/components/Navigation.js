@@ -25,7 +25,7 @@ class Navigation extends Component {
     styleBrand = {
         fontSize: '24px',
         fontWeight: '900',
-        padding: '0px 16px',
+        padding: '0px 16px 0px 0px',
     }
 
     styleSearch = {

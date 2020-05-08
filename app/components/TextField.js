@@ -12,6 +12,11 @@ class TextField extends Component {
         this.fieldRef = makeRef()
     }
 
+    onValueChange = (e) => {
+        this.setState({ value: e.target.value });
+        this.props.onValueChange(e.target.value);
+    }
+
     render() {
         return html`
         <div class="text-field">
@@ -72,7 +77,7 @@ class TextField extends Component {
                 }
             </style>
 
-            <input id=${this.fieldRef} type=${this.props.password ? "password" : "text"} required autocomplete="off" value=${this.props.value} onInput=${this.props.onInput}/>
+            <input id=${this.fieldRef} type=${this.props.password ? "password" : "text"} required autocomplete="off" value=${this.props.value} onInput=${this.onValueChange}/>
             <label for=${this.fieldRef} title=${this.props.label} data-title=${this.props.label}></label>
         </div>`;
     }

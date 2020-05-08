@@ -95,7 +95,7 @@ class Login extends Component {
             .then(login => {
                 if (login !== false) {
                     setSessionId(login);
-                    route("/profile/" + login);
+                    route("/feed");
                 }
                 else
                     document.getElementById('alertInfo').style = this.styleVisible;
@@ -109,16 +109,6 @@ class Login extends Component {
 
     onSubmit = e => {
         e.preventDefault();
-    }
-
-    onUsernameInput = e => {
-        let username = e.target.value;
-        this.setState({ username })
-    }
-
-    onPasswordInput = e => {
-        let password = e.target.value;
-        this.setState({ password })
     }
 
     render() {
@@ -146,8 +136,17 @@ class Login extends Component {
                     </div>
 
                     <div style="padding:0px 48px 32px">
-                        <${TextField} label="E-mail ou pseudo" value=${this.state.username} onInput=${this.onUsernameInput}/>
-                        <${TextField} label="Mot de passe"  value=${this.state.password} onInput=${this.onPasswordInput} password=true/>
+                        <${TextField}
+                            label="E-mail ou pseudo"
+                            value=${this.state.username}
+                            onValueChange=${(username) => this.setState({ username })}/>
+
+                        <${TextField}
+                            label="Mot de passe"
+                            password=true
+                            value=${this.state.password}
+                            onValueChange=${(password) => this.setState({ password })}/>
+
                         <input type="checkbox" id="rememberMe"/>
                         <label for="rememberMe"> Se souvenir de moi</label>
                     </div>

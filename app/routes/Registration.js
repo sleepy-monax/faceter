@@ -1,20 +1,47 @@
 import { Component } from '/lib/preact.js';
 import { route } from '/lib/preact-router.js';
 import Icon from '/app/components/Icon.js';
+import TextField from '/app/components/TextField.js';
 
 class Registration extends Component {
     state = {
-        username: '',
-        password: '',
-        email: '',
+        username: 'User',
+        email: 'faceter@faceter.com',
+        password: 'mathieu123',
+        verification: 'mathieu123',
     }
 
     constructor() {
         super();
     }
 
+    styleContainer = {
+        backgroundColor: 'var(--theme-frontground)',
+        borderRadius: '8px',
+        overflow: 'hidden',
+    }
+
     styleTitle = {
-        textAlign: 'center'
+        textAlign: 'center',
+        fontSize: '32px',
+        fontWeight: '900',
+    }
+
+    styleSubtitle = {
+        textAlign: 'center',
+        margin: '0px 0px 16px',
+        fontSize: '18px',
+        fontWeight: '450',
+    }
+
+    styleImageContainer = {
+        color: 'black',
+        backgroundColor: 'white',
+        padding: '16px',
+    }
+
+    styleFormContainer = {
+        padding: '16px 16px 16px'
     }
 
     styleAlert = {
@@ -44,39 +71,18 @@ class Registration extends Component {
         borderRadius: '8px',
     }
 
-    styleInput = {
-        backgroundColor: "transparent",
-        color: "var(--theme-foreground)",
-        flexGrow: "1",
-        width: "100%",
-        outline: "none",
-        border: "none"
+    styleRegisterButton = {
+        backgroundColor: 'var(--theme-accent)',
+        color: 'white',
+        padding: '8px 16px',
+        borderRadius: '8px',
+        margin: '0px 8px',
     }
 
-    styleField = {
-        display: "flex",
-        backgroundColor: "var(--theme-middleground)",
-        height: "32px",
-        marginBottom: "8px",
-        marginTop: "8px",
-        borderRadius: "8px",
-        paddingLeft: "8px",
-        overflow: "hidden"
-    }
-
-    styleIcon = {
-        width: "64px",
-        textAlign: "center",
-        verticalAlign: "middle",
-        lineHeight: "32px",
-        userSelect: "none",
-        ':hover': {
-            backgroundColor: 'rgba(255, 255, 255, 0.1)'
-        }
-    }
-
-    styleButton = {
-        width: "49%"
+    styleBackButton = {
+        padding: '8px 16px',
+        borderRadius: '8px',
+        margin: '0px 8px',
     }
 
     doBack = e => {
@@ -88,13 +94,13 @@ class Registration extends Component {
             alert ("Veuillez remplir tout les champs");
         } else {
         fetch("/api/query-registration.php?username=" + this.state.username + "&password=" + this.state.password + "&email=" + this.state.email)
-        .then(function (response) { return response.json()})
-        .then(registration => {
-            if (registration != false)
-                route("/login")
-            else 
-                document.getElementById('alertInfo').style = this.styleVisible;
-        });
+            .then(function (response) { return response.json() })
+            .then(registration => {
+                if (registration != false)
+                    route("/login")
+                else
+                    document.getElementById('alertInfo').style = this.styleVisible;
+            });
     }
     }
 
@@ -102,82 +108,58 @@ class Registration extends Component {
         e.preventDefault();
     }
 
-    onUsernameInput = e => {
-        let username = e.target.value;
-        this.setState({ username })
-    }
-
-    onPasswordInput = e => {
-        let password = e.target.value;
-        this.setState({ password })
-    }
-
-    onEmailInput = e => {
-        let email = e.target.value;
-        this.setState({ email })
-    }
-
     render() {
         return html`
-        <div class="container">
-            <form style=${this.styleConnection} onSubmit=${this.onSubmit}>
-                <h1 style=${this.styleTitle}>Inscription</h1>
-                <div class="ui-widget" style=${this.styleHide} id="alertInfo">
-                    <div class="ui-state-error ui-corner-all" style=${this.styleError}>
-                        <p>
-                            <span class="ui-icon ui-icon-alert" style=${this.styleAlert}></span>
-                            <strong>Alert : </strong>
-                            "Pseudo ou adresse mail déja utilisés"
-                        </p>
+        <div class="magic-container">
+            <div class="magic-card">
+                <div style=${this.styleImageContainer}>
+                    <h1 style=${this.styleTitle}>Faceter.</h1>
+                    <img style="padding-top: 16px" src='/res/join.svg'/>
+                </div>
+
+                <form style=${this.styleFormContainer}  onSubmit=${this.onSubmit}>
+                    <h1 style=${this.styleSubtitle}>Créer votre propre compte!</h1>
+
+                    <div class="ui-widget" style=${this.styleHide} id="alertInfo">
+                        <div class="ui-state-error ui-corner-all" style=${this.styleError}>
+                            <p>
+                                <span class="ui-icon ui-icon-alert" style=${this.styleAlert}></span>
+                                <strong>Alert : </strong>
+                                "Pseudo ou adresse mail déja utilisés"
+                            </p>
+                        </div>
                     </div>
-                </div>
-                <div style=${this.styleField}>
-                    <span style=${this.styleIcon}>
-                        <${Icon} icon="perm_identity" />
-                    </span>
-                    <input 
-                        id="username"
-                        type="text" 
-                        value=${this.state.username} 
-                        onInput=${this.onUsernameInput}
-                        style=${this.styleInput} 
-                        placeholder="Pseudo"
-                        required
-                    />
-                </div>
-                <div style=${this.styleField}>
-                    <span style=${this.styleIcon}>
-                        <${Icon} icon="lock_open" />
-                    </span>
-                    <input
-                        id="password"
-                        type="text" 
-                        value=${this.state.password} 
-                        onInput=${this.onPasswordInput} 
-                        style=${this.styleInput} 
-                        placeholder="Mot de passe"
-                        required
-                    />
-                </div>
-                <div style=${this.styleField}>
-                    <span style=${this.styleIcon}>
-                        <${Icon} icon="email" />
-                    </span>
-                    <input 
-                        id="email"
-                        type="text" 
-                        value=${this.state.email} 
-                        onInput=${this.onEmailInput} 
-                        style=${this.styleInput} 
-                        placeholder="Adresse mail   "
-                        required
-                    />
-                </div>
-                <div>
-                    <button class="ui-button" style=${this.styleButton} onClick=${this.doRegistration}>S’inscrire</button>
-                    <button class="ui-button" style=${this.styleButton} onClick=${this.doBack}>Retour</button>
-                </div>
-            </form>
+
+                    <div style="padding:0px 48px 32px">
+                        <${TextField}
+                            label="Pseudo"
+                            value=${this.state.username}
+                            onValueChange=${(username) => this.setState({ username })}/>
+
+                        <${TextField}
+                            label="E-mail"
+                            value=${this.state.email}
+                            onValueChange=${(email) => this.setState({ email })}/>
+
+                        <${TextField}
+                            label="Mot de passe"
+                            password=true
+                            value=${this.state.password}
+                            onValueChange=${(password) => this.setState({ password })}/>
+
+                        <${TextField}
+                            label="Vérification"
+                            password=true
+                            value=${this.state.verification}
+                            onValueChange=${(verification) => this.setState({ verification })}/>
+                    </div>
+
+                    <div style="display: flex; justify-content: center;">
+                        <button style=${this.styleBackButton} onClick=${this.doBack}>Retour</button>
+                        <button style=${this.styleRegisterButton}  onClick=${this.doRegistration}>S’inscrire</button>
+                    </div>
+                </form>
+            </div>
         </div>`;
     }
 }

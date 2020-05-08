@@ -23,6 +23,16 @@ class App extends Component {
             getSessionId() == -1) { 
             route('/login', true);
         }
+
+        if (e.url == '/' &&
+            getSessionId() != -1) {
+            route('/feed', true);
+        }
+
+        if (e.url == '/login' &&
+            getSessionId() != -1) {
+            route('/feed', true);
+        }
     };
 
     render() {
