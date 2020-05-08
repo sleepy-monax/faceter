@@ -15,7 +15,7 @@ class Navigation extends Component {
         top: '0px',
         display: 'flex',
         width: '100%',
-        padding: '16px 16px',
+        padding: '8px 16px',
         backgroundColor: 'var(--theme-frontground)',
         boxShadow: "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)",
         color: 'var(--theme-foreground)',
@@ -23,7 +23,7 @@ class Navigation extends Component {
     }
 
     styleBrand = {
-        fontSize: '32px',
+        fontSize: '24px',
         fontWeight: '900',
         padding: '0px 16px',
     }
@@ -51,9 +51,12 @@ class Navigation extends Component {
     render() {
         return html`
         <div style=${this.styleNavigation}>
-            <a style=${this.styleBrand} href="/">
-                Faceter.
-            </a>
+            <div style=${this.styleItems}>
+
+                <a style=${this.styleBrand} href="/">
+                    Faceter.
+                </a>
+            </div>
             <span style=${this.styleSearch}>
                 <${SearchBar}/>
             </span>
