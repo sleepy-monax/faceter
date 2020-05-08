@@ -4,9 +4,9 @@ import Icon from '/app/components/Icon.js';
 
 class Registration extends Component {
     state = {
-        username: 'User',
-        password: 'mathieu123',
-        email: 'faceter@faceter.com',
+        username: '',
+        password: '',
+        email: '',
     }
 
     constructor() {
@@ -84,6 +84,9 @@ class Registration extends Component {
     }
 
     doRegistration = e => {
+        if (document.getElementById("username").value == "" || document.getElementById("password").value == "" ||document.getElementById("email").value == "") {
+            alert ("Veuillez remplir tout les champs");
+        } else {
         fetch("/api/query-registration.php?username=" + this.state.username + "&password=" + this.state.password + "&email=" + this.state.email)
         .then(function (response) { return response.json()})
         .then(registration => {
@@ -92,6 +95,7 @@ class Registration extends Component {
             else 
                 document.getElementById('alertInfo').style = this.styleVisible;
         });
+    }
     }
 
     onSubmit = e => {
@@ -132,6 +136,7 @@ class Registration extends Component {
                         <${Icon} icon="perm_identity" />
                     </span>
                     <input 
+                        id="username"
                         type="text" 
                         value=${this.state.username} 
                         onInput=${this.onUsernameInput}
@@ -145,6 +150,7 @@ class Registration extends Component {
                         <${Icon} icon="lock_open" />
                     </span>
                     <input
+                        id="password"
                         type="text" 
                         value=${this.state.password} 
                         onInput=${this.onPasswordInput} 
@@ -158,6 +164,7 @@ class Registration extends Component {
                         <${Icon} icon="email" />
                     </span>
                     <input 
+                        id="email"
                         type="text" 
                         value=${this.state.email} 
                         onInput=${this.onEmailInput} 
