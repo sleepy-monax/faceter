@@ -18,7 +18,9 @@ class App extends Component {
     }
 
     handleRoute = async e => {
-        if (e.url != '/login' && getSessionId() == -1) { 
+        if (e.url != '/login' &&
+            e.url != '/join' &&
+            getSessionId() == -1) { 
             route('/login', true);
         }
     };
@@ -31,7 +33,7 @@ class App extends Component {
             <${Router} onChange=${this.handleRoute}>
                 <${Feed} path="/feed" />
                 <${Login} path="/login" />
-                <${Registration} path="/registration" />
+                <${Registration} path="/join" />
                 <${Profile} path="/profile/:profileId" />
                 <${ViewPost} path="/post/:postId" />
                 <${Error} default />

@@ -104,7 +104,7 @@ class Login extends Component {
     }
 
     doRegistration = () => {
-        route("/registration");
+        route("/join");
     }
 
     onSubmit = e => {
