@@ -17,6 +17,7 @@ class Post extends Component {
         color: 'var(--theme-foreground)',
         marginBottom: '16px',
         borderRadius: '8px',
+        minHeight: '128px'
     }
 
     styleHeader = {
@@ -55,8 +56,8 @@ class Post extends Component {
         if (this.state.post === undefined)
         {
             return html`
-            <div style=${this.stylePost}>
-                <div class="post-body">
+            <div class="loading" style=${this.stylePost}>
+                <div style=${this.styleHeader}>
                     Loading...
                 </div>
             </div>`;

@@ -86,3 +86,24 @@ body {
         display: none !important;
     }
 }
+
+@keyframes loadingAnimation {
+    0% {
+        background-position: -560px 0
+    }
+
+    100% {
+        background-position: +560px 0
+    }
+}
+
+.loading {
+    background: linear-gradient(270deg, var(--theme-background), var(--theme-background-alt), var(--theme-background));
+    background-size: 300% 300%;
+
+    animation-duration: 1.8s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: loadingAnimation;
+    animation-timing-function: linear;
+}
