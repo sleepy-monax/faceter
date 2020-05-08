@@ -9,6 +9,7 @@
     --theme-middleground: rgba(0, 0, 0, 0.3);
     --theme-middleground-over: rgba(0, 0, 0, 0.5);
     --theme-frontground: #404040;
+    --theme-border: #666;
 }
 
 .light-theme {
@@ -20,6 +21,7 @@
     --theme-middleground: rgba(0, 0, 0, 0.1);
     --theme-middleground-over: rgba(0, 0, 0, 0.5);
     --theme-frontground: #fff;
+    --theme-border: #ccc;
 }
 
 ::-webkit-scrollbar {

@@ -1,6 +1,9 @@
-import {Component} from '/lib/preact.js';
-import {route} from '/lib/preact-router.js';
+import { Component } from '/lib/preact.js';
+import { route } from '/lib/preact-router.js';
 import Icon from '/app/components/Icon.js';
+import TextField from '/app/components/TextField.js';
+
+// https://codepen.io/tayfunerbilen/pen/qMKxeQ
 
 class Login extends Component {
     state = {
@@ -12,8 +15,35 @@ class Login extends Component {
         super();
     }
 
+    styleContainer = {
+        backgroundColor: 'var(--theme-frontground)',
+        borderRadius: '8px',
+        overflow: 'hidden',
+    }
+
     styleTitle = {
-        textAlign: 'center'
+        textAlign: 'center',
+        margin: '0px 0px 16px',
+        fontSize: '32px',
+        fontWeight: '900',
+        padding: '0px 16px',
+    }
+
+    styleSubtitle = {
+        textAlign: 'center',
+        margin: '0px 0px 16px',
+        fontSize: '18px',
+        fontWeight: '450',
+    }
+
+    styleImageContainer = {
+        color: 'black',
+        backgroundColor: 'white',
+        padding: '16px',
+    }
+
+    styleFormContainer = {
+        padding: '16px 16px 16px'
     }
 
     styleAlert = {
@@ -43,39 +73,17 @@ class Login extends Component {
         borderRadius: '8px',
     }
 
-    styleInput = {
-        backgroundColor: "transparent",
-        color: "var(--theme-foreground)",
-        flexGrow: "1",
-        width: "100%",
-        outline: "none",
-        border: "none"
+    styleLoginButton = {
+        backgroundColor: 'var(--theme-accent)',
+        color: 'white',
+        padding: '8px 16px',
+        borderRadius: '8px',
+        marginBottom: '32px',
+        marginTop: '32px',
     }
 
-    styleField = {
-        display: "flex",
-        backgroundColor: "var(--theme-middleground)",
-        height: "32px",
-        marginBottom: "8px",
-        marginTop: "8px",
-        borderRadius: "8px",
-        paddingLeft: "8px",
-        overflow: "hidden"
-    }
-
-    styleIcon = {
-        width: "64px",
-        textAlign: "center",
-        verticalAlign: "middle",
-        lineHeight: "32px",
-        userSelect: "none",
-        ':hover': {
-            backgroundColor: 'rgba(255, 255, 255, 0.1)'
-        }
-    }
-
-    styleButton = {
-        width: "49%"
+    styleRegisterButton = {
+        marginBottom: '16px'
     }
 
     doLogin = () => {
@@ -104,69 +112,56 @@ class Login extends Component {
 
     onUsernameInput = e => {
         let username = e.target.value;
-        this.setState({username})
+        this.setState({ username })
     }
 
     onPasswordInput = e => {
         let password = e.target.value;
-        this.setState({password})
+        this.setState({ password })
     }
 
     render() {
         return html`
-        <div class='container'>
-            <form style=${this.styleConnection} onSubmit=${this.onSubmit}>
-                <h1 style=${this.styleTitle}>Connection</h1>
-                <div class="ui-widget" style=${this.styleHide} id="alertInfo">
-                    <div class="ui-state-error ui-corner-all" style=${this.styleError}>
-                        <p>
-                            <span style=${this.styleAlert}>
-                                <${Icon} icon="warning"/>
-                            </span>
-                            <strong>Alert : </strong>
-                            Nom/e-mail ou mot de passe incorect
-                        </p>
+        <div class="container">
+            <div style=${this.styleContainer}>
+                <div style=${this.styleImageContainer}>
+                    <h1 style=${this.styleTitle}>Faceter.</h1>
+                    <img src='/res/login.svg'/>
+                </div>
+                <form style=${this.styleFormContainer} onSubmit=${this.onSubmit}>
+                    <div class="ui-widget" style=${this.styleHide} id="alertInfo">
+                        <div class="ui-state-error ui-corner-all" style=${this.styleError}>
+                            <p>
+                                <span style=${this.styleAlert}>
+                                    <${Icon} icon="warning"/>
+                                </span>
+                                Nom/e-mail ou mot de passe incorect
+                            </p>
+                        </div>
                     </div>
-                </div>
-                <div style=${this.styleField}>
-                    <span style=${this.styleIcon}>
-                        <${Icon} icon="perm_identity" />
-                    </span>
-                    <input 
-                        type="text" 
-                        value=${this.state.username} 
-                        onInput=${this.onUsernameInput}
-                        style=${this.styleInput} 
-                        placeholder="E-mail ou pseudo"
-                        required
-                    />
-                </div>
-                <div style=${this.styleField}>
-                    <span style=${this.styleIcon}>
-                        <${Icon} icon="lock_open" />
-                    </span>
-                    <input 
-                        type="password" 
-                        value=${this.state.password} 
-                        onInput=${this.onPasswordInput} 
-                        style=${this.styleInput} 
-                        placeholder="Mot de passe"
-                        required
-                    />
-                </div>
-                <div>
-                    <input 
-                        type="checkbox" 
-                        id="rememberMe"/>
-                    <label for="rememberMe"> Se souvenir de moi</label>
-                </div>
-                <div>
-                    <button class="ui-button" style=${this.styleButton} onClick=${this.doRegistration}>S’inscrire</button>
-                    <button class="ui-button" style=${this.styleButton} onClick=${this.doLogin}>Se connecter</button>
-                </div>
-            </form>
+
+                    <div style=${this.styleSubtitle}>
+                        Connectez vous avec votre compte!
+                    </div>
+
+                    <${TextField} label="E-mail ou pseudo" value=${this.state.username} onInput=${this.onUsernameInput}/>
+                    <${TextField} label="Mot de passe"  value=${this.state.password} onInput=${this.onPasswordInput} password=true/>
+
+                    <div>
+                        <input type="checkbox" id="rememberMe"/>
+                        <label for="rememberMe"> Se souvenir de moi</label>
+                    </div>
+
+                    <div style="display: flex; justify-content: center;">
+                        <button style=${this.styleLoginButton} onClick=${this.doLogin}>Se connecter</button>
+                    </div>
+                    <div style="display: flex; justify-content: center;">
+                        <button style=${this.styleRegisterButton} onClick=${this.doRegistration}>S’inscrire</button>
+                    </div>
+                </form>
+            </div>
         </div>`;
     }
 }
 
-export {Login as default};
+export { Login as default };
