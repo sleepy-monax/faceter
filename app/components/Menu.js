@@ -73,7 +73,7 @@ class Menu extends Component {
                 </a>
                 <a class='only-mobile' style=${this.styleItem} href="/profile/2">
                     <${Icon} icon="account_circle"/>
-                    <span style=${this.styleText}>Profile</span>
+                    <span style=${this.styleText}>Profil</span>
                 </a>
                 <a style=${this.styleItem} onclick="${() => {
                     toggleTheme();
