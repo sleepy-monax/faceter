@@ -1,5 +1,5 @@
-function toHumanTime(date){
-    let delta = Math.round((+new Date - new Date(date)) / 1000 / 60);
+function toHumanTime(date) {
+    let delta = Math.round((+new Date - new Date(date)) / 1000);
 
     let minute = 60,
         hour = minute * 60,
@@ -11,7 +11,7 @@ function toHumanTime(date){
     if (delta < 30) {
         fuzzy = 'Maintenant.';
     } else if (delta < minute) {
-        fuzzy =  'Il y a ' + delta + ' secondes.';
+        fuzzy = 'Il y a ' + delta + ' secondes.';
     } else if (delta < 2 * minute) {
         fuzzy = 'Il y a une minute.'
     } else if (delta < hour) {
