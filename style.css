@@ -59,6 +59,7 @@ body {
 
 .overable:hover{
     background-color: var(--theme-middleground);
+    cursor: pointer;
 }
 
 .overable:active{
