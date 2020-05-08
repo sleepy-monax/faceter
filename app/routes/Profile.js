@@ -39,6 +39,23 @@ class Profile extends Component {
 
         boxShadow: '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)',
     }
+    profileName= {
+        position: 'absolute',
+        width: '192px',
+        height: '192px',
+
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        marginTop: 'auto',
+        marginBottom: 'auto',
+        left: '0',
+        right: '0',
+        top: '360px',
+        bottom: '0',
+
+        fontSize: '50px',
+        color: 'white',
+    }
 
     constructor() {
         super();
@@ -62,6 +79,7 @@ class Profile extends Component {
         <div style=${this.containerProfile}>
             <img style=${this.coverImage} src="${this.state.user ? this.state.user.coverPic : '/res/covers/default.jpg'}" />
             <img style=${this.profileImage} src="${this.state.user ? this.state.user.profilePic : '/res/users/default.jpg'}"/>
+            <span style=${this.profileName}>${this.state.user ? this.state.user.userName : undefined }</span>
         </div>
         <div class="container">
             <${CreatePost}/>
