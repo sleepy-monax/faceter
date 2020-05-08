@@ -23,10 +23,8 @@ class Login extends Component {
 
     styleTitle = {
         textAlign: 'center',
-        margin: '0px 0px 16px',
         fontSize: '32px',
         fontWeight: '900',
-        padding: '0px 16px',
     }
 
     styleSubtitle = {
@@ -78,12 +76,13 @@ class Login extends Component {
         color: 'white',
         padding: '8px 16px',
         borderRadius: '8px',
-        marginBottom: '32px',
-        marginTop: '32px',
+        margin: '0px 8px',
     }
 
     styleRegisterButton = {
-        marginBottom: '16px'
+        padding: '8px 16px',
+        borderRadius: '8px',
+        margin: '0px 8px',
     }
 
     doLogin = () => {
@@ -122,8 +121,8 @@ class Login extends Component {
 
     render() {
         return html`
-        <div class="container">
-            <div style=${this.styleContainer}>
+        <div class="magic-container">
+            <div class="magic-card">
                 <div style=${this.styleImageContainer}>
                     <h1 style=${this.styleTitle}>Faceter.</h1>
                     <img src='/res/login.svg'/>
@@ -144,19 +143,16 @@ class Login extends Component {
                         Connectez vous avec votre compte!
                     </div>
 
-                    <${TextField} label="E-mail ou pseudo" value=${this.state.username} onInput=${this.onUsernameInput}/>
-                    <${TextField} label="Mot de passe"  value=${this.state.password} onInput=${this.onPasswordInput} password=true/>
-
-                    <div>
+                    <div style="padding:0px 48px 32px">
+                        <${TextField} label="E-mail ou pseudo" value=${this.state.username} onInput=${this.onUsernameInput}/>
+                        <${TextField} label="Mot de passe"  value=${this.state.password} onInput=${this.onPasswordInput} password=true/>
                         <input type="checkbox" id="rememberMe"/>
                         <label for="rememberMe"> Se souvenir de moi</label>
                     </div>
 
                     <div style="display: flex; justify-content: center;">
-                        <button style=${this.styleLoginButton} onClick=${this.doLogin}>Se connecter</button>
-                    </div>
-                    <div style="display: flex; justify-content: center;">
                         <button style=${this.styleRegisterButton} onClick=${this.doRegistration}>S’inscrire</button>
+                        <button style=${this.styleLoginButton} onClick=${this.doLogin}>Se connecter</button>
                     </div>
                 </form>
             </div>

@@ -48,13 +48,8 @@ body {
 
     background-color: var(--theme-background) !important;
     color: var(--theme-foreground) !important;
-}
 
-.container {
-    width: 100%;
-    max-width: 560px;
-    padding: 16px;
-    margin: 0 auto;
+    transition: all 300ms;
 }
 
 .anchor {
@@ -77,15 +72,42 @@ body {
 }
 
 
+.container {
+    width: 100%;
+    max-width: 560px;
+    padding: 16px;
+    margin: 0 auto;
+}
+
 @media screen and (max-width: 560px) {
     .only-desktop {
         display: none !important;
+    }
+
+    .magic-container {
+        width: 100%;
+    }
+
+    .magic-card {
     }
 }
 
 @media screen and (min-width: 560px) {
     .only-mobile {
         display: none !important;
+    }
+
+    .magic-container {
+        width: 100%;
+        max-width: 560px;
+        padding: 16px;
+        margin: 0 auto;
+    }
+
+    .magic-card {
+        background-color: var(--theme-frontground);
+        border-radius: 8px;
+        overflow: hidden;
     }
 }
 

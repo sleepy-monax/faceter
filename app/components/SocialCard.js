@@ -57,7 +57,7 @@ class SocialCard extends Component {
                     ${card.description}
                 </div>
                 <div style=${this.styleImage}>
-                    <img class="fit-picture" src=${card.image} />
+                    <img src=${card.image} />
                 </div>
             </div>
         </a>

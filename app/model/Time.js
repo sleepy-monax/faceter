@@ -1,5 +1,5 @@
 function toHumanTime(date){
-    let delta = Math.round((+new Date - new Date(date)) / 1000);
+    let delta = Math.round((+new Date - new Date(date)) / 1000 / 60);
 
     let minute = 60,
         hour = minute * 60,
