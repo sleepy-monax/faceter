@@ -2,8 +2,8 @@ import { Component } from '/lib/preact.js';
 import { route } from '/lib/preact-router.js';
 import Icon from '/app/components/Icon.js';
 import TextField from '/app/components/TextField.js';
+import { setSessionId } from '/app/model/Session.js';
 
-// https://codepen.io/tayfunerbilen/pen/qMKxeQ
 
 class Login extends Component {
     state = {
