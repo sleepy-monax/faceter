@@ -45,14 +45,16 @@ class User extends Component {
         else
         {
             return html`
-            <div style=${this.styleUser}>
-                <div>
-                    <img  style=${this.styleImage} src="${this.state.user.profilePic}"/>
+            <a href="/profile/${this.props.userId}">
+                <div style=${this.styleUser}>
+                    <div>
+                        <img  style=${this.styleImage} src="${this.state.user.profilePic}"/>
+                    </div>
+                    <div class="user-name">
+                        ${this.state.user.userName}
+                    </div>
                 </div>
-                <div class="user-name">
-                    ${this.state.user.userName}
-                </div>
-            </div>`;
+            </a>`;
         }
 
     }

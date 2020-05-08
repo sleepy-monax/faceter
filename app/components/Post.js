@@ -2,6 +2,7 @@ import { Component } from '/lib/preact.js';
 
 import User from '/app/components/User.js';
 import Emotes from '/app/components/Emotes.js';
+import SocialCard from '/app/components/SocialCard.js'
 
 import { getUser } from '/app/model/Users.js';
 import { toHumanTime } from '/app/model/Time.js';
@@ -14,13 +15,13 @@ class Post extends Component {
     stylePost = {
         backgroundColor: 'var(--theme-background-alt)',
         color: 'var(--theme-foreground)',
-        padding: '16px 16px',
         marginBottom: '16px',
         borderRadius: '8px',
     }
 
     styleHeader = {
-        display: 'flex'
+        display: 'flex',
+        padding: '16px 16px 16px',
     }
 
     styleDate = {
@@ -29,11 +30,12 @@ class Post extends Component {
     }
 
     styleBody = {
-        padding: '8px 0px',
+        padding: '0px 16px',
     }
 
     styleFooter = {
         textAlign: 'right',
+        padding: '8px 16px 8px',
     }
 
     constructor(id) {
@@ -70,7 +72,7 @@ class Post extends Component {
                     </div>
                 </div>
                 <div style=${this.styleBody}>
-                    ${this.state.post.postContent}
+                    ${this.state.post.postType == "link" ? html`<${SocialCard} postCard=${this.state.post.postCard}/>`: this.state.post.postContent}
                 </div>
                 <div style=${this.styleFooter}>
                     <${Emotes} postId=${this.props.postId}/>

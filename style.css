@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
-.dark-theme{
+.dark-theme {
     --theme-accent: #06f;
+    --theme-accent-transparent: rgba(0, 102, 255, 0.5);
     --theme-background: #222;
     --theme-background-alt: #333;
     --theme-foreground: #fff;
@@ -10,8 +11,9 @@
     --theme-frontground: #404040;
 }
 
-.light-theme{
+.light-theme {
     --theme-accent: #06f;
+    --theme-accent-transparent: rgba(0, 102, 255, 0.5);
     --theme-background: #eee;
     --theme-background-alt: #fff;
     --theme-foreground: #222;
@@ -57,12 +59,12 @@ body {
     position: relative;
 }
 
-.overable:hover{
+.overable:hover {
     background-color: var(--theme-middleground);
     cursor: pointer;
 }
 
-.overable:active{
+.overable:active {
     background-color: var(--theme-middleground-over);
 }
 
