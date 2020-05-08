@@ -20,7 +20,7 @@ create table if not exists Post (
     postAuthor int not null,
     postType enum('text', 'image', 'link') not null,
     postContent varchar(256) not null,
-    postDate date not null,
+    postDate datetime not null,
 
     primary key(postId)
 );

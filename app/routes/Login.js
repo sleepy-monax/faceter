@@ -93,8 +93,10 @@ class Login extends Component {
                 return response.json()
             })
             .then(login => {
-                if (login !== false)
-                    route("/profile/" + login)
+                if (login !== false) {
+                    setSessionId(login);
+                    route("/profile/" + login);
+                }
                 else
                     document.getElementById('alertInfo').style = this.styleVisible;
 

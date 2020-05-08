@@ -1,10 +1,11 @@
-import { Component } from '/lib/preact.js';
+import {Component} from '/lib/preact.js';
 import Icon from '/app/components/Icon.js';
 
 
 class CreatePost extends Component {
     state = {
         content: '',
+        user: undefined
     }
 
     styleCreatePost = {
@@ -42,29 +43,49 @@ class CreatePost extends Component {
 
     onTextInput = e => {
         let content = e.target.value;
-        this.setState({ content });
+        this.setState({content});
 
-        if (this.props.onInput)
-        {
+        if (this.props.onInput) {
             this.props.onInput(content);
         }
     }
 
+    doCreate = () => {
+        let newPost = document.getElementById("newPost");
+        if (newPost.value === '' || getSessionId() === undefined){
+            alert("ERROR");
+            return;
+        }
+
+        fetch("/api/query-create-post.php?idUser=" + getSessionId() + "&newPost=" + newPost.value)
+            .then(function (response) { return response.json()})
+            .then(uploadPost => {
+                if (uploadPost === true) {
+                    newPost.value = '';
+                    window.location.reload();
+                }
+                else {
+                    alert("Error nouveau post non enregistré");
+                }
+            })
+    }
+
     render() {
         return html`
-<span style=${this.styleCreatePost}>
-    <input
-        type="text"
-        style=${this.styleField}
-        placeholder="Quoi de neuf ?"
-        value=${this.state.content}
-        onInput=${this.onTextInput}
-    />
-    <span style=${this.styleButton} class='overable'>
-        <${Icon} icon="send"/>
-    </span>
-</span>`;
+            <span style=${this.styleCreatePost}>
+                <input
+                    type="text"
+                    style=${this.styleField}
+                    placeholder="Quoi de neuf ?"
+                    value=${this.state.content}
+                    id="newPost"
+                    onInput=${this.onTextInput}
+                />
+                <span class='overable' style=${this.styleButton} onclick=${this.doCreate}>
+                    <${Icon} icon="send"/>
+                </span>
+            </span>`;
     }
 }
 
-export { CreatePost as default };
+export {CreatePost as default};
