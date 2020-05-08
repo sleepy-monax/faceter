@@ -36,10 +36,9 @@ where not exists (SELECT * FROM User
                     WHERE userName = \'' . $username . '\'
                     OR userMAIL = \'' . $email . '\')';
 
-$result = mysqli_query($connection, $sql);
 
-if($r = mysqli_fetch_assoc($result)) {
-    print json_encode($r);
+if(mysqli_query($connection, $sql)) {
+    print json_encode(true);
 }
 else
 {
