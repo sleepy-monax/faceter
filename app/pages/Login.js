@@ -7,8 +7,8 @@ import { login } from '/app/model/Session.js';
 
 class Login extends Component {
     state = {
-        username: '',
-        password: '',
+        username: 'Nicolas',
+        password: 'Nicolas',
         message: '',
     }
 

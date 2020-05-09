@@ -138,3 +138,8 @@ body {
     animation-name: loadingAnimation;
     animation-timing-function: linear;
 }
+
+.frontground-material {
+    background-color: var(--theme-frontground);
+    backdrop-filter: blur(10px);
+}

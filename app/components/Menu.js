@@ -12,7 +12,6 @@ class Menu extends Component {
         right: "16px",
         top: "16px",
         textAlign: "left",
-        backgroundColor: 'var(--theme-frontground)',
         borderRadius: "8px",
         boxShadow: "0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)",
         padding: "16px",
@@ -56,7 +55,7 @@ class Menu extends Component {
 
     render() {
         return html`
-        <div style=${this.styleMenu}>
+        <div class="frontground-material" style=${this.styleMenu}>
             <div style=${this.styleHeader}>
                 <div style=${this.styleTitle}>
                     Menu

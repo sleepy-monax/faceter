@@ -4,12 +4,23 @@ import User from '/app/components/User.js';
 import Emotes from '/app/components/Emotes.js';
 import SocialCard from '/app/components/SocialCard.js'
 
-import { getUser } from '/app/model/Users.js';
 import { toHumanTime } from '/app/model/Time.js';
+import { makeRef } from '/app/model/Utils.js'
+
+
+function isInViewport(elem) {
+    var bounding = elem.getBoundingClientRect();
+    return (
+        bounding.top >= 0 &&
+        bounding.left >= 0 &&
+        bounding.bottom <= window.innerHeight + 256 &&
+        bounding.right <= window.innerWidth 
+    );
+}
 
 class Post extends Component {
     state = {
-        post : undefined,
+        post: undefined,
     };
 
     stylePost = {
@@ -39,31 +50,44 @@ class Post extends Component {
         padding: '8px 16px 8px',
     }
 
-    constructor(id) {
+    constructor() {
         super();
-        this.state = {};
-        this.postId = id;
-        this.postBody = "Loading...";
+        this.placeholderRef = makeRef()
+        this.isFetching = false;
+    }
+
+    fetchPost() {
+        if (!this.isFetching) {
+            this.isFetching = true;
+            fetch("/api/query-post.php?postId=" + this.props.postId)
+                .then(function (response) { return response.json() })
+                .then(post => this.setState({ post }));
+        }
     }
 
     componentDidMount() {
-        fetch("/api/query-post.php?postId=" + this.props.postId)
-        .then(function (response) { return response.json()})
-        .then(post => this.setState({ post }));
+        var placeholder = document.getElementById(this.placeholderRef);
+
+        if (isInViewport(placeholder)) {
+            this.fetchPost()
+        } else {
+            window.addEventListener('scroll', function (event) {
+                if (isInViewport(placeholder)) {
+                    this.fetchPost()
+                }
+            }.bind(this), false);
+        }
     }
 
     render() {
-        if (this.state.post === undefined)
-        {
+        if (this.state.post === undefined) {
             return html`
-            <div class="loading" style=${this.stylePost}>
+            <div id=${this.placeholderRef} class="loading" style=${this.stylePost}>
                 <div style=${this.styleHeader}>
-                    Loading...
                 </div>
             </div>`;
         }
-        else
-        {
+        else {
             return html`
             <div style=${this.stylePost}>
                 <div style=${this.styleHeader}>
@@ -73,7 +97,7 @@ class Post extends Component {
                     </div>
                 </div>
                 <div style=${this.styleBody}>
-                    ${this.state.post.postType == "link" ? html`<${SocialCard} postCard=${this.state.post.postCard}/>`: this.state.post.postContent}
+                    ${this.state.post.postType == "link" ? html`<${SocialCard} postCard=${this.state.post.postCard}/>` : this.state.post.postContent}
                 </div>
                 <div style=${this.styleFooter}>
                     <${Emotes} postId=${this.props.postId}/>

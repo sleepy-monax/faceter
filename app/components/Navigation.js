@@ -16,10 +16,8 @@ class Navigation extends Component {
         display: 'flex',
         width: '100%',
         padding: '8px 16px',
-        backgroundColor: 'var(--theme-frontground)',
         boxShadow: "0 3px 6px rgba(0,0,0,0.05), 0 3px 6px rgba(0,0,0,0.1)",
         color: 'var(--theme-foreground)',
-        backdropFilter: 'blur(10px)', 
         zIndex: 999,
     }
 
@@ -51,7 +49,7 @@ class Navigation extends Component {
 
     render() {
         return html`
-        <div style=${this.styleNavigation}>
+        <div class="frontground-material" style=${this.styleNavigation}>
             <div style=${this.styleItems}>
 
                 <a style=${this.styleBrand} href="/">
