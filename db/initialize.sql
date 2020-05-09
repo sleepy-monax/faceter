@@ -19,7 +19,7 @@ create table if not exists Post (
     postId int auto_increment not null,
     postAuthor int not null,
     postType enum('text', 'image', 'link') not null,
-    postContent varchar(256) not null,
+    postContent varchar(320) not null,
     postDate datetime not null,
 
     primary key(postId)
@@ -35,7 +35,7 @@ create table if not exists Reaction (
     userId int not null,
     reactionType varchar(256) not null,
 
-    primary key(postId, userId)
+    primary key(postId, userId, reactionType)
 );
 
 
