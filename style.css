@@ -10,6 +10,10 @@
     --theme-middleground-over: rgba(0, 0, 0, 0.5);
     --theme-frontground: #404040;
     --theme-border: #666;
+
+    --theme-alert-background: transparent;
+    --theme-alert-foreground: rgb(218, 65, 65);
+    --theme-alert-border: rgb(218, 65, 65);
 }
 
 .light-theme {
@@ -22,6 +26,10 @@
     --theme-middleground-over: rgba(0, 0, 0, 0.5);
     --theme-frontground: #fff;
     --theme-border: #ccc;
+
+    --theme-alert-background: rgba(218, 65, 65, 0.25);
+    --theme-alert-foreground: rgba(218, 65, 65);
+    --theme-alert-border: transparent;
 }
 
 ::-webkit-scrollbar {
@@ -88,8 +96,7 @@ body {
         width: 100%;
     }
 
-    .magic-card {
-    }
+    .magic-card {}
 }
 
 @media screen and (min-width: 560px) {

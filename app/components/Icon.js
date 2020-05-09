@@ -9,7 +9,6 @@ class Icon extends Component {
         lineHeight: "1",
         letterSpacing: "normal",
         textTransform: "none",
-        display: "inline-block",
         whiteSpace: "nowrap",
         wordWrap: "normal",
         direction: "ltr",

@@ -1,30 +1,38 @@
 import { Component } from '/lib/preact.js';
 import { route } from '/lib/preact-router.js';
-import Icon from '/app/components/Icon.js';
 import TextField from '/app/components/TextField.js';
-import { setSessionId } from '/app/model/Session.js';
+import Icon from '/app/components/Icon.js';
+import { login } from '/app/model/Session.js';
 
 
 class Login extends Component {
     state = {
-        username: '',
-        password: '',
+        username: 'nicolas',
+        password: '123456789',
+        message: '',
     }
 
     constructor() {
         super();
     }
 
-    styleContainer = {
-        backgroundColor: 'var(--theme-frontground)',
-        borderRadius: '8px',
-        overflow: 'hidden',
-    }
-
     styleTitle = {
         textAlign: 'center',
         fontSize: '32px',
         fontWeight: '900',
+    }
+
+    styleAlert = {
+        display: 'flex',
+        alignItems: 'center',
+        backgroundColor: 'var(--theme-alert-background)',
+        color: 'var(--theme-alert-foreground)',
+        border: '1px solid var(--theme-alert-border)',
+        borderRadius: '8px',
+        padding: '8px',
+        marginBottom: '24px',
+        marginLeft: '48px',
+        marginRight: '48px',
     }
 
     styleSubtitle = {
@@ -42,25 +50,6 @@ class Login extends Component {
 
     styleFormContainer = {
         padding: '16px 16px 16px'
-    }
-
-    styleAlert = {
-        float: "left",
-        marginRight: ".3em",
-    }
-
-    styleError = {
-        padding: ".7em .7em"
-    }
-
-    styleHide = {
-        visibility: "hidden",
-        display: "none"
-    }
-
-    styleVisible = {
-        visibility: 'visible',
-        display: 'block',
     }
 
     styleConnection = {
@@ -86,29 +75,30 @@ class Login extends Component {
     }
 
     doLogin = () => {
-        console.log("TODO: login " + this.state.username + " " + this.state.password);
-        fetch("/api/query-login.php?userName=" + this.state.username
-            + "&password=" + this.state.password)
-            .then(function (response) {
-                return response.json()
-            })
-            .then(login => {
-                if (login !== false) {
-                    setSessionId(login);
-                    route("/feed");
-                }
-                else
-                    document.getElementById('alertInfo').style = this.styleVisible;
-
-            });
-    }
-
-    doRegistration = () => {
-        route("/join");
+        login(
+            this.state.username,
+            this.state.password,
+            () => {
+                route("/feed");
+            },
+            message => {
+                this.setState({ message });
+            }
+        )
     }
 
     onSubmit = e => {
         e.preventDefault();
+    }
+
+    getAlertMessage() {
+        if (this.state.message) {
+            return html`
+                    <div style=${this.styleAlert}>
+                        <${Icon} icon="error"/>
+                        <span style="margin-left: 8px">${this.state.message}</span>
+                    </div>`
+        }
     }
 
     render() {
@@ -120,20 +110,11 @@ class Login extends Component {
                     <img src='/res/login.svg'/>
                 </div>
                 <form style=${this.styleFormContainer} onSubmit=${this.onSubmit}>
-                    <div class="ui-widget" style=${this.styleHide} id="alertInfo">
-                        <div class="ui-state-error ui-corner-all" style=${this.styleError}>
-                            <p>
-                                <span style=${this.styleAlert}>
-                                    <${Icon} icon="warning"/>
-                                </span>
-                                Nom/e-mail ou mot de passe incorect
-                            </p>
-                        </div>
-                    </div>
-
                     <div style=${this.styleSubtitle}>
                         Connectez vous avec votre compte!
                     </div>
+
+                    ${this.getAlertMessage()}
 
                     <div style="padding:0px 48px 32px">
                         <${TextField}
@@ -151,8 +132,9 @@ class Login extends Component {
                         <label for="rememberMe"> Se souvenir de moi</label>
                     </div>
 
+
                     <div style="display: flex; justify-content: center;">
-                        <button style=${this.styleRegisterButton} onClick=${this.doRegistration}>S’inscrire</button>
+                        <button style=${this.styleRegisterButton} onClick=${e => route('/join')}>S’inscrire</button>
                         <button style=${this.styleLoginButton} onClick=${this.doLogin}>Se connecter</button>
                     </div>
                 </form>

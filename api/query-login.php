@@ -2,19 +2,28 @@
 
 $connection = include 'connection.php';
 
-$login = mysqli_real_escape_string($connection,strval($_GET["userName"]));
+$login = mysqli_real_escape_string($connection,strval($_GET["username"]));
 $password = mysqli_real_escape_string($connection,strval($_GET["password"]));
 
 $field = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'userMail': 'userName';
 
-$requestLogin = 'select * from User where '. $field.'= \''. $login . '\' and userPassword= \''
-    . $password .'\'';
-$result = mysqli_query($connection, $requestLogin);
+$requestLogin = 'select * from User where '. $field.'= \''. $login . '\' and userPassword= \'' . $password .'\'';
 
-if ($row = mysqli_fetch_assoc($result)) {
-    print json_encode($row['userId']);
+$queryResult = mysqli_query($connection, $requestLogin);
+
+$result = Array(
+    "userId" => -1,
+    "success" => false,
+    "message" => "",
+    "token" => "",
+);
+
+if ($row = mysqli_fetch_assoc($queryResult)) {
+    $result["userId"] = $row['userId'];
+    $result["success"] = true;
 }
 else {
-    print json_encode(false);
+    $result["message"] = "Identifiants incorrect";
 }
 
+print json_encode($result);

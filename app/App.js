@@ -3,12 +3,12 @@ import { Router, route } from '/lib/preact-router.js'
 
 import Navigation from '/app/components/Navigation.js'
 
-import Feed from '/app/routes/Feed.js'
-import Login from '/app/routes/Login.js'
-import Registration from '/app/routes/Registration.js'
-import Profile from '/app/routes/Profile.js'
-import ViewPost from '/app/routes/ViewPost.js'
-import Error from '/app/routes/Error.js'
+import Feed from '/app/pages/Feed.js'
+import Login from '/app/pages/Login.js'
+import Registration from '/app/pages/Registration.js'
+import Profile from '/app/pages/Profile.js'
+import ViewPost from '/app/pages/ViewPost.js'
+import Error from '/app/pages/Error.js'
 
 import { getSessionId } from '/app/model/Session.js';
 
@@ -20,16 +20,11 @@ class App extends Component {
     handleRoute = async e => {
         if (e.url != '/login' &&
             e.url != '/join' &&
-            getSessionId() == -1) { 
+            getSessionId() == -1) {
             route('/login', true);
         }
 
         if (e.url == '/' &&
-            getSessionId() != -1) {
-            route('/feed', true);
-        }
-
-        if (e.url == '/login' &&
             getSessionId() != -1) {
             route('/feed', true);
         }

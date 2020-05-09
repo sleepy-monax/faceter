@@ -130,9 +130,9 @@ class Registration extends Component {
                         </div>
                     </div>
 
-                    <div style="padding:0px 48px 32px">
+                    <div style="padding:0px 48px 16px">
                         <${TextField}
-                            label="Pseudo"  
+                            label="Pseudo"
                             value=${this.state.username}
                             onValueChange=${(username) => this.setState({ username })}/>
 
