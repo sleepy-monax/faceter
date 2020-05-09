@@ -5,10 +5,10 @@ import TextField from '/app/components/TextField.js';
 
 class Registration extends Component {
     state = {
-        username: 'User',
-        email: 'faceter@faceter.com',
-        password: 'mathieu123',
-        verification: 'mathieu123',
+        username: '',
+        email: '',
+        password: '',
+        verification: '',
     }
 
     constructor() {
@@ -90,7 +90,7 @@ class Registration extends Component {
     }
 
     doRegistration = e => {
-        if (document.getElementById("username").value == "" || document.getElementById("password").value == "" ||document.getElementById("email").value == "") {
+        if (this.state.username == "" || this.state.password == "" || this.state.email == "" || this.state.verification == "") {
             alert ("Veuillez remplir tout les champs");
         } else {
         fetch("/api/query-registration.php?username=" + this.state.username + "&password=" + this.state.password + "&email=" + this.state.email)
@@ -118,7 +118,7 @@ class Registration extends Component {
                 </div>
 
                 <form style=${this.styleFormContainer}  onSubmit=${this.onSubmit}>
-                    <h1 style=${this.styleSubtitle}>Créer votre propre compte!</h1>
+                    <h1 style=${this.styleSubtitle}>Créez votre propre compte!</h1>
 
                     <div class="ui-widget" style=${this.styleHide} id="alertInfo">
                         <div class="ui-state-error ui-corner-all" style=${this.styleError}>
@@ -132,7 +132,7 @@ class Registration extends Component {
 
                     <div style="padding:0px 48px 32px">
                         <${TextField}
-                            label="Pseudo"
+                            label="Pseudo"  
                             value=${this.state.username}
                             onValueChange=${(username) => this.setState({ username })}/>
 
