@@ -2,6 +2,7 @@ import {Component} from '/lib/preact.js';
 import Post from '/app/components/Post.js';
 import {getUser} from '/app/model/Users.js';
 import CreatePost from '/app/components/CreatePost.js';
+import SocialBar from '/app/components/SocialBar.js';
 
 class Profile extends Component {
     state = {
@@ -83,6 +84,7 @@ class Profile extends Component {
             <span style=${this.profileName}>${this.state.user ? this.state.user.userName : undefined }</span>
         </div>
         <div class="container">
+            <${SocialBar} />
             <${CreatePost}/>
             ${this.state.posts.map(post => html`<${Post} postId="${post.postId}"/>`)}
         </div>`;
