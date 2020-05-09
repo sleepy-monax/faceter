@@ -8,7 +8,7 @@
     --theme-foreground: #fff;
     --theme-middleground: rgba(0, 0, 0, 0.3);
     --theme-middleground-over: rgba(0, 0, 0, 0.5);
-    --theme-frontground: #404040;
+    --theme-frontground: rgba(64, 64, 64, 0.9);
     --theme-border: #666;
 
     --theme-alert-background: transparent;
@@ -24,7 +24,7 @@
     --theme-foreground: #222;
     --theme-middleground: rgba(0, 0, 0, 0.1);
     --theme-middleground-over: rgba(0, 0, 0, 0.5);
-    --theme-frontground: #fff;
+    --theme-frontground: rgba(255, 255, 255, 0.9);
     --theme-border: #ccc;
 
     --theme-alert-background: rgba(218, 65, 65, 0.25);

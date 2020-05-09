@@ -7,7 +7,7 @@ import Menu from '/app/components/Menu.js';
 
 class Navigation extends Component {
     state = {
-        menu : false,
+        menu: false,
     }
 
     styleNavigation = {
@@ -19,6 +19,7 @@ class Navigation extends Component {
         backgroundColor: 'var(--theme-frontground)',
         boxShadow: "0 3px 6px rgba(0,0,0,0.05), 0 3px 6px rgba(0,0,0,0.1)",
         color: 'var(--theme-foreground)',
+        backdropFilter: 'blur(10px)', 
         zIndex: 999,
     }
 
@@ -30,12 +31,12 @@ class Navigation extends Component {
 
     styleSearch = {
         flexGrow: '1',
-        display:'flex',
+        display: 'flex',
         alignItems: 'center',
     }
 
     styleItems = {
-        display:'flex',
+        display: 'flex',
         alignItems: 'center',
     }
 
@@ -69,10 +70,10 @@ class Navigation extends Component {
                 </a>
             </div>
             <div style=${this.styleItems}>
-                <a style=${this.styleItem} onClick=${() => {this.setState({menu : true})}}>
+                <a style=${this.styleItem} onClick=${() => { this.setState({ menu: true }) }}>
                     <${Icon} icon="more_vert"/>
                 </a>
-                ${this.state.menu ? html`<${Menu} onClose=${() => {this.setState({menu : false})}} />` : undefined}
+                ${this.state.menu ? html`<${Menu} onClose=${() => { this.setState({ menu: false }) }} />` : undefined}
             </div>
         </div>`;
     }
