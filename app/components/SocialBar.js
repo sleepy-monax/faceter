@@ -2,6 +2,10 @@ import {Component} from "/lib/preact.js";
 
 class SocialBar extends Component{
 
+    state = {
+        followedList : [],
+        followerList: []
+    }
     styleFollow = {
         display: "flex",
         backgroundColor: "var(--theme-frontground)",
@@ -16,23 +20,30 @@ class SocialBar extends Component{
     }
 
     componentDidMount() {
-        fetch("/api/query-follow-user.php?userId=2")
+        fetch("/api/query-followed-user.php?userId=2")
             .then(function (response) { return response.json()})
             .then(follow => {
                 console.log(follow);
-                this.state.follower = follow['nbFollower'];
-                this.state.followed = follow['nbFollowed'];
-            })
+                this.state.followed = follow['Count_Followed'];
+                this.state.followedList = follow['followed'];
+            });
+        fetch("/api/query-follower-user.php?userId=2")
+            .then(function (response) { return response.json()})
+            .then(follow => {
+                console.log(follow);
+                this.state.follower = follow['Count_Follower'];
+                this.state.followerList = follow['follower'];
+            });
     }
 
     render() {
         return html `
             <div class="container" style=${this.styleFollow}>
                 <span class="overable">
-                    Follower ${this.state.follower} 
+                    Followed ${this.state.followed} 
                 </span>
                 <span class="overable">
-                    Followed ${this.state.followed}
+                    Follower ${this.state.follower}
                 </span>
             </div>
         `;
