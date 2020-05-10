@@ -25,14 +25,14 @@ class SocialBar extends Component{
             .then(follow => {
                 console.log(follow);
                 this.state.followed = follow['Count_Followed'];
-                this.state.followedList = follow['followed'];
+                this.state.followedList = follow['followed'].split(',');
             });
         fetch("/api/query-follower-user.php?userId=2")
             .then(function (response) { return response.json()})
             .then(follow => {
                 console.log(follow);
                 this.state.follower = follow['Count_Follower'];
-                this.state.followerList = follow['follower'];
+                this.state.followerList = follow['follower'].split(',');
             });
     }
 

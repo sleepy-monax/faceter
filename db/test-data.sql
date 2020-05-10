@@ -1,6 +1,6 @@
 insert into User(userId, userName, userMail, userPassword)
 values
-    (1, 'Guillaume', 'guillaume.charlier.2017@gmail.com', ''),
+    (1, 'Guillaume', 'guillaume.charlier.2017@gmail.com', 'Guillaume'),
     (2, 'Mathieu', 'la187374@student.helha.be', ''),
     (3, 'Nicolas', 'nicolas.vanbossuyt@gmail.com', 'Nicolas'),
     (4, 'Tintin', 'tintinDu94@outlook.com', ''),
