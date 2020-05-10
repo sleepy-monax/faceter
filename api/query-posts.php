@@ -1,7 +1,7 @@
 <?php
 $connection = include 'connection.php';
 
-$sql = 'select postId from Post';
+$sql = 'select postId from Post order by postDate desc';
 $result = mysqli_query($connection, $sql);
 
 $rows = array();
