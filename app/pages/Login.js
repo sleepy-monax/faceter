@@ -64,7 +64,7 @@ class Login extends Component {
 
                     <div style="display: flex; justify-content: center;">
                         <button style=${Style.Link} onClick=${e => route('/join')}>S’inscrire</button>
-                        <button type="submit" style=${Style.Button}>Se connecter</button>
+                        <button style=${Style.Button} type="submit" >Se connecter</button>
                     </div>
                 </form>
             </div>

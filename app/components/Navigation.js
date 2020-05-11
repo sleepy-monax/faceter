@@ -18,7 +18,7 @@ class Navigation extends Component {
         padding: '8px 16px',
         boxShadow: "0 3px 6px rgba(0,0,0,0.05), 0 3px 6px rgba(0,0,0,0.1)",
         color: 'var(--theme-foreground)',
-        zIndex: 999,
+        zIndex: 9999,
     }
 
     styleBrand = {

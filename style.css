@@ -3,12 +3,12 @@
 .dark-theme {
     --theme-accent: #06f;
     --theme-accent-transparent: rgba(0, 102, 255, 0.5);
-    --theme-background: #222;
-    --theme-background-alt: #333;
+    --theme-background: #222229;
+    --theme-background-alt: #2a2a33;
     --theme-foreground: #fff;
     --theme-middleground: rgba(0, 0, 0, 0.3);
     --theme-middleground-over: rgba(0, 0, 0, 0.5);
-    --theme-frontground: rgba(64, 64, 64, 0.9);
+    --theme-frontground: rgba(54, 54, 64, 0.8);
     --theme-border: #666;
 
     --theme-alert-background: transparent;
@@ -19,12 +19,12 @@
 .light-theme {
     --theme-accent: #06f;
     --theme-accent-transparent: rgba(0, 102, 255, 0.5);
-    --theme-background: #eee;
-    --theme-background-alt: #fff;
+    --theme-background: #eeeef9;
+    --theme-background-alt: #f9f9ff;
     --theme-foreground: #222;
     --theme-middleground: rgba(0, 0, 0, 0.1);
     --theme-middleground-over: rgba(0, 0, 0, 0.5);
-    --theme-frontground: rgba(255, 255, 255, 0.9);
+    --theme-frontground: rgba(255, 255, 255, 0.8);
     --theme-border: #ccc;
 
     --theme-alert-background: rgba(218, 65, 65, 0.25);
@@ -83,7 +83,7 @@ body {
 .container {
     width: 100%;
     max-width: 560px;
-    padding: 16px;
+    padding: 16px 16px 0px;
     margin: 0 auto;
 }
 
@@ -141,5 +141,5 @@ body {
 
 .frontground-material {
     background-color: var(--theme-frontground);
-    backdrop-filter: blur(32px);
+    backdrop-filter: blur(8px);
 }

@@ -14,49 +14,41 @@ class Profile extends Component {
     }
 
     containerProfile = {
-        position: 'relative'
+        position: 'relative',
     }
 
     coverImage = {
-        height: '320px',
+        height: '256px',
         width: '100%',
         objectFit: 'cover',
     }
 
     profileImage = {
-        position: 'absolute',
         borderRadius: '192px',
-        width: '192px',
-        height: '192px',
-
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        marginTop: 'auto',
-        marginBottom: 'auto',
-        left: '0',
-        right: '0',
-        top: '0',
-        bottom: '0',
+        width: '96px',
+        height: '96px',
+        marginRight: '16px',
 
         boxShadow: '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)',
     }
 
     profileName = {
+        display: 'flex',
+        padding: '16px',
+        alignItems: 'center',
         position: 'absolute',
-        width: '192px',
         height: '192px',
+        background: 'linear-gradient(0deg, var(--theme-background) 0%, rgba(0,0,0,0) 60%)',
 
         marginLeft: 'auto',
         marginRight: 'auto',
         marginTop: 'auto',
-        marginBottom: 'auto',
+        marginBottom: '0',
         left: '0',
         right: '0',
-        top: '360px',
+        top: '0',
         bottom: '0',
-
-        fontSize: '50px',
-        color: 'white',
+        fontSize: '24px'
     }
 
     constructor() {
@@ -78,10 +70,14 @@ class Profile extends Component {
 
     render() {
         return html`
-        <div style=${this.containerProfile}>
-            <img style=${this.coverImage} src="${this.state.user ? this.state.user.coverPic : '/res/covers/default.jpg'}" />
-            <img style=${this.profileImage} src="${this.state.user ? this.state.user.profilePic : '/res/users/default.jpg'}"/>
-            <span style=${this.profileName}>${this.state.user ? this.state.user.userName : undefined}</span>
+        <div class="magic-container">
+            <div class="magic-card" style=${this.containerProfile}>
+                <img style=${this.coverImage} src="${this.state.user ? this.state.user.coverPic : '/res/covers/default.jpg'}" />
+                <div style=${this.profileName}>
+                    <img style=${this.profileImage} src="${this.state.user ? this.state.user.profilePic : '/res/users/default.jpg'}"/>
+                    <span>${this.state.user ? this.state.user.userName : undefined}</span>
+                </div>
+            </div>
         </div>
         <div class="container">
             <${SocialBar} userId=${this.props.userId}/>

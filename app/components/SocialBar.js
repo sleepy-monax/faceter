@@ -1,5 +1,6 @@
 import { Component } from "/lib/preact.js";
 import { getUser } from '/app/model/Users.js';
+import * as Style from '/app/model/Style.js';
 
 class SocialBar extends Component {
 
@@ -12,7 +13,7 @@ class SocialBar extends Component {
         display: "flex",
         backgroundColor: "var(--theme-frontground)",
         borderRadius: "8px",
-        padding: "16px",
+        padding: "16px 8px",
         marginBottom: "16px",
         overflow: "hidden"
     }
@@ -27,16 +28,16 @@ class SocialBar extends Component {
 
     render() {
         return html`
-            <div class="container" style=${this.styleFollow}>
-                <span class="overable">
-                    ${this.state.followed.length} abonnements
-                </span>
-                <span class="overable">
-                    ${this.state.follower.length} abonnés
-                </span>
-                <button>
+            <div style=${this.styleFollow}>
+                <button style=${Style.Button}>
                     Suivre
                 </button>
+                <span style=${Style.Link}>
+                    ${this.state.followed.length} abonnements
+                </span>
+                <span style=${Style.Link}>
+                    ${this.state.follower.length} abonnés
+                </span>
             </div>
         `;
     }
