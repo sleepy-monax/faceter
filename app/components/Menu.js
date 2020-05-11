@@ -76,6 +76,10 @@ class Menu extends Component {
                     <${Icon} icon="account_circle"/>
                     <span style=${this.styleText}>Profil</span>
                 </a>
+                <a style=${this.styleItem} href="/settings">
+                    <${Icon} icon="settings" />
+                    <span style=${this.styleText}>Paramètre</span>
+                </a>
                 <a style=${this.styleItem} onclick="${() => {
                         toggleTheme();
                         this.forceUpdate();

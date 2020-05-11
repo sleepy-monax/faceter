@@ -8,6 +8,7 @@ import Login from '/app/pages/Login.js'
 import Join from '/app/pages/Join.js'
 import Profile from '/app/pages/Profile.js'
 import ViewPost from '/app/pages/ViewPost.js'
+import Settings from '/app/pages/Settings.js'
 import Error from '/app/pages/Error.js'
 
 import { isLoggedIn } from '/app/model/Session.js';
@@ -38,6 +39,7 @@ class App extends Component {
                 <${Join} path="/join" />
                 <${Profile} path="/profile/:userId" />
                 <${ViewPost} path="/post/:postId" />
+                <${Settings} path="/settings" />
                 <${Error} default />
             <//>
         </div>`;
