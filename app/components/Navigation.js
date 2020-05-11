@@ -4,6 +4,8 @@ import { Component } from '/lib/preact.js';
 import SearchBar from '/app/components/SearchBar.js';
 import Icon from '/app/components/Icon.js';
 import Menu from '/app/components/Menu.js';
+import { getSessionId } from '/app/model/Session.js';
+
 
 class Navigation extends Component {
     state = {
@@ -63,7 +65,7 @@ class Navigation extends Component {
                 <a style=${this.styleItem} href="/feed">
                     Accueil
                 </a>
-                <a style=${this.styleItem} href="/profile/2">
+                <a style=${this.styleItem} href=${"/profile/" + getSessionId()} >
                     Profile
                 </a>
             </div>

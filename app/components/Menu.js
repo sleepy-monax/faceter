@@ -1,6 +1,7 @@
 import { Component } from '/lib/preact.js';
 import Icon from '/app/components/Icon.js'
 import { toggleTheme, getTheme } from '/app/model/Theme.js'
+import { getSessionId } from '/app/model/Session.js';
 
 class Menu extends Component {
     state = {
@@ -20,7 +21,7 @@ class Menu extends Component {
     }
 
     styleHeader = {
-        display : 'flex',
+        display: 'flex',
         marginBottom: '16px',
     }
 
@@ -70,14 +71,14 @@ class Menu extends Component {
                     <${Icon} icon="home"/>
                     <span style=${this.styleText}>Accueil</span>
                 </a>
-                <a class='only-mobile' style=${this.styleItem} href="/profile/2">
+                <a class='only-mobile' style=${this.styleItem} href=${"/profile/" + getSessionId()} >
                     <${Icon} icon="account_circle"/>
                     <span style=${this.styleText}>Profil</span>
                 </a>
                 <a style=${this.styleItem} onclick="${() => {
-                    toggleTheme();
-                    this.forceUpdate();
-                }}">
+                toggleTheme();
+                this.forceUpdate();
+            }}">
                     <${Icon} icon="${getTheme() == 'dark-theme' ? 'brightness_7' : 'brightness_3'}"/>
                     <span style=${this.styleText}>${getTheme() == 'dark-theme' ? 'Mode jour' : 'Mode nuit'}</span>
                 </a>

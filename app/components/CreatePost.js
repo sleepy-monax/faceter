@@ -1,5 +1,6 @@
-import {Component} from '/lib/preact.js';
+import { Component } from '/lib/preact.js';
 import Icon from '/app/components/Icon.js';
+import { getSessionId } from '/app/model/Session.js';
 
 
 class CreatePost extends Component {
@@ -43,7 +44,7 @@ class CreatePost extends Component {
 
     onTextInput = e => {
         let content = e.target.value;
-        this.setState({content});
+        this.setState({ content });
 
         if (this.props.onInput) {
             this.props.onInput(content);
@@ -52,13 +53,13 @@ class CreatePost extends Component {
 
     doCreate = () => {
         let newPost = document.getElementById("newPost");
-        if (newPost.value === '' || getSessionId() === undefined){
+        if (newPost.value === '' || getSessionId() === undefined) {
             alert("ERROR");
             return;
         }
 
         fetch("/api/query-create-post.php?idUser=" + getSessionId() + "&newPost=" + newPost.value)
-            .then(function (response) { return response.json()})
+            .then(function (response) { return response.json() })
             .then(uploadPost => {
                 if (uploadPost === true) {
                     newPost.value = '';
@@ -88,4 +89,4 @@ class CreatePost extends Component {
     }
 }
 
-export {CreatePost as default};
+export { CreatePost as default };
