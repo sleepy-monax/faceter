@@ -39,4 +39,4 @@ function login(username, password, onSuccess, onFailure) {
         })
 }
 
-export { getSessionId, login }
+export { getSessionId, login, setSessionId }
