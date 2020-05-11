@@ -5,6 +5,13 @@ import TextField from '/app/components/TextField.js';
 import { getRandomUsername } from '/app/model/Utils.js';
 import * as Style from '/app/model/Style.js';
 
+function validateEmail(mail) {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+        return (true);
+    } else {
+        return (false);
+    }
+}
 
 class Join extends Component {
     state = {
@@ -24,6 +31,10 @@ class Join extends Component {
     }
 
     doJoin = e => {
+        if (!validateEmail(this.state.email)) {
+            alert("Veuillez entrer une adresse mail valide");
+        } 
+
         if (this.state.username == "" ||
             this.state.password == "" ||
             this.state.email == "" ||
@@ -33,7 +44,7 @@ class Join extends Component {
         }
 
         if (this.state.password != this.state.verification) {
-            this.setState({ message: 'les mots de passe ne correspondent pas' });
+            this.setState({ message: 'Les mots de passe ne correspondent pas' });
             return;
         }
 
