@@ -3,49 +3,41 @@ import Cookies from '/lib/js-cookie.js'
 var currentTheme = undefined
 
 function initializeTheme() {
-    let theme = Cookies.get('user-theme');
+    let theme = Cookies.get('sessionTheme');
 
-    if (theme === undefined)
-    {
+    if (theme === undefined) {
         setLightTheme();
     }
-    else
-    {
+    else {
         setTheme(theme);
     }
 }
 
 function toggleTheme() {
-    if (currentTheme == "light-theme")
-    {
+    if (currentTheme == "light-theme") {
         setDarkTheme();
     }
-    else
-    {
+    else {
         setLightTheme();
     }
 }
 
-function setDarkTheme()
-{
+function setDarkTheme() {
     setTheme("dark-theme");
 }
 
-function setLightTheme()
-{
+function setLightTheme() {
     setTheme("light-theme");
 }
 
-function getTheme()
-{
+function getTheme() {
     return currentTheme;
 }
 
 function setTheme(theme) {
-    if (currentTheme != theme)
-    {
+    if (currentTheme != theme) {
         document.body.classList.remove(currentTheme);
-        Cookies.set('user-theme', theme);
+        Cookies.set('sessionTheme', theme);
         currentTheme = theme;
         document.body.classList.add(currentTheme);
 

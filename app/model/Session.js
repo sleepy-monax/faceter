@@ -1,25 +1,34 @@
 import Cookies from '/lib/js-cookie.js'
+import { route } from '/lib/preact-router.js'
 
-let idSession = undefined;
+let sessionId = undefined;
 
 function setSessionId(id) {
-    idSession = id;
-    Cookies.set('sessionId', id)
+    sessionId = id;
+    if (id == undefined || id == -1) {
+        Cookies.remove('sessionId')
+    } else {
+        Cookies.set('sessionId', id)
+    }
 }
 
-function getSessionId() {
-    if (idSession == undefined) {
-        idSession = Cookies.get('sessionId');
+export function getSessionId() {
+    if (sessionId == undefined) {
+        sessionId = Cookies.get('sessionId');
 
-        if (idSession == undefined) {
-            idSession = -1;
+        if (sessionId == undefined) {
+            sessionId = -1;
         }
     }
 
-    return idSession;
+    return sessionId;
 }
 
-function login(username, password, onSuccess, onFailure) {
+export function isLoggedIn() {
+    return sessionId != undefined && sessionId != -1;
+}
+
+export function login(username, password, onSuccess, onFailure) {
     console.log(`Login with: ${username}`)
 
     fetch(`/api/query-login.php?username=${username}&password=${password}`)
@@ -39,4 +48,9 @@ function login(username, password, onSuccess, onFailure) {
         })
 }
 
-export { getSessionId, login, setSessionId }
+export function logoff() {
+    if (isLoggedIn()) {
+        setSessionId(undefined);
+        route('/');
+    }
+}

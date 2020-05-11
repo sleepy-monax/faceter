@@ -1,9 +1,8 @@
 import { Component } from '/lib/preact.js';
 import Icon from '/app/components/Icon.js'
 import { toggleTheme, getTheme } from '/app/model/Theme.js'
-import { getSessionId } from '/app/model/Session.js';
-import {route} from "/lib/preact-router.js";
-import {setSessionId} from "/app/model/Session.js";
+import { route } from "/lib/preact-router.js";
+import { getSessionId, logoff } from '/app/model/Session.js';
 
 class Menu extends Component {
     state = {
@@ -78,17 +77,14 @@ class Menu extends Component {
                     <span style=${this.styleText}>Profil</span>
                 </a>
                 <a style=${this.styleItem} onclick="${() => {
-                toggleTheme();
-                this.forceUpdate();
-            }}">
+                        toggleTheme();
+                        this.forceUpdate();
+                    }}">
                     <${Icon} icon="${getTheme() == 'dark-theme' ? 'brightness_7' : 'brightness_3'}"/>
                     <span style=${this.styleText}>${getTheme() == 'dark-theme' ? 'Mode jour' : 'Mode nuit'}</span>
                 </a>
-                <a style=${this.styleItem} onclick="${() => {
-                    route("/login");
-                    setSessionId(-1);
-                }}">
-                    <${Icon} icon="eject" />
+                <a style=${this.styleItem} onclick="${() => logoff()}">
+                    <${Icon} icon="exit_to_app" />
                     <span style=${this.styleText}>Déconnexion</span>
                 </a>
             </div>

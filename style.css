@@ -14,6 +14,10 @@
     --theme-alert-background: transparent;
     --theme-alert-foreground: rgb(218, 65, 65);
     --theme-alert-border: rgb(218, 65, 65);
+
+    --theme-info-background: transparent;
+    --theme-info-foreground: rgb(65, 144, 218);
+    --theme-info-border: rgb(65, 144, 218);
 }
 
 .light-theme {
@@ -30,6 +34,10 @@
     --theme-alert-background: rgba(218, 65, 65, 0.25);
     --theme-alert-foreground: rgba(218, 65, 65);
     --theme-alert-border: transparent;
+
+    --theme-info-background: rgba(65, 144, 218, 0.25);
+    --theme-info-foreground: rgba(65, 144, 218);
+    --theme-info-border: transparent;
 }
 
 ::-webkit-scrollbar {

@@ -10,7 +10,7 @@ import Profile from '/app/pages/Profile.js'
 import ViewPost from '/app/pages/ViewPost.js'
 import Error from '/app/pages/Error.js'
 
-import { getSessionId } from '/app/model/Session.js';
+import { isLoggedIn } from '/app/model/Session.js';
 
 class App extends Component {
     constructor() {
@@ -18,14 +18,11 @@ class App extends Component {
     }
 
     handleRoute = async e => {
-        if (e.url != '/login' &&
-            e.url != '/join' &&
-            getSessionId() == -1) {
+        if (e.url != '/login' && e.url != '/join' && !isLoggedIn()) {
             route('/login', true);
         }
 
-        if (e.url == '/' &&
-            getSessionId() != -1) {
+        if (e.url == '/' && isLoggedIn()) {
             route('/feed', true);
         }
     };

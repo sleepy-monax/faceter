@@ -1,12 +1,15 @@
-import {Component} from '/lib/preact.js';
+import { Component } from '/lib/preact.js';
 import Icon from '/app/components/Icon.js';
-import {getSessionId} from "/app/model/Session.js";
+import Alert from '/app/components/Alert.js'
+import Info from '/app/components/Info.js'
+import { createTextPost } from "/app/model/Posts.js";
 
 
 class CreatePost extends Component {
     state = {
         content: '',
-        user: undefined
+        infoMessage: '',
+        alertMessage: '',
     }
 
     styleCreatePost = {
@@ -44,7 +47,7 @@ class CreatePost extends Component {
 
     onTextInput = e => {
         let content = e.target.value;
-        this.setState({content});
+        this.setState({ content });
 
         if (this.props.onInput) {
             this.props.onInput(content);
@@ -52,23 +55,11 @@ class CreatePost extends Component {
     }
 
     doCreate = () => {
-        let newPost = document.getElementById("newPost");
-        if (newPost.value === '' || getSessionId() === undefined){
-            alert("ERROR");
-            return;
-        }
-
-        fetch("/api/query-create-post.php?idUser=" + getSessionId() + "&newPost=" + newPost.value)
-            .then(function (response) { return response.json()})
-            .then(uploadPost => {
-                if (uploadPost === true) {
-                    newPost.value = '';
-                    window.location.reload();
-                }
-                else {
-                    alert("Error nouveau post non enregistré");
-                }
-            })
+        createTextPost(this.state.content, () => {
+            this.setState({ infoMessage: 'Le post a été créer', alertMessage: '', content: '' })
+        }, message => {
+            this.setState({ infoMessage: '', alertMessage: message })
+        });
     }
 
     render() {
@@ -85,8 +76,11 @@ class CreatePost extends Component {
                 <span class='overable' style=${this.styleButton} onclick=${this.doCreate}>
                     <${Icon} icon="send"/>
                 </span>
-            </span>`;
+            </span>
+            <${Alert} message=${this.state.alertMessage}/>
+            <${Info} message=${this.state.infoMessage}/>
+            `;
     }
 }
 
-export {CreatePost as default};
+export { CreatePost as default };

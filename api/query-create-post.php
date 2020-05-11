@@ -11,6 +11,8 @@ $connection = include 'connection.php';
 
 $post = mysqli_real_escape_string($connection, strval($_GET["newPost"]));
 
+$post = htmlspecialchars($post, ENT_HTML5, 'UTF-8');
+
 $type = filter_var($post, FILTER_VALIDATE_URL) ? 'link' : null;
 
 if ($type !== 'link'){
@@ -24,13 +26,28 @@ if ($type !== 'link'){
 if ($type === 'image')
     $post = '/res/images/' . $post;
 
-$insert = 'insert into post (postAuthor, postType, postContent, postDate)
-values (' . intval($_GET["idUser"]) . ', \''. $type .'\', \''. $post .'\', now())';
+$insert = '
+insert into Post (
+    postAuthor,
+    postType,
+    postContent,
+    postDate)
+values (' .
+    intval($_GET["idUser"]) . ', \''.
+    $type .'\', \''.
+    $post .'\','.
+    'now())';
 
 if(mysqli_query($connection, $insert)) {
-    print json_encode(true);
+    print json_encode(Array(
+        'success' => true,
+        'message' => '',
+    ));
 }
 else
 {
-    print json_encode(false);
+    print json_encode(Array(
+        'success' => true,
+        'message' => 'Impossible de publier',
+    ));
 }
