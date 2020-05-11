@@ -2,31 +2,12 @@ import { Component } from '/lib/preact.js';
 
 import Post from '/app/components/Post.js';
 import CreatePost from '/app/components/CreatePost.js';
-
+import * as Style from '/app/model/Style.js';
 
 
 class Feed extends Component {
     state = {
         posts: []
-    }
-
-    styleImageContainer = {
-        color: 'black',
-        backgroundColor: 'white',
-        padding: '32px',
-    }
-
-    styleTitle = {
-        textAlign: 'center',
-        fontSize: '64px',
-        fontWeight: '900',
-    }
-
-    styleSubtitle = {
-        textAlign: 'center',
-        margin: '0px 0px 16px',
-        fontSize: '18px',
-        fontWeight: '450',
     }
 
     constructor() {
@@ -46,10 +27,12 @@ class Feed extends Component {
             ${this.state.posts.map(post => html`<${Post} postId="${post.postId}"/>`)}
         </div>
         <div class='magic-container'>
-            <div class='magic-card' style=${this.styleImageContainer}>
-                <h1 style=${this.styleTitle}>Bravo!</h1>
-                <h1 style=${this.styleSubtitle}>Vous méritez bien une petite pause</h1>
+            <div class='magic-card'>
+            <div style=${Style.Illustration}>
+                <h1 style=${Style.Title}>Bravo!</h1>
+                <h1 style=${Style.SubTitle}>Vous méritez bien une petite pause</h1>
                 <img src='/res/finish.svg'/>
+            </div>
             </div>
         </div>`;
     }

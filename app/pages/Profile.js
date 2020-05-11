@@ -1,6 +1,6 @@
-import {Component} from '/lib/preact.js';
+import { Component } from '/lib/preact.js';
 import Post from '/app/components/Post.js';
-import {getUser} from '/app/model/Users.js';
+import { getUser } from '/app/model/Users.js';
 import CreatePost from '/app/components/CreatePost.js';
 import SocialBar from '/app/components/SocialBar.js';
 
@@ -40,7 +40,7 @@ class Profile extends Component {
 
         boxShadow: '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)',
     }
-    
+
     profileName = {
         position: 'absolute',
         width: '192px',
@@ -65,15 +65,15 @@ class Profile extends Component {
 
     componentDidMount() {
 
-        fetch("/api/query-posts-user.php?postAuthor=" + this.props.profileId)
+        fetch("/api/query-posts-user.php?postAuthor=" + this.props.userId)
             .then(function (response) {
                 return response.json()
             })
             .then(posts => {
-                this.setState({posts});
+                this.setState({ posts });
             });
 
-        getUser(this.props.profileId, user => this.setState({user}));
+        getUser(this.props.userId, user => this.setState({ user }));
     }
 
     render() {
@@ -81,14 +81,14 @@ class Profile extends Component {
         <div style=${this.containerProfile}>
             <img style=${this.coverImage} src="${this.state.user ? this.state.user.coverPic : '/res/covers/default.jpg'}" />
             <img style=${this.profileImage} src="${this.state.user ? this.state.user.profilePic : '/res/users/default.jpg'}"/>
-            <span style=${this.profileName}>${this.state.user ? this.state.user.userName : undefined }</span>
+            <span style=${this.profileName}>${this.state.user ? this.state.user.userName : undefined}</span>
         </div>
         <div class="container">
-            <${SocialBar} />
+            <${SocialBar} userId=${this.props.userId}/>
             <${CreatePost}/>
             ${this.state.posts.map(post => html`<${Post} postId="${post.postId}"/>`)}
         </div>`;
     }
 }
 
-export {Profile as default};
+export { Profile as default };

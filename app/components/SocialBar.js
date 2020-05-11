@@ -1,11 +1,13 @@
-import {Component} from "/lib/preact.js";
+import { Component } from "/lib/preact.js";
+import { getUser } from '/app/model/Users.js';
 
-class SocialBar extends Component{
+class SocialBar extends Component {
 
     state = {
-        followedList : [],
-        followerList: []
+        followed: [],
+        follower: []
     }
+
     styleFollow = {
         display: "flex",
         backgroundColor: "var(--theme-frontground)",
@@ -20,33 +22,23 @@ class SocialBar extends Component{
     }
 
     componentDidMount() {
-        fetch("/api/query-followed-user.php?userId=2")
-            .then(function (response) { return response.json()})
-            .then(follow => {
-                console.log(follow);
-                this.state.followed = follow['Count_Followed'];
-                this.state.followedList = follow['followed'].split(',');
-            });
-        fetch("/api/query-follower-user.php?userId=2")
-            .then(function (response) { return response.json()})
-            .then(follow => {
-                console.log(follow);
-                this.state.follower = follow['Count_Follower'];
-                this.state.followerList = follow['follower'].split(',');
-            });
+        getUser(this.props.userId, user => this.setState({ followed: user.followed, follower: user.followers }));
     }
 
     render() {
-        return html `
+        return html`
             <div class="container" style=${this.styleFollow}>
                 <span class="overable">
-                    Followed ${this.state.followed} 
+                    ${this.state.followed.length} abonnements
                 </span>
                 <span class="overable">
-                    Follower ${this.state.follower}
+                    ${this.state.follower.length} abonnés
                 </span>
+                <button>
+                    Suivre
+                </button>
             </div>
         `;
     }
 }
-export {SocialBar as default};
+export { SocialBar as default };

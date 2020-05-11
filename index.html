@@ -26,14 +26,16 @@
 <body></body>
 
 <script type="module">
+    // Application theme initialization.
     import { initializeTheme } from '/app/model/Theme.js'
-
     initializeTheme();
 
+    // Initialize the preact renderer.
     import { h, Component, render } from '/lib/preact.js';
     import htm from '/lib/htm.js';
     window.html = htm.bind(h);
 
+    // Start the application.
     import App from '/app/App.js'
     render(html`<${App}/>`, document.body);
 </script>

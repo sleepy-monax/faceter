@@ -1,9 +1,9 @@
 import { Component } from '/lib/preact.js';
 import { route } from '/lib/preact-router.js';
 import TextField from '/app/components/TextField.js';
-import Icon from '/app/components/Icon.js';
+import Alert from '/app/components/Alert.js';
 import { login } from '/app/model/Session.js';
-
+import * as Style from '/app/model/Style.js';
 
 class Login extends Component {
     state = {
@@ -16,65 +16,7 @@ class Login extends Component {
         super();
     }
 
-    styleTitle = {
-        textAlign: 'center',
-        fontSize: '32px',
-        fontWeight: '900',
-    }
-
-    styleAlert = {
-        display: 'flex',
-        alignItems: 'center',
-        backgroundColor: 'var(--theme-alert-background)',
-        color: 'var(--theme-alert-foreground)',
-        border: '1px solid var(--theme-alert-border)',
-        borderRadius: '8px',
-        padding: '8px',
-        marginBottom: '24px',
-        marginLeft: '48px',
-        marginRight: '48px',
-    }
-
-    styleSubtitle = {
-        textAlign: 'center',
-        margin: '0px 0px 16px',
-        fontSize: '18px',
-        fontWeight: '450',
-    }
-
-    styleImageContainer = {
-        color: 'black',
-        backgroundColor: 'white',
-        padding: '16px',
-    }
-
-    styleFormContainer = {
-        padding: '16px 16px 16px'
-    }
-
-    styleConnection = {
-        backgroundColor: 'var(--theme-background-alt)',
-        color: 'var(--theme-foreground)',
-        padding: '16px 16px',
-        marginBottom: '16px',
-        borderRadius: '8px',
-    }
-
-    styleLoginButton = {
-        backgroundColor: 'var(--theme-accent)',
-        color: 'white',
-        padding: '8px 16px',
-        borderRadius: '8px',
-        margin: '0px 8px',
-    }
-
-    styleRegisterButton = {
-        padding: '8px 16px',
-        borderRadius: '8px',
-        margin: '0px 8px',
-    }
-
-    doLogin = () => {
+    onSubmit = e => {
         login(
             this.state.username,
             this.state.password,
@@ -85,36 +27,23 @@ class Login extends Component {
                 this.setState({ message });
             }
         )
-    }
-
-    onSubmit = e => {
         e.preventDefault();
-    }
-
-    getAlertMessage() {
-        if (this.state.message) {
-            return html`
-                    <div style=${this.styleAlert}>
-                        <${Icon} icon="error"/>
-                        <span style="margin-left: 8px">${this.state.message}</span>
-                    </div>`
-        }
     }
 
     render() {
         return html`
         <div class="magic-container">
             <div class="magic-card">
-                <div style=${this.styleImageContainer}>
-                    <h1 style=${this.styleTitle}>Faceter.</h1>
+                <div style=${Style.Illustration}>
+                    <h1 style=${Style.Title}>Faceter.</h1>
                     <img src='/res/login.svg'/>
                 </div>
-                <form style=${this.styleFormContainer} onSubmit=${this.onSubmit}>
-                    <div style=${this.styleSubtitle}>
+                <form style=${Style.Padding16} onSubmit=${this.onSubmit}>
+                    <div style=${Style.SubTitle}>
                         Connectez vous avec votre compte!
                     </div>
 
-                    ${this.getAlertMessage()}
+                    <${Alert} message=${this.state.message}/>
 
                     <div style="padding:0px 48px 32px">
                         <${TextField}
@@ -134,8 +63,8 @@ class Login extends Component {
 
 
                     <div style="display: flex; justify-content: center;">
-                        <button style=${this.styleRegisterButton} onClick=${e => route('/join')}>S’inscrire</button>
-                        <button style=${this.styleLoginButton} onClick=${this.doLogin}>Se connecter</button>
+                        <button style=${Style.Link} onClick=${e => route('/join')}>S’inscrire</button>
+                        <button type="submit" style=${Style.Button}>Se connecter</button>
                     </div>
                 </form>
             </div>
