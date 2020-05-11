@@ -2,10 +2,11 @@ import { Component } from '/lib/preact.js';
 import { route } from '/lib/preact-router.js';
 import Icon from '/app/components/Icon.js';
 import TextField from '/app/components/TextField.js';
+import { getRandomUsername } from '/app/model/Utils.js';
 
 class Registration extends Component {
     state = {
-        username: '',
+        username: getRandomUsername(),
         email: '',
         password: '',
         verification: '',
@@ -91,17 +92,17 @@ class Registration extends Component {
 
     doRegistration = e => {
         if (this.state.username == "" || this.state.password == "" || this.state.email == "" || this.state.verification == "") {
-            alert ("Veuillez remplir tout les champs");
+            alert("Veuillez remplir tout les champs");
         } else {
-        fetch("/api/query-registration.php?username=" + this.state.username + "&password=" + this.state.password + "&email=" + this.state.email)
-            .then(function (response) { return response.json() })
-            .then(registration => {
-                if (registration != false)
-                    route("/login")
-                else
-                    document.getElementById('alertInfo').style = this.styleVisible;
-            });
-    }
+            fetch("/api/query-registration.php?username=" + this.state.username + "&password=" + this.state.password + "&email=" + this.state.email)
+                .then(function (response) { return response.json() })
+                .then(registration => {
+                    if (registration != false)
+                        route("/login")
+                    else
+                        document.getElementById('alertInfo').style = this.styleVisible;
+                });
+        }
     }
 
     onSubmit = e => {

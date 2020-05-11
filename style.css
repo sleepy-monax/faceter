@@ -141,5 +141,5 @@ body {
 
 .frontground-material {
     background-color: var(--theme-frontground);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(32px);
 }
