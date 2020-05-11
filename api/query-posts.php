@@ -14,7 +14,7 @@ $sql = 'select
                     inner join User as us1 on Follow.followerId = us1.userId
                     inner join User as us2 on Follow.followedId = us2.userId
                 where
-                    us1.userId = 1
+                    us1.userId = '. intval($_GET["id"]).'
                 )
         order by postDate desc';
 

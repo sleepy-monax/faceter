@@ -3,6 +3,7 @@ import { Component } from '/lib/preact.js';
 import Post from '/app/components/Post.js';
 import CreatePost from '/app/components/CreatePost.js';
 import * as Style from '/app/model/Style.js';
+import {getSessionId} from "/app/model/Session.js";
 
 
 class Feed extends Component {
@@ -15,7 +16,7 @@ class Feed extends Component {
     }
 
     componentDidMount() {
-        fetch("/api/query-posts.php")
+        fetch("/api/query-posts.php?id=" + getSessionId())
             .then(function (response) { return response.json() })
             .then(posts => this.setState({ posts }));
     }
