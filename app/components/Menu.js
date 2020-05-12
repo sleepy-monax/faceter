@@ -46,6 +46,12 @@ class Menu extends Component {
         cursor: "pointer"
     }
 
+    styleSeparator = {
+        backgroundColor: "var(--theme-background)",
+        height: "1px",
+        marginBottom: "16px",
+    }
+
     styleText = {
         marginLeft: '8px'
     }
@@ -76,17 +82,19 @@ class Menu extends Component {
                     <${Icon} icon="account_circle"/>
                     <span style=${this.styleText}>Profil</span>
                 </a>
+                <div style=${this.styleSeparator}></div>
                 <a style=${this.styleItem} href="/settings">
-                    <${Icon} icon="settings" />
-                    <span style=${this.styleText}>Paramètre</span>
+                <${Icon} icon="settings" />
+                <span style=${this.styleText}>Paramètre</span>
                 </a>
                 <a style=${this.styleItem} onclick="${() => {
-                        toggleTheme();
-                        this.forceUpdate();
-                    }}">
+                toggleTheme();
+                this.forceUpdate();
+            }}">
                     <${Icon} icon="${getTheme() == 'dark-theme' ? 'brightness_7' : 'brightness_3'}"/>
                     <span style=${this.styleText}>${getTheme() == 'dark-theme' ? 'Mode jour' : 'Mode nuit'}</span>
                 </a>
+                <div style=${this.styleSeparator}></div>
                 <a style=${this.styleItem} onclick="${() => logoff()}">
                     <${Icon} icon="exit_to_app" />
                     <span style=${this.styleText}>Déconnexion</span>

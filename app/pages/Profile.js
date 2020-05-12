@@ -1,6 +1,7 @@
 import { Component } from '/lib/preact.js';
 import Post from '/app/components/Post.js';
 import { getUser } from '/app/model/Users.js';
+import { getSessionId } from '/app/model/Session.js';
 import CreatePost from '/app/components/CreatePost.js';
 import SocialBar from '/app/components/SocialBar.js';
 import { observePosts, stopObservePosts } from "/app/model/Posts.js"
@@ -84,6 +85,12 @@ class Profile extends Component {
         stopObservePosts(this);
     }
 
+    getCreatePost() {
+        if (getSessionId() == this.props.userId) {
+            return html`<${CreatePost}/>`;
+        }
+    }
+
     render() {
         return html`
         <div class="magic-container magic-spacer">
@@ -97,7 +104,7 @@ class Profile extends Component {
         </div>
         <div class="container">
             <${SocialBar} userId=${this.props.userId}/>
-            <${CreatePost}/>
+            ${this.getCreatePost()}
             ${this.state.posts.map(post => html`<${Post} postId="${post.postId}"/>`)}
         </div>`;
     }

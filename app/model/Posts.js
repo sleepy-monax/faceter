@@ -40,3 +40,20 @@ export function createTextPost(content, onSuccess, onFailure) {
             }
         });
 }
+
+export function createReaction(reaction, postId, onSuccess) {
+    ajaxRequest(
+        "create-reaction",
+        {
+            sessionToken: getSessionToken(),
+            postId: postId,
+            reaction: reaction,
+        },
+        respond => {
+            if (respond.success) {
+                onSuccess();
+            } else {
+                onFailure(respond.message)
+            }
+        });
+}

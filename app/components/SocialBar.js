@@ -1,5 +1,6 @@
 import { Component } from "/lib/preact.js";
 import { getUser } from '/app/model/Users.js';
+import { getSessionId } from '/app/model/Session.js';
 import * as Style from '/app/model/Style.js';
 
 class SocialBar extends Component {
@@ -26,20 +27,24 @@ class SocialBar extends Component {
         getUser(this.props.userId, user => this.setState({ followed: user.followed, follower: user.followers }));
     }
 
+    createFollowButton() {
+        if (getSessionId() != this.props.userId) {
+            return html`<button style=${Style.Button}>Suivre</button>`;
+        }
+    }
+
     render() {
         return html`
             <div style=${this.styleFollow}>
-                <button style=${Style.Button}>
-                    Suivre
-                </button>
+                ${this.createFollowButton()}
                 <span style=${Style.Link}>
                     ${this.state.followed.length} abonnements
                 </span>
                 <span style=${Style.Link}>
                     ${this.state.follower.length} abonnés
                 </span>
-            </div>
-        `;
+            </div >
+    `;
     }
 }
 export { SocialBar as default };
