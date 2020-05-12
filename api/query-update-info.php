@@ -11,7 +11,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) print json_encode(false);
 
 $checkNameEmail = 'select * 
                    from user
-                   where userName=\'' .$name .'\' or userMail=\'' . $email . '\'';
+                   where userName=\'' .$name .'\' or userMail=\'' . $email . '\' and userId !=' .intval($_GET["id"]);
 
 $result = mysqli_query($connection, $checkNameEmail);
 
