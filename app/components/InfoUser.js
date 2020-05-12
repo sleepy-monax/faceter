@@ -5,9 +5,6 @@ import * as Style from '/app/model/Style.js';
 
 class InfoUser extends Component{
 
-    state = {
-        editable: false
-    }
     constructor() {
         super();
     }
@@ -44,52 +41,57 @@ class InfoUser extends Component{
     render() {
         return html `
             <div>
-                <span>
-                    Changer la photo de profil :
-                    <input 
-                        type="file" 
-                        accept="image/jpeg"
-                        style=${this.styleField}
-                        id="ProfImg"
-                    />
-                </span>
-                <span>
-                    Changer la photo de couverture :
-                    <input 
-                        type="file"
-                        accept="image/jpeg"
-                        style=${this.styleField}
-                        id="CoverImg"
-                    />
-                </span>
-                <span>
-                    Nom d'utilisateur : 
-                    <input
-                        type="text"
-                        value="${this.state.name}"
-                        style=${this.styleField}
-                        id="nameUser"
-                    />
-                </span>
-                <span>
-                    Adresse mail :
-                    <input
-                        type="text"
-                        value="${this.state.email}"
-                        style=${this.styleField}
-                        id="EmailUser"
-                    />
-                </span>
-                <span>
-                    mot de passe :
-                    <input
-                        type="password"
-                        value="${this.state.password}"
-                        style=${this.styleField}
-                        id="passwordUser"
-                    />
-                </span>
-                <button style=${Style.Button} onclick=${this.doModify}>Modifier</button>
+                <form style=${Style.Padding16} onsubmit=${this.doModify}>
+                    <span>
+                        Changer la photo de profil :
+                        <input 
+                            type="file" 
+                            accept="image/jpeg"
+                            style=${this.styleField}
+                            id="ProfImg"
+                        />
+                    </span>
+                    <span>
+                        Changer la photo de couverture :
+                        <input 
+                            type="file"
+                            accept="image/jpeg"
+                            style=${this.styleField}
+                            id="CoverImg"
+                        />
+                    </span>
+                    <span>
+                        Nom d'utilisateur : 
+                        <input
+                            type="text"
+                            value="${this.state.name}"
+                            style=${this.styleField}
+                            id="nameUser"
+                            required
+                        />
+                    </span>
+                    <span>
+                        Adresse mail :
+                        <input
+                            type="text"
+                            value="${this.state.email}"
+                            style=${this.styleField}
+                            id="EmailUser"
+                            required
+                        />
+                    </span>
+                    <span>
+                        mot de passe :
+                        <input
+                            type="password"
+                            value="${this.state.password}"
+                            style=${this.styleField}
+                            id="passwordUser"
+                            required
+                        />
+                    </span>
+                    <button style=${Style.Button} type="submit">Modifier</button>
+                </form>
             </div>
         `;
     }
