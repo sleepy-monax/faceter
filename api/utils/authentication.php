@@ -42,8 +42,8 @@ function decode_authentication_token($token){
     $data = openssl_decrypt($token, 'aes128', get_authentication_key());
 
     if ($data){
-        $userId = json_decode()["userId"];
+        return json_decode($data)->userId;
     }
 
-    return -1;
+    return false;
 }

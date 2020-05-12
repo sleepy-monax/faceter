@@ -1,4 +1,5 @@
-import { getSessionId } from "/app/model/Session.js";
+import { getSessionToken } from "/app/model/Session.js";
+import { ajaxRequest } from "/app/model/Utils.js";
 
 let observers = {}
 
@@ -23,16 +24,19 @@ export function createTextPost(content, onSuccess, onFailure) {
         return onFailure("Vous ne pouvez pas publier de post vide");
     }
 
-    fetch("/api/query-create-post.php?idUser=" + getSessionId() + "&newPost=" + newPost.value)
-        .then(function (response) { return response.json() })
-        .then(uploadPost => {
-            if (uploadPost.success) {
+    ajaxRequest(
+        "create-post",
+        {
+            sessionToken: getSessionToken(),
+            postType: "text",
+            postContent: newPost.value
+        },
+        respond => {
+            if (respond.success) {
                 onSuccess();
                 notify();
             } else {
-                onFailure(uploadPost.message)
+                onFailure(respond.message)
             }
-
-            return uploadPost;
-        })
+        });
 }

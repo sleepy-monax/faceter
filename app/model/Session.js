@@ -43,7 +43,7 @@ export function getSessionToken() {
         }
     }
 
-    return sessionId;
+    return sessionToken;
 }
 
 export function isLoggedIn() {
