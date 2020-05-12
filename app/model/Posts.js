@@ -1,5 +1,21 @@
 import { getSessionId } from "/app/model/Session.js";
 
+let observers = {}
+
+function notify() {
+    for (const [observer, callback] of Object.entries(observers)) {
+        callback()
+    }
+}
+
+export function observePosts(object, callback) {
+    observers[object] = callback;
+}
+
+export function stopObservePosts(object) {
+    delete observers[object]
+}
+
 export function createTextPost(content, onSuccess, onFailure) {
     content = content.trim()
 
@@ -12,6 +28,7 @@ export function createTextPost(content, onSuccess, onFailure) {
         .then(uploadPost => {
             if (uploadPost.success) {
                 onSuccess();
+                notify();
             } else {
                 onFailure(uploadPost.message)
             }

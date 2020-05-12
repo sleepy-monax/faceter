@@ -36,10 +36,6 @@ class Emote extends Component {
     }
 
     render() {
-        if (emotes[this.props.name] == undefined)
-        {
-            console.log(this.props.name)
-         }
 
         if (this.props.count <= 1)
         {

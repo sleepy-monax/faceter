@@ -14,12 +14,13 @@ function isInViewport(elem) {
         bounding.top >= 0 &&
         bounding.left >= 0 &&
         bounding.bottom <= window.innerHeight + 256 &&
-        bounding.right <= window.innerWidth 
+        bounding.right <= window.innerWidth
     );
 }
 
 class Post extends Component {
     state = {
+        postId: -1,
         post: undefined,
     };
 
@@ -43,6 +44,7 @@ class Post extends Component {
 
     styleBody = {
         padding: '0px 16px',
+        overflowWrap: 'break-word',
     }
 
     styleFooter = {
@@ -56,24 +58,26 @@ class Post extends Component {
         this.isFetching = false;
     }
 
-    fetchPost() {
+    fetchPost(postId) {
         if (!this.isFetching) {
             this.isFetching = true;
-            fetch("/api/query-post.php?postId=" + this.props.postId)
+            fetch("/api/query-post.php?postId=" + postId)
                 .then(function (response) { return response.json() })
                 .then(post => this.setState({ post }));
         }
     }
 
     componentDidMount() {
+        this.setState({ postId: this.props.postId });
+
         var placeholder = document.getElementById(this.placeholderRef);
 
         if (isInViewport(placeholder)) {
-            this.fetchPost()
+            this.fetchPost(this.props.postId)
         } else {
             window.addEventListener('scroll', function (event) {
                 if (isInViewport(placeholder)) {
-                    this.fetchPost()
+                    this.fetchPost(this.props.postId)
                 }
             }.bind(this), false);
         }
@@ -86,8 +90,7 @@ class Post extends Component {
                 <div style=${this.styleHeader}>
                 </div>
             </div>`;
-        }
-        else {
+        } else {
             return html`
             <div style=${this.stylePost}>
                 <div style=${this.styleHeader}>

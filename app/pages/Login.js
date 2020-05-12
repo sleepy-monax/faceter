@@ -32,7 +32,7 @@ class Login extends Component {
 
     render() {
         return html`
-        <div class="magic-container">
+        <div class="magic-container magic-spacer">
             <div class="magic-card">
                 <div style=${Style.Illustration}>
                     <h1 style=${Style.Title}>Faceter.</h1>

@@ -19,8 +19,19 @@ if ($type !== 'link'){
     $ext = strtolower(pathinfo($post, PATHINFO_EXTENSION));
     if (in_array($ext, $supported_image))
         $type = 'image';
-    else
+    else{
         $type = 'text';
+
+        if (mb_strlen($post) > 320)
+        {
+            print json_encode(Array(
+                'success' => false,
+                'message' => 'Le message est trop long',
+            ));
+
+            return;
+        }
+    }
 }
 
 if ($type === 'image')

@@ -105,6 +105,10 @@ body {
     }
 
     .magic-card {}
+
+    .magic-spacer {
+        padding-top: 0px;
+    }
 }
 
 @media screen and (min-width: 560px) {
@@ -115,7 +119,7 @@ body {
     .magic-container {
         width: 100%;
         max-width: 560px;
-        padding: 16px;
+        padding: 0px 16px 16px;
         margin: 0 auto;
     }
 
@@ -123,6 +127,10 @@ body {
         background-color: var(--theme-frontground);
         border-radius: 8px;
         overflow: hidden;
+    }
+
+    .magic-spacer {
+        padding-top: 16px;
     }
 }
 

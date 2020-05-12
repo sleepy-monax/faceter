@@ -3,6 +3,8 @@ import Post from '/app/components/Post.js';
 import { getUser } from '/app/model/Users.js';
 import CreatePost from '/app/components/CreatePost.js';
 import SocialBar from '/app/components/SocialBar.js';
+import { observePosts, stopObservePosts } from "/app/model/Posts.js"
+
 
 class Profile extends Component {
     state = {
@@ -56,7 +58,6 @@ class Profile extends Component {
     }
 
     componentDidMount() {
-
         fetch("/api/query-posts-user.php?postAuthor=" + this.props.userId)
             .then(function (response) {
                 return response.json()
@@ -66,11 +67,26 @@ class Profile extends Component {
             });
 
         getUser(this.props.userId, user => this.setState({ user }));
+
+        observePosts(this, () => {
+            this.setState({ posts: [] }); // XXX: Reload the feed.
+            fetch("/api/query-posts-user.php?postAuthor=" + this.props.userId)
+                .then(function (response) {
+                    return response.json()
+                })
+                .then(posts => {
+                    this.setState({ posts });
+                });
+        });
+    }
+
+    componentWillUnmount() {
+        stopObservePosts(this);
     }
 
     render() {
         return html`
-        <div class="magic-container">
+        <div class="magic-container magic-spacer">
             <div class="magic-card" style=${this.containerProfile}>
                 <img style=${this.coverImage} src="${this.state.user ? this.state.user.coverPic : '/res/covers/default.jpg'}" />
                 <div style=${this.profileName}>
