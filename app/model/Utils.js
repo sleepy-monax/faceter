@@ -28,5 +28,5 @@ export function ajaxRequest(endpoint, args, onSuccess, onFailure) {
     fetch(requestURL)
         .then(function (response) { return response.json() })
         .then(data => onSuccess(data))
-        .catch(() => onFailure())
+        .catch(() => { if (onFailure) onFailure() })
 }
