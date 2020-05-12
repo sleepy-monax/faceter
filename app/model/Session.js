@@ -2,6 +2,7 @@ import Cookies from '/lib/js-cookie.js'
 import { route } from '/lib/preact-router.js'
 
 let sessionId = undefined;
+let sessionToken = undefined;
 
 function setSessionId(id) {
     sessionId = id;
@@ -24,6 +25,27 @@ export function getSessionId() {
     return sessionId;
 }
 
+function setSessionToken(token) {
+    sessionToken = token;
+    if (token == undefined || token == -1) {
+        Cookies.remove('sessionToken')
+    } else {
+        Cookies.set('sessionToken', token)
+    }
+}
+
+export function getSessionToken() {
+    if (sessionToken == undefined) {
+        sessionToken = Cookies.get('sessionToken');
+
+        if (sessionToken == undefined) {
+            sessionToken = undefined;
+        }
+    }
+
+    return sessionId;
+}
+
 export function isLoggedIn() {
     return sessionId != undefined && sessionId != -1;
 }
@@ -36,6 +58,7 @@ export function login(username, password, onSuccess, onFailure) {
         .then(login => {
             if (login.success) {
                 setSessionId(login.userId);
+                setSessionToken(login.token);
                 onSuccess();
             }
             else {
@@ -47,6 +70,7 @@ export function login(username, password, onSuccess, onFailure) {
 export function logoff() {
     if (isLoggedIn()) {
         setSessionId(undefined);
+        setSessionToken(undefined);
         route('/');
     }
 }

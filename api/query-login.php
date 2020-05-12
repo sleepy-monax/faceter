@@ -1,5 +1,6 @@
 <?php
 
+include 'utils/authentication.php';
 $connection = include 'connection.php';
 
 $login = mysqli_real_escape_string($connection,strval($_GET["username"]));
@@ -21,6 +22,7 @@ $result = Array(
 if ($row = mysqli_fetch_assoc($queryResult)) {
     $result["userId"] = $row['userId'];
     $result["success"] = true;
+    $result["token"] = create_authentication_token($row['userId']);
 }
 else {
     $result["message"] = "Identifiants incorrect";

@@ -1,3 +1,4 @@
 .idea/
 .vscode/
 api/connection.php
+*.secret

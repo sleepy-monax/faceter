@@ -60,7 +60,7 @@ class OpenGraph implements Iterator
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
         /*curl_setopt($curl, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);*/
 
-        $response = curl_exec($curl);
+        $response = utf8_decode(curl_exec($curl));
 
         curl_close($curl);
 
@@ -83,7 +83,7 @@ class OpenGraph implements Iterator
 
 		$doc = new DOMDocument();
 		$doc->loadHTML($HTML);
-		
+
 		libxml_use_internal_errors($old_libxml_error);
 
 		$tags = $doc->getElementsByTagName('meta');
