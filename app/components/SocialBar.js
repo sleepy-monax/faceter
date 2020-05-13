@@ -24,7 +24,18 @@ class SocialBar extends Component {
     }
 
     componentDidMount() {
-        this.loadBar()
+        this.loadBar();
+        fetch("/api/query-user-followed.php?sessionId=" + getSessionId() + "&followedId=" + this.props.userId)
+            .then(function (response) {
+                return response.json()
+            })
+            .then(isFollowed => {
+                if (isFollowed)
+                    this.setState({nameButton: "Fuir"});
+                else
+                    this.setState({nameButton: "Suivre"});
+                this.createFollowButton()
+            });
     }
 
     loadBar() {
@@ -34,17 +45,19 @@ class SocialBar extends Component {
     componentDidUpdate(prevProps) {
         if (this.props.userId !== prevProps.userId) {
             this.loadBar();
-            this.createFollowButton();
         }
     }
 
     followUser() {
         let value = document.getElementById("followButton").textContent;
-        console.log(value)
-        if (value === "Fuir")
-            this.requestFollow(0)
-        else
-            this.requestFollow(1)
+        if (value === "Fuir") {
+            this.requestFollow(0);
+            this.setState({nameButton: "Suivre"});
+        }
+        else {
+            this.requestFollow(1);
+            this.setState({nameButton: "Fuir"});
+        }
 
 
     }
@@ -61,14 +74,7 @@ class SocialBar extends Component {
 
     createFollowButton() {
         if (getSessionId() != this.props.userId) {
-            fetch("/api/query-user-followed.php?sessionId=" + getSessionId() + "&followedId=" + this.props.userId)
-                .then(function (response) {
-                    return response.json()
-                })
-                .then(isFollowed => {
-                    this.setState({isFollowed})
-                });
-            return html`<button id="followButton" style=${Style.Button} onclick=${() => this.followUser()}>${this.state.isFollowed? 'Fuir' : 'Suivre'}</button>`;
+            return html`<button id="followButton" style=${Style.Button} onclick=${() => this.followUser()}>${this.state.nameButton}</button>`;
         }
     }
 

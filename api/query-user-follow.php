@@ -5,13 +5,11 @@ $connection = include 'connection.php';
 $isFollow = intval($_GET["follow"]);
 $sessionId = intval($_GET["sessionId"]);
 $userId = intval($_GET["user"]);
-echo $isFollow;
 
 if ($isFollow === 1) {
     $sql = "insert into follow
             (followerId, followedId) value
             (". $sessionId.", ". $userId .")";
-    echo " " . $sql . " ";
     if (mysqli_query($connection, $sql))
         print json_encode("follow");
     else
@@ -21,7 +19,6 @@ else if ($isFollow === 0){
     $sql = "delete from follow
             where followerId=" . $sessionId .
            " and followedId=" . $userId;
-    echo " " . $sql . " ";
 
     if (mysqli_query($connection, $sql))
         print json_encode("unfollow");
