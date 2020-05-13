@@ -19,6 +19,13 @@ while($r = mysqli_fetch_assoc($result_reactions)) {
 
 $post['reactions'] = $reactions;
 
+$sql_nbComment = 'select count(*) as nbComment from post where postRespond=' . intval($_GET["postId"]);
+$result_nbComment = mysqli_query($connection, $sql_nbComment);
+
+if ($nb = mysqli_fetch_assoc($result_nbComment)){
+    $post['nbComment'] = $nb["nbComment"];
+}
+
 if ($post['postType'] == 'link')
 {
     require_once('OpenGraph.php');

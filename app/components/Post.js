@@ -67,7 +67,10 @@ class Post extends Component {
 
             fetch("/api/query-post.php?postId=" + postId)
                 .then(function (response) { return response.json() })
-                .then(post => this.setState({ post }));
+                .then(post => {
+                    console.log(post)
+                    this.setState({ post })
+                });
         }
     }
 
@@ -93,7 +96,7 @@ class Post extends Component {
 
     createCommentButton() {
         if (this.state.post.postRespond === null) {
-            return html`<a href="/post/${this.props.postId}"> <${Icon} icon="comment"/></a>`;
+            return html`<a href="/post/${this.props.postId}"> <${Icon} icon="comment"/> ${this.state.post.nbComment}</a>`;
         }
     }
 
