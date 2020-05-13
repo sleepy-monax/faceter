@@ -38,6 +38,27 @@ class SocialBar extends Component {
         }
     }
 
+    followUser() {
+        let value = document.getElementById("followButton").textContent;
+        console.log(value)
+        if (value === "Fuir")
+            this.requestFollow(0)
+        else
+            this.requestFollow(1)
+
+
+    }
+
+    requestFollow(isFollow) {
+        fetch("/api/query-user-follow.php?follow=" + isFollow + "&sessionId=" + getSessionId() + "&user=" + this.props.userId)
+            .then(function (response) {
+                return response.json()
+            })
+            .then(value => {
+                console.log(value);
+            })
+    }
+
     createFollowButton() {
         if (getSessionId() != this.props.userId) {
             fetch("/api/query-user-followed.php?sessionId=" + getSessionId() + "&followedId=" + this.props.userId)
@@ -47,7 +68,7 @@ class SocialBar extends Component {
                 .then(isFollowed => {
                     this.setState({isFollowed})
                 });
-            return html`<button style=${Style.Button}>${this.state.isFollowed? 'Fuir' : 'Suivre'}</button>`;
+            return html`<button id="followButton" style=${Style.Button} onclick=${() => this.followUser()}>${this.state.isFollowed? 'Fuir' : 'Suivre'}</button>`;
         }
     }
 
