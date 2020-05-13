@@ -78,7 +78,7 @@ class Navigation extends Component {
                     Accueil
                 </a>
                 <a style=${this.styleItem} href=${"/profile/" + getSessionId()} >
-                    Profile
+                    Profil
                 </a>
             </div>
             <div style=${this.styleItems}>

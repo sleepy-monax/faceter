@@ -82,7 +82,7 @@ class InfoUser extends Component {
                         />
                     </span>
                     <span>
-                        mot de passe :
+                        Mot de passe :
                         <input
                             type="password"
                             value="${this.state.password}"

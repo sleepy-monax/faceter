@@ -85,7 +85,7 @@ class Menu extends Component {
                 <div class='only-mobile' style=${this.styleSeparator}></div>
                 <a style=${this.styleItem} href="/settings">
                 <${Icon} icon="settings" />
-                <span style=${this.styleText}>Paramètre</span>
+                <span style=${this.styleText}>Paramètres</span>
                 </a>
                 <a style=${this.styleItem} onclick="${() => {
                 toggleTheme();
