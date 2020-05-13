@@ -7,7 +7,7 @@ class SocialBar extends Component {
 
     state = {
         followed: [],
-        follower: []
+        follower: [],
     }
 
     styleFollow = {
@@ -34,12 +34,20 @@ class SocialBar extends Component {
     componentDidUpdate(prevProps) {
         if (this.props.userId !== prevProps.userId) {
             this.loadBar();
+            this.createFollowButton();
         }
     }
 
     createFollowButton() {
         if (getSessionId() != this.props.userId) {
-            return html`<button style=${Style.Button}>Suivre</button>`;
+            fetch("/api/query-user-followed.php?sessionId=" + getSessionId() + "&followedId=" + this.props.userId)
+                .then(function (response) {
+                    return response.json()
+                })
+                .then(isFollowed => {
+                    this.setState({isFollowed})
+                });
+            return html`<button style=${Style.Button}>${this.state.isFollowed? 'Fuir' : 'Suivre'}</button>`;
         }
     }
 
