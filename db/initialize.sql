@@ -1,6 +1,6 @@
 drop database if exists faceter;
 
-create database if not exists faceter character set='utf8';
+create database if not exists faceter character set='utf8mb4';
 
 use faceter;
 

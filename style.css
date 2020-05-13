@@ -134,6 +134,19 @@ body {
     }
 }
 
+
+@media screen and (max-width: 560px) {
+    .follow-container {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 560px) {
+    .follow-container {
+        display: flex;
+    }
+}
+
 @keyframes loadingAnimation {
     0% {
         background-position: -560px 0

@@ -19,7 +19,7 @@ while($r = mysqli_fetch_assoc($result_reactions)) {
 
 $post['reactions'] = $reactions;
 
-$sql_nbComment = 'select count(*) as nbComment from post where postRespond=' . intval($_GET["postId"]);
+$sql_nbComment = 'select count(*) as nbComment from Post where postRespond=' . intval($_GET["postId"]);
 $result_nbComment = mysqli_query($connection, $sql_nbComment);
 
 if ($nb = mysqli_fetch_assoc($result_nbComment)){
