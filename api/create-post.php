@@ -21,6 +21,8 @@ if (!$userId){
     return;
 }
 
+$postRespond = intval($_GET["postRespond"]);
+
 $post = mysqli_real_escape_string($connection, strval($_GET["postContent"]));
 $post = htmlspecialchars($post, ENT_HTML5, 'UTF-8');
 
@@ -51,11 +53,13 @@ if ($type === 'image')
 $insert = '
 insert into Post (
     postAuthor,
+    postRespond,
     postType,
     postContent,
     postDate)
 values (' .
-    intval($userId) . ', \''.
+    intval($userId) . ', '.
+    ($postRespond == -1 ? "null" : $postRespond) . ', \''.
     $type .'\', \''.
     $post .'\','.
     'now())';

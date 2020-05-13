@@ -17,7 +17,7 @@ export function stopObservePosts(object) {
     delete observers[object]
 }
 
-export function createTextPost(content, onSuccess, onFailure) {
+export function createTextPost(content, postRespond, onSuccess, onFailure) {
     content = content.trim()
 
     if (content == '') {
@@ -29,7 +29,8 @@ export function createTextPost(content, onSuccess, onFailure) {
         {
             sessionToken: getSessionToken(),
             postType: "text",
-            postContent: newPost.value
+            postContent: newPost.value,
+            postRespond: postRespond,
         },
         respond => {
             if (respond.success) {

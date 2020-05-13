@@ -1,7 +1,7 @@
 <?php
 $connection = include 'connection.php';
 
-$sql = 'select * from Post where postAuthor = ' . intval($_GET["postAuthor"]) . ' and postRespond is null  order by postDate desc';
+$sql = 'select * from Post where postRespond = ' . intval($_GET["postId"]) . ' order by postDate desc';
 $result = mysqli_query($connection, $sql);
 
 $rows = array();

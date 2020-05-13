@@ -2,6 +2,7 @@ import { Component } from '/lib/preact.js';
 
 import User from '/app/components/User.js';
 import Emotes from '/app/components/Emotes.js';
+import Icon from '/app/components/Icon.js';
 import SocialCard from '/app/components/SocialCard.js'
 
 import { toHumanTime } from '/app/model/Time.js';
@@ -91,6 +92,12 @@ class Post extends Component {
         }
     }
 
+    createCommentButton() {
+        if (this.state.post.postRespond === null) {
+            return html`<a href="/post/${this.props.postId}"> <${Icon} icon="comment"/></a>`;
+        }
+    }
+
     render() {
         if (this.state.post === undefined) {
             return html`
@@ -112,6 +119,7 @@ class Post extends Component {
                         ${toHumanTime(this.state.post.postDate)}
                     </div>
                     <${Emotes} postId=${this.props.postId}/>
+                    ${this.createCommentButton()}
                 </div>
             </div>`;
         }

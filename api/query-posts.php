@@ -6,6 +6,7 @@ $sql = 'select
         from
             Post
         where
+            (
             postAuthor in (
                 select
                     us2.userId as idUser
@@ -16,7 +17,7 @@ $sql = 'select
                 where
                     us1.userId = '. intval($_GET["userId"]).'
                 )
-            or postAuthor = '. intval($_GET["userId"]).'
+            or postAuthor = '. intval($_GET["userId"]).') and postRespond is null
         order by postDate desc';
 
 $result = mysqli_query($connection, $sql);

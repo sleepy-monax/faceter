@@ -55,7 +55,7 @@ class CreatePost extends Component {
     }
 
     doCreate = () => {
-        createTextPost(this.state.content, () => {
+        createTextPost(this.state.content, this.props.answerTo ? this.props.answerTo : -1, () => {
             this.setState({ infoMessage: 'Le post a été créer', alertMessage: '', content: '' })
         }, message => {
             this.setState({ infoMessage: '', alertMessage: message })
