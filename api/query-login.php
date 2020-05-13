@@ -25,7 +25,7 @@ if ($row = mysqli_fetch_assoc($queryResult)) {
     $result["token"] = create_authentication_token($row['userId']);
 }
 else {
-    $result["message"] = "Identifiants incorrect";
+    $result["message"] = "Identifiants incorrects";
 }
 
 print json_encode($result);
