@@ -24,7 +24,17 @@ class SocialBar extends Component {
     }
 
     componentDidMount() {
+        this.loadBar()
+    }
+
+    loadBar() {
         getUser(this.props.userId, user => this.setState({ followed: user.followed, follower: user.followers }));
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.userId !== prevProps.userId) {
+            this.loadBar();
+        }
     }
 
     createFollowButton() {

@@ -59,6 +59,10 @@ class Profile extends Component {
     }
 
     componentDidMount() {
+        this.loadProfile();
+    }
+
+    loadProfile() {
         fetch("/api/query-posts-user.php?postAuthor=" + this.props.userId)
             .then(function (response) {
                 return response.json()
@@ -81,12 +85,21 @@ class Profile extends Component {
         });
     }
 
+    componentDidUpdate(prevProps) {
+        console.log(prevProps.userId);
+        console.log(this.props.userId);
+        if (this.props.userId !== prevProps.userId) {
+            this.setState({ posts: [] });
+            this.loadProfile();
+        }
+    }
+
     componentWillUnmount() {
         stopObservePosts(this);
     }
 
     getCreatePost() {
-        if (getSessionId() == this.props.userId) {
+        if (getSessionId() === this.props.userId) {
             return html`<${CreatePost}/>`;
         }
     }
