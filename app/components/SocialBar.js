@@ -82,16 +82,16 @@ class SocialBar extends Component {
         return html`
             <div style=${this.styleFollow}>
                 ${this.createFollowButton()}
-                <span style=${Style.Link} onclick=${function () {
-                    route("/profile/" + getSessionId() + "/followed");
+                <div onclick=${function () {
+                    route("/profile/" + getSessionId() + "/follow");
                 }}>
-                    ${this.state.followed} abonnements
-                </span>
-                <span style=${Style.Link} onclick=${function () {
-                    route("/profile/"+ getSessionId() + "/follower");
-                }}>
-                    ${this.state.follower} abonnés
-                </span>
+                    <span style=${Style.Link}>
+                        ${this.state.followed} abonnements
+                    </span>
+                    <span style=${Style.Link}>
+                        ${this.state.follower} abonnés
+                    </span>
+                </div>
             </div >
     `;
     }
