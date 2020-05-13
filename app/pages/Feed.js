@@ -21,7 +21,6 @@ class Feed extends Component {
             .then(posts => this.setState({ posts }));
 
         observePosts(this, () => {
-            this.setState({ posts: [] }); // XXX: Reload the feed.
             fetch("/api/query-posts.php?userId=" + getSessionId())
                 .then(function (response) { return response.json() })
                 .then(posts => this.setState({ posts }));

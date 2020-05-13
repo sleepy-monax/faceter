@@ -17,6 +17,7 @@ create table if not exists User (
 
 create table if not exists Post (
     postId int auto_increment not null,
+    postRespond int,
     postAuthor int not null,
     postType enum('text', 'image', 'link') not null,
     postContent varchar(320) not null,
@@ -42,6 +43,7 @@ create table if not exists Follow (
 );
 
 alter table Post add constraint fkPostAuthor foreign key (postAuthor) references User(userId);
+alter table Post add constraint fkPostRespondTo foreign key (postRespond) references Post(postId);
 alter table Reaction add constraint fkReactionUtilisateur foreign key (userId) references User(userId);
 alter table Reaction add constraint fkReactionPost foreign key (postId) references Post(postId);
 alter table Follow add constraint fkFollowFollower foreign key (followerId) references User(userId);

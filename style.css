@@ -9,7 +9,7 @@
     --theme-middleground: rgba(0, 0, 0, 0.3);
     --theme-middleground-over: rgba(0, 0, 0, 0.5);
     --theme-frontground: rgba(54, 54, 64, 0.8);
-    --theme-border: #666;
+    --theme-border: #555560;
 
     --theme-alert-background: transparent;
     --theme-alert-foreground: rgb(218, 65, 65);
@@ -29,7 +29,7 @@
     --theme-middleground: rgba(0, 0, 0, 0.1);
     --theme-middleground-over: rgba(0, 0, 0, 0.5);
     --theme-frontground: rgba(255, 255, 255, 0.8);
-    --theme-border: #ccc;
+    --theme-border: #aaa;
 
     --theme-alert-background: rgba(218, 65, 65, 0.25);
     --theme-alert-foreground: rgba(218, 65, 65);

@@ -754,15 +754,6 @@ values
     (499, 184, 'text', 'Nam tristique tortor eu pede.', '2019-10-20 10:38:53'),
     (500, 41, 'text', 'Aenean fermentum. Donec ut mauris eget massa tempor convallis.', '2019-07-01 13:55:05');
 
-insert into Tag(postId, tagText)
-values
-    (4, 'philosophie'),
-    (1, 'connaisance'),
-    (2, 'journee'),
-    (4, 'top-lol'),
-    (1, 'moyen-age'),
-    (1, 'trop-bien');
-
 insert into Reaction(postId, userId, reactionType)
 values
     (1, 1, 'thonk'),

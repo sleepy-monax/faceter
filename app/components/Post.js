@@ -38,7 +38,9 @@ class Post extends Component {
     }
 
     styleDate = {
-        color: 'var(--theme-middleground-over)',
+        textAlign: 'left',
+        flexGrow: '1',
+        color: 'var(--theme-border)',
         fontSize: "0.75rem",
     }
 
@@ -48,6 +50,7 @@ class Post extends Component {
     }
 
     styleFooter = {
+        display: 'flex',
         textAlign: 'right',
         padding: '8px 16px 8px',
     }
@@ -99,14 +102,14 @@ class Post extends Component {
             <div id=${this.placeholderRef} style=${this.stylePost}>
                 <div style=${this.styleHeader}>
                     <${User} userId="${this.state.post.postAuthor}"/>
-                    <div style=${this.styleDate}>
-                        ${toHumanTime(this.state.post.postDate)}
-                    </div>
                 </div>
                 <div style=${this.styleBody}>
                     ${this.state.post.postType == "link" ? html`<${SocialCard} postCard=${this.state.post.postCard}/>` : this.state.post.postContent}
                 </div>
                 <div style=${this.styleFooter}>
+                    <div style=${this.styleDate}>
+                        ${toHumanTime(this.state.post.postDate)}
+                    </div>
                     <${Emotes} postId=${this.props.postId}/>
                 </div>
             </div>`;
