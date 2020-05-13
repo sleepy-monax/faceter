@@ -68,7 +68,6 @@ class Post extends Component {
     }
 
     componentDidMount() {
-
         var placeholder = document.getElementById(this.placeholderRef);
 
         if (isInViewport(placeholder)) {

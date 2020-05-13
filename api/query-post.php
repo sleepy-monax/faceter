@@ -22,7 +22,7 @@ $post['reactions'] = $reactions;
 if ($post['postType'] == 'link')
 {
     require_once('OpenGraph.php');
-    $graph = OpenGraph::fetch($r['postContent']);
+    $graph = OpenGraph::fetch($post['postContent']);
 
     $post['postCard'] = $graph->_values;
     $post['postCard']["link"] = $post['postContent'];
