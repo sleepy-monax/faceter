@@ -61,12 +61,13 @@ class Post extends Component {
     }
 
     fetchPost(postId) {
-        if (postId != this.state.postId) {
+        if (postId !== this.state.postId) {
+            console.log(postId + " -> " + this.state.postId);
+            this.setState({ postId: this.props.postId });
+
             fetch("/api/query-post.php?postId=" + postId)
                 .then(function (response) { return response.json() })
                 .then(post => this.setState({ post }));
-
-            this.setState({ postId: this.props.postId });
         }
     }
 

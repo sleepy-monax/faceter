@@ -20,7 +20,7 @@ from
 where
     SOUNDEX(userName)=SOUNDEX('$needle') or
     userName LIKE '%{$needle}%'
-limit 16";
+limit 4";
 
 $result_users = mysqli_query($connection, $sql_users);
 
