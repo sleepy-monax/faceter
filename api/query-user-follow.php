@@ -16,7 +16,7 @@ if ($isFollow === 1) {
         print json_encode("error follow");
 }
 else if ($isFollow === 0){
-    $sql = "delete from follow
+    $sql = "delete from Follow
             where followerId=" . $sessionId .
            " and followedId=" . $userId;
 

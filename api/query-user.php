@@ -13,6 +13,7 @@ if($r = mysqli_fetch_assoc($info_result)) {
 $sql_followers = 'select followerId from Follow where followedId = '. intval($_GET["userId"]);
 $result_followers = mysqli_query($connection, $sql_followers);
 
+$user["followers"] = Array();
 while($r = mysqli_fetch_assoc($result_followers)) {
     $user["followers"][] = intval($r['followerId']);
 }
@@ -20,6 +21,7 @@ while($r = mysqli_fetch_assoc($result_followers)) {
 $sql_followed = 'select followedId from Follow where followerId = '. intval($_GET["userId"]);
 $result_followed = mysqli_query($connection, $sql_followed);
 
+$user["followed"] = Array();
 while($r = mysqli_fetch_assoc($result_followed)) {
     $user["followed"][] = intval($r['followedId']);
 }
