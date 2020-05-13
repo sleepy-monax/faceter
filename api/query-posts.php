@@ -2,7 +2,7 @@
 $connection = include 'connection.php';
 
 $sql = 'select
-            postId
+            *
         from
             Post
         where

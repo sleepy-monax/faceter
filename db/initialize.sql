@@ -25,11 +25,6 @@ create table if not exists Post (
     primary key(postId)
 );
 
-create table if not exists Tag (
-    postId int not null,
-    tagText varchar(32) not null
-);
-
 create table if not exists Reaction (
     postId int not null,
     userId int not null,
@@ -47,7 +42,6 @@ create table if not exists Follow (
 );
 
 alter table Post add constraint fkPostAuthor foreign key (postAuthor) references User(userId);
-alter table Tag add constraint fkTagPost foreign key (postId) references Post(postId);
 alter table Reaction add constraint fkReactionUtilisateur foreign key (userId) references User(userId);
 alter table Reaction add constraint fkReactionPost foreign key (postId) references Post(postId);
 alter table Follow add constraint fkFollowFollower foreign key (followerId) references User(userId);

@@ -19,10 +19,21 @@ class Emotes extends Component {
         super();
     }
 
-    componentDidMount() {
+    fetchEmotes() {
         fetch("/api/query-reactions.php?postId=" + this.props.postId)
             .then(function (response) { return response.json() })
             .then(emotes => this.setState({ emotes }));
+    }
+
+    componentDidMount() {
+        this.fetchEmotes();
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.postId !== prevProps.postId) {
+            this.fetchEmotes();
+
+        }
     }
 
     showPicker = e => {
@@ -36,9 +47,7 @@ class Emotes extends Component {
                     onClose=${() => this.setState({ picker: false })} 
                     onEmoteSelected=${emote => {
                     createReaction(emote, this.props.postId, () => {
-                        fetch("/api/query-reactions.php?postId=" + this.props.postId)
-                            .then(function (response) { return response.json() })
-                            .then(emotes => this.setState({ emotes }));
+                        this.fetchEmotes();
                     });
                     this.setState({ picker: false })
                 }}/>`;

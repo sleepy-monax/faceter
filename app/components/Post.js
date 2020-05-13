@@ -55,20 +55,19 @@ class Post extends Component {
     constructor() {
         super();
         this.placeholderRef = makeRef()
-        this.isFetching = false;
     }
 
     fetchPost(postId) {
-        if (!this.isFetching) {
-            this.isFetching = true;
+        if (postId != this.state.postId) {
             fetch("/api/query-post.php?postId=" + postId)
                 .then(function (response) { return response.json() })
                 .then(post => this.setState({ post }));
+
+            this.setState({ postId: this.props.postId });
         }
     }
 
     componentDidMount() {
-        this.setState({ postId: this.props.postId });
 
         var placeholder = document.getElementById(this.placeholderRef);
 
@@ -83,6 +82,12 @@ class Post extends Component {
         }
     }
 
+    componentDidUpdate(prevProps) {
+        if (this.props.postId !== prevProps.postId) {
+            this.fetchPost(this.props.postId);
+        }
+    }
+
     render() {
         if (this.state.post === undefined) {
             return html`
@@ -92,7 +97,7 @@ class Post extends Component {
             </div>`;
         } else {
             return html`
-            <div style=${this.stylePost}>
+            <div id=${this.placeholderRef} style=${this.stylePost}>
                 <div style=${this.styleHeader}>
                     <${User} userId="${this.state.post.postAuthor}"/>
                     <div style=${this.styleDate}>

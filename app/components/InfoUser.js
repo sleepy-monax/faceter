@@ -1,9 +1,9 @@
-import {Component} from "/lib/preact.js";
-import {getSessionId} from "/app/model/Session.js";
-import {getUser} from "/app/model/Users.js";
+import { Component } from "/lib/preact.js";
+import { getSessionId } from "/app/model/Session.js";
+import { getUser } from "/app/model/Users.js";
 import * as Style from '/app/model/Style.js';
 
-class InfoUser extends Component{
+class InfoUser extends Component {
 
     constructor() {
         super();
@@ -20,9 +20,10 @@ class InfoUser extends Component{
 
     componentDidMount() {
         getUser(getSessionId(), user => {
-            this.setState({name: user.userName, email: user.userMail, password: user.userPassword})
+            this.setState({ name: user.userName, email: user.userMail, password: user.userPassword })
         });
     }
+
 
     doModify() {
         let pathProfil = document.getElementById("ProfImg").value;
@@ -31,7 +32,7 @@ class InfoUser extends Component{
         let newEmail = document.getElementById("EmailUser").value;
         let newPassword = document.getElementById("passwordUser").value;
 
-        fetch("/api/query-update-info.php?id="+ getSessionId() +"&name="+ newName + "&password=" + newPassword + "&email=" + newEmail)
+        fetch("/api/query-update-info.php?id=" + getSessionId() + "&name=" + newName + "&password=" + newPassword + "&email=" + newEmail)
             .then(function (response) {
                 return response.json()
             })
@@ -39,7 +40,7 @@ class InfoUser extends Component{
     }
 
     render() {
-        return html `
+        return html`
             <div>
                 <form style=${Style.Padding16} onsubmit=${this.doModify}>
                     <span>
@@ -97,4 +98,4 @@ class InfoUser extends Component{
     }
 }
 
-export {InfoUser as default};
+export { InfoUser as default };

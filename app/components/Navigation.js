@@ -5,6 +5,8 @@ import SearchBar from '/app/components/SearchBar.js';
 import Icon from '/app/components/Icon.js';
 import Menu from '/app/components/Menu.js';
 import { getSessionId } from '/app/model/Session.js';
+import { route } from "/lib/preact-router.js";
+
 
 
 class Navigation extends Component {
@@ -59,7 +61,17 @@ class Navigation extends Component {
                 </a>
             </div>
             <span style=${this.styleSearch}>
-                <${SearchBar}/>
+                <${SearchBar} onInput=${needle => {
+                needle = needle.trim();
+
+                if (needle == "") {
+                    route("/feed");
+
+                }
+                else {
+                    route("/search/" + needle.trim())
+                }
+            }}/>
             </span>
             <div style=${this.styleItems} class="only-desktop">
                 <a style=${this.styleItem} href="/feed">

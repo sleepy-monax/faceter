@@ -6,7 +6,6 @@ import * as Style from '/app/model/Style.js';
 import { getSessionId } from "/app/model/Session.js";
 import { observePosts, stopObservePosts } from "/app/model/Posts.js"
 
-
 class Feed extends Component {
     state = {
         posts: []

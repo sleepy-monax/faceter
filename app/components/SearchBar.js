@@ -1,6 +1,6 @@
 import { Component } from '/lib/preact.js';
 import Icon from '/app/components/Icon.js';
-import {route} from "/lib/preact-router.js";
+import { route } from "/lib/preact-router.js";
 
 
 class SearchBar extends Component {
@@ -47,24 +47,11 @@ class SearchBar extends Component {
         let content = e.target.value;
         this.setState({ content });
 
-        if (this.props.onInput)
-        {
+        if (this.props.onInput) {
             this.props.onInput(content);
         }
     }
-
-    search() {
-        let name = document.getElementById("searchText").value;
-        fetch("/api/query-search-user.php?username="+ name)
-            .then(function (response) {
-                return response.json()
-            })
-            .then(id => {
-                if (id !== -1)
-                    route("/profile/" + id);
-            })
-    }
-
+    
     render() {
         return html`
 <span style=${this.styleSearch}>
@@ -74,9 +61,8 @@ class SearchBar extends Component {
         placeholder="Search..."
         value=${this.state.content}
         onInput=${this.onTextInput}
-        id="searchText"
     />
-    <span style=${this.styleButton} class='overable' onclick=${this.search}>
+    <span style=${this.styleButton} class='overable' onclick=${this.props.onSearch}>
         <${Icon} icon="search"/>
     </span>
 </span>`;

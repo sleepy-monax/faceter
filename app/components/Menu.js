@@ -82,7 +82,7 @@ class Menu extends Component {
                     <${Icon} icon="account_circle"/>
                     <span style=${this.styleText}>Profil</span>
                 </a>
-                <div style=${this.styleSeparator}></div>
+                <div class='only-mobile' style=${this.styleSeparator}></div>
                 <a style=${this.styleItem} href="/settings">
                 <${Icon} icon="settings" />
                 <span style=${this.styleText}>Paramètre</span>

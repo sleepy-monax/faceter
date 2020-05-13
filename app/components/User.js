@@ -3,7 +3,7 @@ import { getUser } from '/app/model/Users.js';
 
 class User extends Component {
     state = {
-        user : null
+        user: null
     };
 
     styleUser = {
@@ -32,9 +32,14 @@ class User extends Component {
         getUser(this.props.userId, user => this.setState({ user }));
     }
 
+    componentDidUpdate(prevProps) {
+        if (this.props.userId !== prevProps.userId) {
+            getUser(this.props.userId, user => this.setState({ user }));
+        }
+    }
+
     render() {
-        if (this.state.user === undefined)
-        {
+        if (this.state.user === undefined) {
             return html`
             <div style=${this.styleUser}>
                 <div class="user-name">
@@ -42,8 +47,7 @@ class User extends Component {
                 </div>
             </div>`;
         }
-        else
-        {
+        else {
             return html`
             <a href="/profile/${this.props.userId}">
                 <div style=${this.styleUser}>
