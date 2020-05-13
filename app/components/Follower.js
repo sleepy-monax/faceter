@@ -2,7 +2,6 @@ import {Component} from "/lib/preact.js";
 import {getUser} from "/app/model/Users.js";
 import User from "/app/components/User.js"
 import * as Style from '/app/model/Style.js';
-import {getSessionId} from "/app/model/Session.js";
 
 
 class Follower extends Component{
@@ -14,7 +13,7 @@ class Follower extends Component{
     }
 
     componentDidMount() {
-        getUser(getSessionId(), user => this.setState({follower: user.followers }));
+        getUser(this.props.userId, user => this.setState({follower: user.followers }));
     }
 
     render() {

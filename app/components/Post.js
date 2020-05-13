@@ -67,10 +67,8 @@ class Post extends Component {
 
             fetch("/api/query-post.php?postId=" + postId)
                 .then(function (response) { return response.json() })
-                .then(post => {
-                    console.log(post)
-                    this.setState({ post })
-                });
+                .then(post => this.setState({ post })
+                );
         }
     }
 

@@ -20,10 +20,10 @@ class Follow extends Component{
         return html `
             <div class="container" >
                 <div style=${this.styleLeft}>
-                    <${Follower} />
+                    <${Follower} userId=${this.props.userId}/>
                 </div>
                 <div style=${this.styleRight}>
-                    <${Followed} />
+                    <${Followed} userId=${this.props.userId}/>
                 </div>
             </div>
         `;
