@@ -11,6 +11,8 @@ import ViewPost from '/app/pages/ViewPost.js'
 import Settings from '/app/pages/Settings.js'
 import Error from '/app/pages/Error.js'
 import Search from '/app/pages/Search.js'
+import Follower from "/app/pages/Follower.js"
+import Followed from "/app/pages/Followed.js"
 
 import { isLoggedIn } from '/app/model/Session.js';
 
@@ -42,6 +44,8 @@ class App extends Component {
                 <${ViewPost} path="/post/:postId" />
                 <${Search} path="/search/:needle" />
                 <${Settings} path="/settings" />
+                <${Follower} path="/profile/:userId/follower" />
+                <${Followed} path="/profile/:userId/followed" />
                 <${Error} default />
             <//>
         </div>`;

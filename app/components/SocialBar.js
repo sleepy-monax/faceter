@@ -2,6 +2,7 @@ import { Component } from "/lib/preact.js";
 import { getUser } from '/app/model/Users.js';
 import { getSessionId } from '/app/model/Session.js';
 import * as Style from '/app/model/Style.js';
+import {route} from "/lib/preact-router.js";
 
 class SocialBar extends Component {
 
@@ -24,7 +25,6 @@ class SocialBar extends Component {
     }
 
     componentDidMount() {
-        this.loadBar();
         fetch("/api/query-user-followed.php?sessionId=" + getSessionId() + "&followedId=" + this.props.userId)
             .then(function (response) {
                 return response.json()
@@ -35,11 +35,12 @@ class SocialBar extends Component {
                 else
                     this.setState({nameButton: "Suivre"});
                 this.createFollowButton()
+                this.loadBar()
             });
     }
 
     loadBar() {
-        getUser(this.props.userId, user => this.setState({ followed: user.followed, follower: user.followers }));
+        getUser(this.props.userId, user => this.setState({ followed: user.followed.length, follower: user.followers.length }));
     }
 
     componentDidUpdate(prevProps) {
@@ -58,7 +59,6 @@ class SocialBar extends Component {
             this.requestFollow(1);
             this.setState({nameButton: "Fuir"});
         }
-
 
     }
 
@@ -82,11 +82,15 @@ class SocialBar extends Component {
         return html`
             <div style=${this.styleFollow}>
                 ${this.createFollowButton()}
-                <span style=${Style.Link}>
-                    ${this.state.followed.length} abonnements
+                <span style=${Style.Link} onclick=${function () {
+                    route("/profile/" + getSessionId() + "/followed");
+                }}>
+                    ${this.state.followed} abonnements
                 </span>
-                <span style=${Style.Link}>
-                    ${this.state.follower.length} abonnés
+                <span style=${Style.Link} onclick=${function () {
+                    route("/profile/"+ getSessionId() + "/follower");
+                }}>
+                    ${this.state.follower} abonnés
                 </span>
             </div >
     `;
