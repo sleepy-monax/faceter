@@ -5,4 +5,5 @@ if (!$connection) {
     die('Could not connect : ' . mysqli_error($connection));
 }
 
+mysqli_set_charset($connection, "utf8");
 return $connection;

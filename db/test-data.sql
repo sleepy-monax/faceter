@@ -1,7 +1,7 @@
 insert into User(userId, userName, userMail, userPassword)
 values
     (1, 'Guillaume', 'guillaume.charlier.2017@gmail.com', 'Guillaume'),
-    (2, 'Mathieu', 'la187374@student.helha.be', ''),
+    (2, 'Mathieu', 'la187374@student.helha.be', 'Mathieu'),
     (3, 'Nicolas', 'nicolas.vanbossuyt@gmail.com', 'Nicolas'),
     (4, 'Tintin', 'tintinDu94@outlook.com', ''),
     (5, 'Annice', 'apoundford4@ezinearticles.com', 'aAtbaiDXg'),
