@@ -47,7 +47,7 @@ class ViewPost extends Component {
             <div class='magic-card'>
                 <div style=${Style.Illustration}>
                     <h1 style=${Style.Title}>Discussion</h1>
-                    <h1 style=${Style.SubTitle}>Soyez le premier a commenter!</h1>
+                    <h1 style=${Style.SubTitle}>Soyez le premier a commenter !</h1>
                     <img src='/res/comment.svg'/>
                 </div>
             </div>

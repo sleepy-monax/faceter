@@ -75,7 +75,7 @@ class Join extends Component {
                 </div>
 
                 <form style=${Style.Padding16}  onSubmit=${this.onSubmit}>
-                    <h1 style=${Style.SubTitle}>Créez votre propre compte!</h1>
+                    <h1 style=${Style.SubTitle}>Créez votre propre compte !</h1>
 
                     <div style="padding:0px 48px 16px">
                         <${Alert} message=${this.state.message}/>
