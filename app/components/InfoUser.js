@@ -2,13 +2,13 @@ import { Component } from "/lib/preact.js";
 import { getSessionId } from "/app/model/Session.js";
 import { getUser } from "/app/model/Users.js";
 import * as Style from '/app/model/Style.js';
+import { getSessionToken } from "/app/model/Session.js";
 
 class InfoUser extends Component {
 
     constructor() {
         super();
     }
-
 
     styleField = {
         backgroundColor: "var(--theme-middleground)",
@@ -24,10 +24,25 @@ class InfoUser extends Component {
         });
     }
 
+    sendProfilePicture() {
 
-    doModify() {
-        let pathProfil = document.getElementById("ProfImg").value;
-        let pathCover = document.getElementById("CoverImg").value;
+        let pathProfile = document.getElementById("ProfImg").files[0];
+        let formData = new FormData();
+
+        formData.append("photo", pathProfile);
+        fetch('/api/upload-profile.php?sessionToken=' + getSessionToken(), {method: "POST", body: formData});
+    }
+
+    sendCoverPicture() {
+
+        let pathCover = document.getElementById("CoverImg").files[0];
+        let formData = new FormData();
+
+        formData.append("photo", pathCover);
+        fetch('/api/upload-cover.php?sessionToken=' + getSessionToken(), {method: "POST", body: formData});
+    }
+
+    doModify = e => {
         let newName = document.getElementById("nameUser").value;
         let newEmail = document.getElementById("EmailUser").value;
         let newPassword = document.getElementById("passwordUser").value;
@@ -37,6 +52,8 @@ class InfoUser extends Component {
                 return response.json()
             })
             .then(update => console.log(update))
+        
+        e.preventDefault();
     }
 
     render() {
@@ -51,6 +68,7 @@ class InfoUser extends Component {
                             style=${this.styleField}
                             id="ProfImg"
                         />
+                        <button style=${Style.Button} onClick=${()=>this.sendProfilePicture()}>Modifier</button>
                     </span>
                     <span>
                         Changer la photo de couverture :
@@ -60,6 +78,7 @@ class InfoUser extends Component {
                             style=${this.styleField}
                             id="CoverImg"
                         />
+                        <button style=${Style.Button} onClick=${()=>this.sendCoverPicture()}>Modifier</button>
                     </span>
                     <span>
                         Nom d'utilisateur : 
