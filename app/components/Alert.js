@@ -11,8 +11,6 @@ class Alert extends Component {
         borderRadius: '8px',
         padding: '8px',
         marginBottom: '24px',
-        marginLeft: '48px',
-        marginRight: '48px',
     }
 
     constructor() {

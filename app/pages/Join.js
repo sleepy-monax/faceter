@@ -31,15 +31,17 @@ class Join extends Component {
     }
 
     doJoin = e => {
-        if (!validateEmail(this.state.email)) {
-            alert("Veuillez entrer une adresse mail valide");
-        } 
 
         if (this.state.username == "" ||
             this.state.password == "" ||
             this.state.email == "" ||
             this.state.verification == "") {
             this.setState({ message: 'Veuillez remplir tout les champs' });
+            return;
+        }
+
+        if (!validateEmail(this.state.email)) {
+            this.setState({ message: "Veuillez entrer une adresse mail valide" });
             return;
         }
 
@@ -75,9 +77,9 @@ class Join extends Component {
                 <form style=${Style.Padding16}  onSubmit=${this.onSubmit}>
                     <h1 style=${Style.SubTitle}>Créez votre propre compte!</h1>
 
-                    <${Alert} message=${this.state.message}/>
-
                     <div style="padding:0px 48px 16px">
+                        <${Alert} message=${this.state.message}/>
+
                         <${TextField}
                             label="Pseudo"
                             value=${this.state.username}
