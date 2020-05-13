@@ -9,20 +9,28 @@ class Follow extends Component{
         super();
     }
 
-    styleLeft={
-        float: "left"
-    }
-    styleRight={
-        float: "right"
-    }
 
     render() {
         return html `
-            <div class="container" >
-                <div style=${this.styleLeft}>
+            <style>
+                @media screen and (max-width: 560px) {
+                    .follow-container {
+                        display: block;
+                    }
+                }
+
+                @media screen and (min-width: 560px) {
+                    .follow-container {
+                        display: flex;
+                    }
+                }
+
+            </style>
+            <div class="container follow-container" >
+                <div style="flex-grow: 1;">
                     <${Follower} userId=${this.props.userId}/>
                 </div>
-                <div style=${this.styleRight}>
+                <div style="flex-grow: 1;">
                     <${Followed} userId=${this.props.userId}/>
                 </div>
             </div>
