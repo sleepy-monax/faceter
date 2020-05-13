@@ -3,6 +3,7 @@ import Icon from '/app/components/Icon.js'
 import { toggleTheme, getTheme } from '/app/model/Theme.js'
 import { route } from "/lib/preact-router.js";
 import { getSessionId, logoff } from '/app/model/Session.js';
+import User from '/app/components/User.js';
 
 class Menu extends Component {
     state = {
@@ -78,9 +79,8 @@ class Menu extends Component {
                     <${Icon} icon="home"/>
                     <span style=${this.styleText}>Accueil</span>
                 </a>
-                <a class='only-mobile' style=${this.styleItem} href=${"/profile/" + getSessionId()} >
-                    <${Icon} icon="account_circle"/>
-                    <span style=${this.styleText}>Profil</span>
+                <a class='only-mobile' style=${this.styleItem}  >
+                    <${User} userId=${getSessionId()}/>
                 </a>
                 <div class='only-mobile' style=${this.styleSeparator}></div>
                 <a style=${this.styleItem} href="/settings">

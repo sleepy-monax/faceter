@@ -43,10 +43,9 @@ class Login extends Component {
                         Connectez vous avec votre compte!
                     </div>
 
-                    
                     <div style="padding:0px 48px 32px">
                         <${Alert} message=${this.state.message}/>
-                        
+
                         <${TextField}
                             label="E-mail ou pseudo"
                             value=${this.state.username}

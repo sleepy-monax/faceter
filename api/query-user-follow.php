@@ -7,7 +7,7 @@ $sessionId = intval($_GET["sessionId"]);
 $userId = intval($_GET["user"]);
 
 if ($isFollow === 1) {
-    $sql = "insert into follow
+    $sql = "insert into Follow
             (followerId, followedId) value
             (". $sessionId.", ". $userId .")";
     if (mysqli_query($connection, $sql))

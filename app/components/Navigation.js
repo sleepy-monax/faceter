@@ -6,7 +6,7 @@ import Icon from '/app/components/Icon.js';
 import Menu from '/app/components/Menu.js';
 import { getSessionId } from '/app/model/Session.js';
 import { route } from "/lib/preact-router.js";
-
+import User from '/app/components/User.js';
 
 
 class Navigation extends Component {
@@ -77,8 +77,8 @@ class Navigation extends Component {
                 <a style=${this.styleItem} href="/feed">
                     Accueil
                 </a>
-                <a style=${this.styleItem} href=${"/profile/" + getSessionId()} >
-                    Profil
+                <a style=${this.styleItem}>
+                    <${User} userId=${getSessionId()}/>
                 </a>
             </div>
             <div style=${this.styleItems}>

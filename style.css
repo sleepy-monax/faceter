@@ -8,7 +8,7 @@
     --theme-foreground: #fff;
     --theme-middleground: rgba(0, 0, 0, 0.3);
     --theme-middleground-over: rgba(0, 0, 0, 0.5);
-    --theme-frontground: rgba(54, 54, 64, 0.8);
+    --theme-frontground: rgba(54, 54, 64, 0.9);
     --theme-border: #555560;
 
     --theme-alert-background: transparent;
@@ -25,10 +25,10 @@
     --theme-accent-transparent: rgba(0, 102, 255, 0.5);
     --theme-background: #eeeef9;
     --theme-background-alt: #f9f9ff;
-    --theme-foreground: #222;
+    --theme-foreground: #224;
     --theme-middleground: rgba(0, 0, 0, 0.1);
     --theme-middleground-over: rgba(0, 0, 0, 0.5);
-    --theme-frontground: rgba(255, 255, 255, 0.8);
+    --theme-frontground: rgba(255, 255, 255, 0.9);
     --theme-border: #aaa;
 
     --theme-alert-background: rgba(218, 65, 65, 0.25);

@@ -21,7 +21,7 @@ function isInViewport(elem) {
 
 class Post extends Component {
     state = {
-        postId: -1,
+        postId: undefined,
         post: undefined,
     };
 
@@ -63,7 +63,6 @@ class Post extends Component {
 
     fetchPost(postId) {
         if (postId !== this.state.postId) {
-            console.log(postId + " -> " + this.state.postId);
             this.setState({ postId: this.props.postId });
 
             fetch("/api/query-post.php?postId=" + postId)

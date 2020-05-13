@@ -52,7 +52,7 @@ class InfoUser extends Component {
                 return response.json()
             })
             .then(update => console.log(update))
-        
+
         e.preventDefault();
     }
 
@@ -116,5 +116,15 @@ class InfoUser extends Component {
         `;
     }
 }
+
+getUser(getSessionId(), user => { 
+    user.followers.forEach(followerId => { 
+        getUser(followerId, follower => { 
+            this.setState({
+                followers: this.state.followers.concat(follower)
+            })
+        })
+    })
+})
 
 export { InfoUser as default };
