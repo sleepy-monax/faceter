@@ -56,9 +56,6 @@ class Login extends Component {
                             password=true
                             value=${this.state.password}
                             onValueChange=${(password) => this.setState({ password })}/>
-
-                        <input type="checkbox" id="rememberMe"/>
-                        <label for="rememberMe"> Se souvenir de moi</label>
                     </div>
 
 

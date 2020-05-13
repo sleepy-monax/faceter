@@ -3,6 +3,9 @@ import { getSessionId } from "/app/model/Session.js";
 import { getUser } from "/app/model/Users.js";
 import * as Style from '/app/model/Style.js';
 import { getSessionToken } from "/app/model/Session.js";
+import TextField from '/app/components/TextField.js';
+import { route } from '/lib/preact-router.js';
+
 
 class InfoUser extends Component {
 
@@ -11,16 +14,16 @@ class InfoUser extends Component {
     }
 
     styleField = {
-        backgroundColor: "var(--theme-middleground)",
         color: "var(--theme-foreground)",
-        outline: "none",
-        width: "100%",
-        border: "none"
+        backgroundColor: "var(--theme-frontground)",
+        borderRadius: "8px",
+        border: "1px solid var(--theme-border)",
+        padding: "16px",
     }
 
     componentDidMount() {
         getUser(getSessionId(), user => {
-            this.setState({ name: user.userName, email: user.userMail, password: user.userPassword })
+            this.setState({ username: user.userName, email: user.userMail, password: user.userPassword })
         });
     }
 
@@ -30,7 +33,7 @@ class InfoUser extends Component {
         let formData = new FormData();
 
         formData.append("photo", pathProfile);
-        fetch('/api/upload-profile.php?sessionToken=' + getSessionToken(), {method: "POST", body: formData});
+        fetch('/api/upload-profile.php?sessionToken=' + encodeURIComponent(getSessionToken()), { method: "POST", body: formData });
     }
 
     sendCoverPicture() {
@@ -39,92 +42,92 @@ class InfoUser extends Component {
         let formData = new FormData();
 
         formData.append("photo", pathCover);
-        fetch('/api/upload-cover.php?sessionToken=' + getSessionToken(), {method: "POST", body: formData});
+        fetch('/api/upload-cover.php?sessionToken=' + encodeURIComponent(getSessionToken()), { method: "POST", body: formData });
     }
 
     doModify = e => {
-        let newName = document.getElementById("nameUser").value;
-        let newEmail = document.getElementById("EmailUser").value;
-        let newPassword = document.getElementById("passwordUser").value;
-
-        fetch("/api/query-update-info.php?id=" + getSessionId() + "&name=" + newName + "&password=" + newPassword + "&email=" + newEmail)
+        e.preventDefault();
+        fetch("/api/query-update-info.php?id=" + getSessionId() + "&name=" + this.state.username + "&password=" + this.state.password + "&email=" + this.state.email)
             .then(function (response) {
                 return response.json()
             })
             .then(update => console.log(update))
 
-        e.preventDefault();
     }
 
     render() {
         return html`
             <div>
-                <form style=${Style.Padding16} onsubmit=${this.doModify}>
-                    <span>
-                        Changer la photo de profil :
-                        <input 
-                            type="file" 
-                            accept="image/jpeg"
-                            style=${this.styleField}
-                            id="ProfImg"
-                        />
-                        <button style=${Style.Button} onClick=${()=>this.sendProfilePicture()}>Modifier</button>
-                    </span>
-                    <span>
-                        Changer la photo de couverture :
-                        <input 
-                            type="file"
-                            accept="image/jpeg"
-                            style=${this.styleField}
-                            id="CoverImg"
-                        />
-                        <button style=${Style.Button} onClick=${()=>this.sendCoverPicture()}>Modifier</button>
-                    </span>
-                    <span>
-                        Nom d'utilisateur : 
-                        <input
-                            type="text"
-                            value="${this.state.name}"
-                            style=${this.styleField}
-                            id="nameUser"
-                            required
-                        />
-                    </span>
-                    <span>
-                        Adresse mail :
-                        <input
-                            type="text"
-                            value="${this.state.email}"
-                            style=${this.styleField}
-                            id="EmailUser"
-                            required
-                        />
-                    </span>
-                    <span>
-                        Mot de passe :
-                        <input
-                            type="password"
-                            value="${this.state.password}"
-                            style=${this.styleField}
-                            id="passwordUser"
-                            required
-                        />
-                    </span>
-                    <button style=${Style.Button} type="submit">Modifier</button>
-                </form>
+                <div class="magic-card">
+                    <div style=${Style.Illustration}>
+                        <img src='/res/settings.svg'/>
+                    </div>
+                    <div style=${Style.Padding16}>
+                        <div style=${Style.SubTitle}>
+                                Personnalisez votre profil
+                        </div>
+                        <div>
+                            Profil
+                            <div style=${this.styleField}>
+                                <input
+                                    type="file" 
+                                    accept="image"
+                                    id="ProfImg"
+                                />
+                            </div>
+                            <div style="display: flex; justify-content: center; margin-top: 16px;">
+                                <button style=${Style.Button} onClick=${() => this.sendProfilePicture()}>Télécharger</button>
+                            </div>
+                        </div>
+                        <div>
+                            Couverture
+                            <div style=${this.styleField}>
+                                <input
+                                    type="file"
+                                    accept="image"
+                                    id="CoverImg"
+                                />
+                            </div>
+                            <div style="display: flex; justify-content: center; margin-top: 16px;">
+                                <button style=${Style.Button} onClick=${() => this.sendCoverPicture()}>Télécharger</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="magic-spacer"></div>
+                <div class="magic-card">
+                    <form style=${Style.Padding16} onsubmit=${this.doModify}>
+                        <div style=${Style.SubTitle}>
+                            Changez vos informations personnelles
+                        </div>
+                        <span>
+                            <${TextField}
+                                label="Pseudo"
+                                value=${this.state.username}
+                                onValueChange=${(username) => this.setState({ username })}/>
+                        </span>
+                        <span>
+                            <${TextField}
+                                label="E-mail"
+                                value=${this.state.email}
+                                onValueChange=${(email) => this.setState({ email })}/>
+                        </span>
+                        <span>
+                            <${TextField}
+                                label="Mot de passe"
+                                password=true
+                                value=${this.state.password}
+                                onValueChange=${(password) => this.setState({ password })}/>
+                        </span>
+                        <div style="display: flex; justify-content: center;">
+                            <button style=${Style.Link} onClick=${e => route('/')}>Annuler</button>
+                            <button style=${Style.Button} type="submit">Modifier</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         `;
     }
 }
-
-getUser(getSessionId(), user => { 
-    user.followers.forEach(followerId => { 
-        getUser(followerId, follower => { 
-            this.setState({
-                followers: this.state.followers.concat(follower)
-            })
-        })
-    })
-})
 
 export { InfoUser as default };

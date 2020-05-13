@@ -1,6 +1,8 @@
 <?php
 
 include 'utils/authentication.php';
+include 'utils/image.php';
+
 $userId = decode_authentication_token($_GET["sessionToken"]);
 
 echo ($userId);
@@ -41,7 +43,7 @@ if ($uploadOk == 0) {
   echo "Sorry, your file was not uploaded.";
 // if everything is ok, try to upload file
 } else {
-  if (move_uploaded_file($_FILES["photo"]["tmp_name"], $target_file)) {
+  if (convert_image($_FILES["photo"]["tmp_name"], $target_file, 50)) {
     echo "The file ". basename( $_FILES["photo"]["name"]). " has been uploaded.";
   } else {
     echo "Sorry, there was an error uploading your file.";

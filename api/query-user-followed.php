@@ -6,7 +6,7 @@ $sessionId = intval($_GET["sessionId"]);
 $followedId = intval($_GET["followedId"]);
 
 $sql = "select *
-        from follow
+        from Follow
         where followerId=" . $sessionId.
        " and followedId=" . $followedId;
 
