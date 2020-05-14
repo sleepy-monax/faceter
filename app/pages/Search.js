@@ -63,7 +63,7 @@ class Search extends Component {
             return html`<div class='magic-container magic-spacer'>
             <div class='magic-card'>
                 <div style=${Style.Illustration}>
-                    <h1 style=${Style.Title}>Désoler :'(</h1>
+                    <h1 style=${Style.Title}>Désolé :'(</h1>
                     <h1 style=${Style.SubTitle}>Mais il semble que "${this.props.needle}" n'exite pas...</h1>
                     <img src='/res/search.svg'/>
                 </div>

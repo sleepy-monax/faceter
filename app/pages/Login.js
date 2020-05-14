@@ -7,8 +7,8 @@ import * as Style from '/app/model/Style.js';
 
 class Login extends Component {
     state = {
-        username: 'Nicolas',
-        password: 'Nicolas',
+        username: '',
+        password: '',
         message: '',
     }
 
